@@ -159,12 +159,11 @@
                     <div class="row">
                         <div class="col-12">
                             <div>
-                                <a href="<?php echo route('home'); ?>">
-                                    <h1>Trang chủ</h1>
-                                </a>
                                 @yield('content')
                             </div>
-
+                            <p class="mt-3">
+                                &larr; <a href="<?php echo route('home'); ?>">Quay về trang chủ</a>
+                            </p>
                         </div>
                     </div>
                     <!-- main end -->
