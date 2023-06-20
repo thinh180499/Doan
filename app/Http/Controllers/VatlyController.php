@@ -175,10 +175,21 @@ class VatlyController extends Controller
                 return view('vatly.khoiluongrieng',compact('ketqua'));
             }
             else if($b!=0){
-                $ketqua=$a/$b;
+                (float)$ketqua=$a/$b;
+                if(is_infinite($ketqua) || $ketqua>PHP_INT_MAX)
+                {
+                    $ketqua="nhập lại";
+                    return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
+                }
+                else if(is_infinite($ketqua)||$ketqua<0)
+                {
+                    $ketqua="nhập lại";
+                    return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
+                }
+                $ketqua=number_format($ketqua);
                 return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
             }
-           
+            
         }
     }
     

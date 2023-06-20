@@ -22,6 +22,7 @@
             <input type="submit" name="=" value="=">
             <a>{{ !empty($ketqua) ? $ketqua : false }}</a>
             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+
         </span>
     </form>
 @endsection
