@@ -167,11 +167,11 @@ class VatlyController extends Controller
         return view('vatly.khoiluongrieng');
     }
     public function tinhkhoiluongrieng(){
-            if(is_numeric($_POST['a']) && is_finite($_POST['a']))
+            if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0)
             {
                 
                 $a=$_POST['a'];
-                if($_POST['b'] && is_finite($_POST['b']))
+                if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0)
                 {
                     $b=$_POST['b'];
                     (float)$ketqua=$a/$b;
