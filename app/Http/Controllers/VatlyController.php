@@ -167,30 +167,46 @@ class VatlyController extends Controller
         return view('vatly.khoiluongrieng');
     }
     public function tinhkhoiluongrieng(){
-        if(isset($_POST['='])&&($_POST['='])){
-            $a=$_POST['a'];
-            $b=$_POST['b'];
-            if($b==0){
-                $ketqua="nhập lại V";
+            if(is_numeric($_POST['a']))
+            {
+                
+                $a=(int)$_POST['a'];
+                if($_POST['b'])
+                {
+                    $b=$_POST['b'];
+                    
+                    if($a==0)
+                    {
+                        static $ketqua=0;
+                        return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
+                    }
+                    else {
+                        (float)$ketqua=$a/$b;
+                        if(is_infinite($ketqua)||$ketqua<0)
+                        {
+                            $ketqua="nhập lại";
+                            return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
+                        }
+                        else{
+                            $ketqua=number_format($ketqua,2 ,',', ' ');
+                        return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
+                        }
+                    }
+                }
+                else{
+                    $a=(string)$a;
+                    $ketqua="nhập V với V khác 0";
+                    return view('vatly.khoiluongrieng',compact('ketqua','a'));
+                }
+                
+            }
+            else
+            {
+                $ketqua="nhập m ";
                 return view('vatly.khoiluongrieng',compact('ketqua'));
             }
-            else if($b!=0){
-                (float)$ketqua=$a/$b;
-                if(is_infinite($ketqua) || $ketqua>PHP_INT_MAX)
-                {
-                    $ketqua="nhập lại";
-                    return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
-                }
-                else if(is_infinite($ketqua)||$ketqua<0)
-                {
-                    $ketqua="nhập lại";
-                    return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
-                }
-                $ketqua=number_format($ketqua);
-                return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
-            }
             
-        }
+        
     }
     
     public function trongluongrieng(){
