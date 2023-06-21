@@ -167,30 +167,29 @@ class VatlyController extends Controller
         return view('vatly.khoiluongrieng');
     }
     public function tinhkhoiluongrieng(){
-            if(is_numeric($_POST['a']))
+            if(is_numeric($_POST['a']) && is_finite($_POST['a']))
             {
                 
-                $a=(int)$_POST['a'];
-                if($_POST['b'])
+                $a=$_POST['a'];
+                if($_POST['b'] && is_finite($_POST['b']))
                 {
                     $b=$_POST['b'];
-                    
-                    if($a==0)
+                    (float)$ketqua=$a/$b;
+                    if($ketqua)
                     {
-                        static $ketqua=0;
-                        return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
-                    }
-                    else {
-                        (float)$ketqua=$a/$b;
                         if(is_infinite($ketqua)||$ketqua<0)
                         {
-                            $ketqua="nhập lại";
+                            $ketqua="kết quả vượt qua giới hạn tính";
                             return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
                         }
                         else{
-                            $ketqua=number_format($ketqua,2 ,',', ' ');
-                        return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
+                            return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
                         }
+                    }
+                    else {
+                        static $ketqua=0;
+                        return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
+                        
                     }
                 }
                 else{
