@@ -67,6 +67,8 @@ Route::prefix('/vatly')->group(function () {
     Route::post('hieusuatdongconhiet', [VatlyController::class, 'tinhhieusuatdongconhiet']);
     Route::get('cuongdodongdien', [VatlyController::class, 'cuongdodongdien'])->name('vatly.cuongdodongdien');
     Route::post('cuongdodongdien', [VatlyController::class, 'tinhcuongdodongdien']);
+    Route::get('hieudienthe', [VatlyController::class, 'hieudienthe'])->name('vatly.hieudienthe');
+    Route::post('hieudienthe', [VatlyController::class, 'tinhhieudienthe']);
     Route::get('congsuathaophi', [VatlyController::class, 'congsuathaophi'])->name('vatly.congsuathaophi');
     Route::post('congsuathaophi', [VatlyController::class, 'tinhcongsuathaophi']);
 });

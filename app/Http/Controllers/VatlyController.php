@@ -514,6 +514,41 @@ class VatlyController extends Controller
     }
 
 
+    //hiệu điện thế
+    public function hieudienthe(){
+        return view('vatly.hieudienthe');
+    }
+    public function tinhhieudienthe(){
+         //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
+        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
+            $a=$_POST['a'];
+             //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
+            if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0){
+                $b=$_POST['b'];
+                //tính kết quả
+                $ketqua=$a*$b;
+                //xét kết quả là số vô hạn
+                if(is_infinite($ketqua))
+                {
+                    $ketqua="kết quả vượt qua giới hạn tính";
+                    return view('vatly.hieudienthe',compact('ketqua','a','b'));
+                }
+                else{
+                    return view('vatly.hieudienthe',compact('ketqua','a','b'));
+                }
+            }
+            else{
+                $ketqua="nhập R";
+                return view('vatly.hieudienthe',compact('ketqua','a'));
+            }
+        }
+        else{
+            $ketqua="nhập I";
+               return view('vatly.hieudienthe',compact('ketqua'));
+        }
+    }
+
+
     //công suất hao phí do tỏa nhiệt trên đường dây
     public function congsuathaophi(){
         return view('vatly.congsuathaophi');
