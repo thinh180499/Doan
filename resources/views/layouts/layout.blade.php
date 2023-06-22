@@ -110,6 +110,7 @@
                             <li><a href="<?php echo route('vatly.hieusuatdongconhiet'); ?>">hiệu suất động cơ nhiệt</a></li>
                             <li><a href="<?php echo route('vatly.cuongdodongdien'); ?>">cường độ dòng điện</a></li>
                             <li><a href="<?php echo route('vatly.hieudienthe'); ?>">hiệu điện thế</a></li>
+                            <li><a href="<?php echo route('vatly.dientro'); ?>">điện trở</a></li>
                             <li><a href="<?php echo route('vatly.congsuathaophi'); ?>">công suất hao phí</a></li>
                         </ul>
                     </li>
