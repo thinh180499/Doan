@@ -1,0 +1,14 @@
+@extends('layouts.layout')
+
+@section('content')
+    <form action="hieudienthe" method="post">
+    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+        <div>Hiệu điện thế</div>
+        <a>U=</a>
+        <input type="number" name="a" style="width:90px" placeholder="I" maxlength="3" step="any" value="<?php if(isset($a)){ if(is_numeric($a)){echo $a;}else{false;} }else{false;} ?>">
+        <a>*</a>
+        <input type="number" name="b" style="width:90px" placeholder="R" maxlength="3" step="any" value="<?php if(isset($b)){ if(is_numeric($b)){echo $b;}else{false;} }else{false;} ?>">
+        <button type="submit">=</button>
+        <?php if(isset($ketqua)){echo $ketqua;}else{false;} ?>
+    </form>
+@endsection
