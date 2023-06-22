@@ -178,6 +178,7 @@ class VatlyController extends Controller
                 if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0)
                 {
                     $b=$_POST['b'];
+                    //tính kết quả
                     (float)$ketqua=$a/$b;
                     //xét kết quả khác 0
                     if($ketqua)
@@ -198,7 +199,6 @@ class VatlyController extends Controller
                     }
                 }
                 else{
-                    $a=(string)$a;
                     $ketqua="nhập V với V khác 0";
                     return view('vatly.khoiluongrieng',compact('ketqua','a'));
                 }
@@ -218,13 +218,12 @@ class VatlyController extends Controller
     }
     public function tinhtrongluongrieng(){
            //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
-           if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0)
-           {
+           if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
                $a=$_POST['a'];
                //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
-               if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0)
-               {
+               if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0){
                    $b=$_POST['b'];
+                   //tính kết quả
                    (float)$ketqua=$a/$b;
                    //xét kết quả khác 0
                    if($ketqua)
@@ -245,19 +244,49 @@ class VatlyController extends Controller
                    }
                }
                else{
-                   $a=(string)$a;
                    $ketqua="nhập V với V lớn hơn và khác 0";
                    return view('vatly.trongluongrieng',compact('ketqua','a'));
                }
            }
-        else
-           {
+        else{
                $ketqua="nhập m";
                return view('vatly.trongluongrieng',compact('ketqua'));
            }
     }
 
 
+//lực đẩy acsimet
+    public function lucacsimet(){
+        return view('vatly.lucacsimet');
+    }
+    public function tinhlucacsimet(){
+        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0)
+        {
+            $a=$_POST['a'];
+            if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0){
+                $b=$_POST['b'];
+                //tính kết quả
+                $ketqua=$a*$b;
+                //xét kết quả là số vô hạn
+                if(is_infinite($ketqua))
+                {
+                    $ketqua="kết quả vượt qua giới hạn tính";
+                    return view('vatly.lucacsimet',compact('ketqua','a','b'));
+                }
+                else{
+                    return view('vatly.lucacsimet',compact('ketqua','a','b'));
+                }
+            }
+            else{
+                $ketqua="nhập V";
+                return view('vatly.lucacsimet',compact('ketqua','a'));
+            }
+        }
+        else{
+            $ketqua="nhập d";
+               return view('vatly.lucacsimet',compact('ketqua'));
+        }
+    }
 
     public function congcohoc(){
         return view('vatly.congcohoc');
@@ -388,23 +417,7 @@ class VatlyController extends Controller
             }
         }
     }
-    public function lucacsimet(){
-        return view('vatly.lucacsimet');
-    }
-    public function tinhlucacsimet(){
-         if(isset($_POST['='])&&($_POST['='])){
-            $a=$_POST['a'];
-            $b=$_POST['b'];
-            if($b==0){
-                $ketqua="nhập lại";
-                return view('vatly.lucacsimet',compact('ketqua'));
-            }
-            else if($b!=0){
-            $ketqua=$a*$b;
-            return view('vatly.lucacsimet',compact('ketqua','a','b'));
-            }
-        }
-    }
+    
     public function congsuathaophi(){
         return view('vatly.congsuathaophi');
     }
