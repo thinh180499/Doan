@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class ToanController extends Controller
 {
+    //lũy thừa mũ n
     public function luythuamunguyenduong(){
         return view('toan.luythuamunguyenduong');
     }
@@ -38,6 +39,7 @@ class ToanController extends Controller
             return view('toan.luythuamunguyenduong',compact('ketqua'));
         }
     }
+    //lũy thừa một phân số
     public function luythuacuamotphanso(){
         return view('toan.luythuacuamotphanso');
     }
@@ -76,6 +78,67 @@ class ToanController extends Controller
         else{
             $ketqua="nhập a";
             return view('toan.luythuacuamotphanso',compact('ketqua'));
+        }
+    }
+
+
+
+    //phương trình bậc 2
+    public function phuongtrinhbachai(){
+        return view('toan.phuongtrinhbachai');
+    }
+    public function tinhphuongtrinhbachai(){
+        //xét biến $a có phải là một số hữu hạn
+        if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
+            $a=$_POST['a'];
+             //xét biến $b có phải là một số hữu hạn
+            if(is_numeric($_POST['b'])&& is_finite($_POST['b']) ){
+                $b=$_POST['b'];
+                //xét biến $c có phải là một số hữu hạn
+                if(is_numeric($_POST['c']) && is_finite($_POST['c'])){
+                    $c=$_POST['c'];
+                    //giải phương trình
+                    if($a==0 && $b==0 && $c==0)
+                    {
+                        $ketqua="Phương trình: " . $a . "x2 + " . $b . "x + " . $c . " = 0";
+                        return view('toan.phuongtrinhbachai',compact('ketqua'));
+                    }
+                    if ($a == 0) {
+                        if ($b == 0) {
+                            $ketqua="Phương trình vô nghiệm!";
+                        } else {
+                            $ketqua="Phương trình có một nghiệm: " . "x = " . (- $c / $b);
+                        }
+                        return view('toan.phuongtrinhbachai',compact('ketqua','a','b','c'));
+                    }
+                    $delta = $b * $b - 4 * $a * $c;
+                    $x1 = "";
+                    $x2 = "";
+                    if ($delta > 0) {
+                        $x1 = (- $b + sqrt ( $delta )) / (2 * $a);
+                        $x2 = (- $b - sqrt ( $delta )) / (2 * $a);
+                        $ketqua= ("Phương trình có 2 nghiệm là: " . "x1 = " . $x1 . " và x2 = " . $x2);
+                    } else if ($delta == 0) {
+                        $x1 = (- $b / (2 * $a));
+                        $ketqua= ("Phương trình có nghiệm kép: x1 = x2 = " . $x1);
+                    } else {
+                        $ketqua= ("Phương trình vô nghiệm!");
+                    }
+                    return view('toan.phuongtrinhbachai',compact('ketqua','a','b','c'));
+                }
+                else{
+                    $ketqua="nhập c";
+                    return view('toan.phuongtrinhbachai',compact('ketqua','a','b'));
+                }
+            }
+            else{
+                $ketqua="nhập b ";
+                return view('toan.phuongtrinhbachai',compact('ketqua','a'));
+            }
+        }
+        else{
+            $ketqua="nhập a";
+            return view('toan.phuongtrinhbachai',compact('ketqua'));
         }
     }
 }
