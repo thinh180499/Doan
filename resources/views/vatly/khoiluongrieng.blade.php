@@ -21,7 +21,6 @@
         </div>
         <span style="display:inline-block;height:50px;vertical-align: middle">
             <button type="submit">=</button>
-            
         </span>
         <?php if(isset($ketqua)){echo $ketqua;}else{false;} ?>
     </form>
