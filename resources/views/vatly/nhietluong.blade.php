@@ -2,19 +2,18 @@
 
 @section('content')
     <form action="nhietluong" method="post">
+    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         <div>nhiệt lượng:</div>
 
         <a>Q=</a>
-
-        <input type="number"name="a" style="width:90px" maxlength="3" value="{{ !empty($a) ? $a : false }}">
-        <a>2*</a>
-        <input type="number" name="b" style="width:90px" maxlength="3" value="{{ !empty($b) ? $b : false }}">
+        <input type="number"name="a" style="width:90px" maxlength="3" placeholder="m" step="any" value="<?php if(isset($a)){ if(is_numeric($a)){echo $a;}else{false;} }else{false;} ?>">
         <a>*</a>
-        <input type="number" name="c" style="width:90px" maxlength="3" value="{{ !empty($c) ? $c : false }}">
+        <input type="number" name="b" style="width:90px" maxlength="3" placeholder="c" step="any" value="<?php if(isset($b)){ if(is_numeric($b)){echo $b;}else{false;} }else{false;} ?>">
+        <a>*</a>
+        <input type="number" name="c" style="width:90px" maxlength="3" placeholder="&#916;t" step="any" value="<?php if(isset($c)){ if(is_numeric($c)){echo $c;}else{false;} }else{false;} ?>">
 
-        <input type="submit" name="=" value="=">
-
-        <a>{{ !empty($ketqua) ? $ketqua : false }}</a>
-        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+        <button type="submit">=</button>
+        <?php if(isset($ketqua)){echo $ketqua;}else{false;} ?>
+        
     </form>
 @endsection

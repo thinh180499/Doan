@@ -255,14 +255,73 @@ class VatlyController extends Controller
     }
 
 
+
+    public function vantoc(){
+        return view('vatly.vantoc');
+    }
+    public function tinhvantoc(){
+         if(isset($_POST['='])&&($_POST['='])){
+            $a=$_POST['a'];
+            $b=$_POST['b'];
+            if($b==0){
+                $ketqua="nhập lại";
+                return view('vatly.vantoc',compact('ketqua'));
+            }
+            else if($b!=0){
+            $ketqua=$a/$b;
+            return view('vatly.vantoc',compact('ketqua','a','b'));
+            }
+        }
+    }
+
+
+    public function thoigian(){
+        return view('vatly.thoigian');
+    }
+    public function tinhthoigian(){
+         if(isset($_POST['='])&&($_POST['='])){
+            $a=$_POST['a'];
+            $b=$_POST['b'];
+            if($b==0){
+                $ketqua="nhập lại";
+                return view('vatly.thoigian',compact('ketqua'));
+            }
+            else if($b!=0){
+            $ketqua=$a/$b;
+            return view('vatly.thoigian',compact('ketqua','a','b'));
+            }
+        }
+    }
+
+
+    public function quangduong(){
+        return view('vatly.quangduong');
+    }
+    public function tinhquangduong(){
+         if(isset($_POST['='])&&($_POST['='])){
+            $a=$_POST['a'];
+            $b=$_POST['b'];
+            if($b==0){
+                $ketqua="nhập lại";
+                return view('vatly.quangduong',compact('ketqua'));
+            }
+            else if($b!=0){
+            $ketqua=$a*$b;
+            return view('vatly.quangduong',compact('ketqua','a','b'));
+            }
+        }
+    }
+
+
 //lực đẩy acsimet
     public function lucacsimet(){
         return view('vatly.lucacsimet');
     }
     public function tinhlucacsimet(){
-        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0)
-        {
+         //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
+        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
             $a=$_POST['a'];
+             //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
             if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0){
                 $b=$_POST['b'];
                 //tính kết quả
@@ -288,6 +347,8 @@ class VatlyController extends Controller
         }
     }
 
+
+
     public function congcohoc(){
         return view('vatly.congcohoc');
     }
@@ -302,70 +363,9 @@ class VatlyController extends Controller
            
         }
     }
-    public function nhietluong(){
-        return view('vatly.nhietluong');
-    }
-    public function tinhnhietluong(){
-         if(isset($_POST['='])&&($_POST['='])){
-            $a=$_POST['a'];
-            $b=$_POST['b'];
-            $c=$_POST['c'];
-        
-            $ketqua=pow($a,2)*$b*$c;
-            return view('vatly.nhietluong',compact('ketqua','a','b','c'));
-        }
-    }
-    public function vantoc(){
-        return view('vatly.vantoc');
-    }
-    public function tinhvantoc(){
-         if(isset($_POST['='])&&($_POST['='])){
-            $a=$_POST['a'];
-            $b=$_POST['b'];
-            if($b==0){
-                $ketqua="nhập lại";
-                return view('vatly.vantoc',compact('ketqua'));
-            }
-            else if($b!=0){
-            $ketqua=$a/$b;
-            return view('vatly.vantoc',compact('ketqua','a','b'));
-            }
-        }
-    }
-    public function thoigian(){
-        return view('vatly.thoigian');
-    }
-    public function tinhthoigian(){
-         if(isset($_POST['='])&&($_POST['='])){
-            $a=$_POST['a'];
-            $b=$_POST['b'];
-            if($b==0){
-                $ketqua="nhập lại";
-                return view('vatly.thoigian',compact('ketqua'));
-            }
-            else if($b!=0){
-            $ketqua=$a/$b;
-            return view('vatly.thoigian',compact('ketqua','a','b'));
-            }
-        }
-    }
-    public function apsuat(){
-        return view('vatly.apsuat');
-    }
-    public function tinhapsuat(){
-         if(isset($_POST['='])&&($_POST['='])){
-            $a=$_POST['a'];
-            $b=$_POST['b'];
-            if($b==0){
-                $ketqua="nhập lại";
-                return view('vatly.apsuat',compact('ketqua'));
-            }
-            else if($b!=0){
-            $ketqua=$a/$b;
-            return view('vatly.apsuat',compact('ketqua','a','b'));
-            }
-        }
-    }
+
+
+
     public function congsuat(){
         return view('vatly.congsuat');
     }
@@ -383,6 +383,53 @@ class VatlyController extends Controller
             }
         }
     }
+
+
+
+    //nhiệt lượng trong quá trình chuyền nhiệt ở vật
+    public function nhietluong(){
+        return view('vatly.nhietluong');
+    }
+    public function tinhnhietluong(){
+         //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
+         if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
+             $a=$_POST['a'];
+              //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
+             if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0){
+                 $b=$_POST['b'];
+                 //xét biến $c có phải là một số lớn hơn 0 và hữu hạn
+                if(is_numeric($_POST['c']) && is_finite($_POST['c']) && $_POST['c']>0){
+                    $c=$_POST['c'];
+                    //tính kết quả
+                    $ketqua=$a*$b*$c;
+                     //xét kết quả là số vô hạn
+                    if(is_infinite($ketqua))
+                    {
+                        $ketqua="kết quả vượt qua giới hạn tính";
+                        return view('vatly.nhietluong',compact('ketqua','a','b','c'));
+                    }
+                    else{
+                        return view('vatly.nhietluong',compact('ketqua','a','b','c'));
+                    }
+                }
+                else{
+                    $ketqua="nhập &#916;t";
+                    return view('vatly.nhietluong',compact('ketqua','a','b'));
+                }
+             }
+             else{
+                 $ketqua="nhập c";
+                 return view('vatly.nhietluong',compact('ketqua','a'));
+             }
+         }
+         else{
+             $ketqua="nhập m";
+                return view('vatly.nhietluong',compact('ketqua'));
+         }
+    }
+    
+
+
     public function hieusuatdongconhiet(){
         return view('vatly.hieusuatdongconhiet');
     }
@@ -400,23 +447,28 @@ class VatlyController extends Controller
             }
         }
     }
-    public function quangduong(){
-        return view('vatly.quangduong');
+
+
+    public function apsuat(){
+        return view('vatly.apsuat');
     }
-    public function tinhquangduong(){
+    public function tinhapsuat(){
          if(isset($_POST['='])&&($_POST['='])){
             $a=$_POST['a'];
             $b=$_POST['b'];
             if($b==0){
                 $ketqua="nhập lại";
-                return view('vatly.quangduong',compact('ketqua'));
+                return view('vatly.apsuat',compact('ketqua'));
             }
             else if($b!=0){
-            $ketqua=$a*$b;
-            return view('vatly.quangduong',compact('ketqua','a','b'));
+            $ketqua=$a/$b;
+            return view('vatly.apsuat',compact('ketqua','a','b'));
             }
         }
     }
+   
+    
+    
     
     public function congsuathaophi(){
         return view('vatly.congsuathaophi');
