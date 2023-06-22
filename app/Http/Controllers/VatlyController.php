@@ -26,7 +26,7 @@ class VatlyController extends Controller
             }
             else if($i>$j){
                 $ketqua=$a;
-                
+
                 for ($i; $i>$j; $i--) {
                     $ketqua=$ketqua/10;
                   }
@@ -39,9 +39,9 @@ class VatlyController extends Controller
                   }
                 return view('vatly.dodai',compact('ketqua','a','x','y'));
             }
-           
+
         }
-        
+
     }
     public function thetich(){
         return view('vatly.thetich');
@@ -71,7 +71,7 @@ class VatlyController extends Controller
                     for ($j; $j<5; $j++) {
                         $lit=$lit*1000;
                     }
-                    
+
                 }
                 return view('vatly.thetich',compact('ketqua','a','i','j','lit'));
             }
@@ -94,7 +94,7 @@ class VatlyController extends Controller
                     for ($j; $j<5; $j++) {
                         $lit=$lit*1000;
                     }
-                    
+
                 }
                 return view('vatly.thetich',compact('ketqua','a','i','j','lit'));
             }
@@ -117,14 +117,14 @@ class VatlyController extends Controller
                     for ($j; $j<5; $j++) {
                         $lit=$lit*1000;
                     }
-                    
+
                 }
                 return view('vatly.thetich',compact('ketqua','a','i','j','lit'));
             }
-            
-           
+
+
         }
-        
+
     }
     public function khoiluong(){
         return view('vatly.khoiluong');
@@ -146,7 +146,7 @@ class VatlyController extends Controller
             }
             else if($i>$j){
                 $ketqua=$a;
-                
+
                 for ($i; $i>$j; $i--) {
                     $ketqua=$ketqua/10;
                   }
@@ -159,9 +159,9 @@ class VatlyController extends Controller
                   }
                 return view('vatly.khoiluong',compact('ketqua','a','x','y'));
             }
-           
+
         }
-        
+
     }
 
 
@@ -209,7 +209,7 @@ class VatlyController extends Controller
                 return view('vatly.khoiluongrieng',compact('ketqua'));
             }
     }
-    
+
 
 
 //trọng lượng riêng
@@ -356,11 +356,11 @@ class VatlyController extends Controller
         if(isset($_POST['='])&&($_POST['='])){
             $a=$_POST['a'];
             $b=$_POST['b'];
-            
+
             $ketqua=$a*$b;
             return view('vatly.congcohoc',compact('ketqua','a','b'));
-            
-           
+
+
         }
     }
 
@@ -427,7 +427,7 @@ class VatlyController extends Controller
                 return view('vatly.nhietluong',compact('ketqua'));
          }
     }
-    
+
 
 
     public function hieusuatdongconhiet(){
@@ -466,9 +466,54 @@ class VatlyController extends Controller
             }
         }
     }
-   
-    
-    
+
+
+    //Cường độ dòng điện
+    public function cuongdodongdien(){
+        return view('vatly.cuongdodongdien');
+    }
+    public function tinhcuongdodongdien(){
+            //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
+        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0)
+            {
+                $a=$_POST['a'];
+                //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
+                if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0)
+                {
+                    $b=$_POST['b'];
+                    //tính kết quả
+                    (float)$ketqua=$a/$b;
+                    //xét kết quả khác 0
+                    if($ketqua)
+                    {
+                        //xét kết quả là số vô hạn
+                        if(is_infinite($ketqua))
+                        {
+                            $ketqua="kết quả vượt qua giới hạn tính";
+                            return view('vatly.cuongdodongdien',compact('ketqua','a','b'));
+                        }
+                        else{
+                            return view('vatly.cuongdodongdien',compact('ketqua','a','b'));
+                        }
+                    }
+                    else {
+                        static $ketqua=0;
+                        return view('vatly.cuongdodongdien',compact('ketqua','a','b'));
+                    }
+                }
+                else{
+                    $ketqua="nhập R với R khác 0";
+                    return view('vatly.cuongdodongdien',compact('ketqua','a'));
+                }
+            }
+         else
+            {
+                $ketqua="nhập U ";
+                return view('vatly.cuongdodongdien',compact('ketqua'));
+            }
+    }
+
+
     //công suất hao phí do tỏa nhiệt trên đường dây
     public function congsuathaophi(){
         return view('vatly.congsuathaophi');
