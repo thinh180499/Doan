@@ -18,7 +18,7 @@
             <br>
             <span style="display:inline-block;padding: 10px 5px 0 5px">
                 <input type="number" name="c" style="width:90px" maxlength="3" placeholder="U"
-                    value="{{ !empty($c) ? $c : false }}">2
+                    value="<?php if(isset($b)){ if(is_numeric($b)){echo $b;}else{false;} }else{false;} ?>">2
             </span>
 
         </div>
