@@ -469,23 +469,55 @@ class VatlyController extends Controller
    
     
     
-    
+    //công suất hao phí do tỏa nhiệt trên đường dây
     public function congsuathaophi(){
         return view('vatly.congsuathaophi');
     }
     public function tinhcongsuathaophi(){
-         if(isset($_POST['='])&&($_POST['='])){
-            $a=$_POST['a'];
-            $b=$_POST['b'];
-            $c=$_POST['c'];
-            if($c==0){
-                $ketqua="nhập lại";
-                return view('vatly.congsuathaophi',compact('ketqua'));
+         //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
+         if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0)
+         {
+             $a=$_POST['a'];
+             //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
+            if(is_numeric($_POST['b']) && is_finite($_POST['b']) && $_POST['b']>0){
+             $b=$_POST['b'];
+             //xét biến $c có phải là một số lớn hơn 0 và hữu hạn
+                if($_POST['c'] && is_finite($_POST['c']) && $_POST['c']>0){
+                    $c=$_POST['c'];
+                    //tính kết quả
+                    (float)$ketqua=(pow($b,2)*$a)/(pow($c,2));
+                    //xét kết quả khác 0
+                    if($ketqua)
+                    {
+                        //xét kết quả là số vô hạn
+                        if(is_infinite($ketqua))
+                        {
+                            $ketqua="kết quả vượt qua giới hạn tính";
+                            return view('vatly.congsuathaophi',compact('ketqua','a','b','c'));
+                        }
+                        else{
+                            return view('vatly.congsuathaophi',compact('ketqua','a','b','c'));
+                        }
+                    }
+                    else {
+                        static $ketqua=0;
+                        return view('vatly.congsuathaophi',compact('ketqua','a','b','c'));
+                    }
+                }
+                else{
+                    $ketqua="nhập U với U khác 0";
+                    return view('vatly.congsuathaophi',compact('ketqua','a','b'));
+                }
             }
-            else if($b!=0){
-                $ketqua=(pow($b,2)*$a)/(pow($c,2));
-                return view('vatly.congsuathaophi',compact('ketqua','a','b','c'));
+            else{
+                $ketqua="nhập P ";
+                return view('vatly.congsuathaophi',compact('ketqua','a'));
             }
-        }
+         }
+      else
+         {
+             $ketqua="nhập R ";
+             return view('vatly.congsuathaophi',compact('ketqua'));
+         }
     }
 }
