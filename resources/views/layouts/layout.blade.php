@@ -126,6 +126,7 @@
                         <ul class="nav-second-level" aria-expanded="false">
                             <li><a href="<?php echo route('toan.luythuamunguyenduong'); ?>">lũy thừa với mũ n</a></li>
                             <li><a href="<?php echo route('toan.luythuacuamotphanso'); ?>">lũy thừa của một phân số</a></li>
+                            <li><a href="<?php echo route('toan.tichcuahailuythuacungcoso'); ?>">Tính tích của hai lũy thừa với cùng một cơ số</a></li>
                             <li><a href="<?php echo route('toan.phuongtrinhbachai'); ?>">phương trình bậc 2</a></li>
                         </ul>
                     </li>

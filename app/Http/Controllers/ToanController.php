@@ -39,6 +39,8 @@ class ToanController extends Controller
             return view('toan.luythuamunguyenduong',compact('ketqua'));
         }
     }
+
+
     //lũy thừa một phân số
     public function luythuacuamotphanso(){
         return view('toan.luythuacuamotphanso');
@@ -80,6 +82,49 @@ class ToanController extends Controller
             return view('toan.luythuacuamotphanso',compact('ketqua'));
         }
     }
+
+
+//lTính tích của hai lũy thừa với cùng một cơ số:a^n*a^m
+public function tichcuahailuythuacungcoso(){
+    return view('toan.tichcuahailuythuacungcoso');
+}
+public function tinhtichcuahailuythuacungcoso(){
+    //xét biến $a có phải là một số hữu hạn
+    if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
+        $a=$_POST['a'];
+         //xét biến $b có phải là một số hữu hạn
+        if(is_numeric($_POST['b'])&& is_finite($_POST['b'])){
+            $b=$_POST['b'];
+            //xét biến $c có phải là một số hữu hạn
+            if(is_numeric($_POST['c']) && is_finite($_POST['c'])){
+                $c=$_POST['c'];
+                //tính kết quả
+                $ketqua=pow($a,$b+$c);
+                //xét kết quả là số vô hạn
+                if(is_infinite($ketqua))
+                {
+                    $ketqua="kết quả vượt qua giới hạn tính";
+                    return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a','b','c'));
+                }
+                else{
+                    return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a','b','c'));
+                }
+            }
+            else{
+                $ketqua="nhập m";
+                return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a','b'));
+            }
+        }
+        else{
+            $ketqua="nhập n";
+            return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a'));
+        }
+    }
+    else{
+        $ketqua="nhập a";
+        return view('toan.tichcuahailuythuacungcoso',compact('ketqua'));
+    }
+}
 
 
 
