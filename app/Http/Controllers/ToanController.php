@@ -354,6 +354,43 @@ public function tinhthuongcuahailuythuacungcoso(){
             return view('toan.duongcaotamgiac',compact('ketqua'));
         }
     }
+
+
+    //Tính thể tích hình trụ
+public function thetichhinhtru(){
+    return view('toan.thetichhinhtru');
+}
+public function tinhthetichhinhtru(){
+    //xét biến $a có phải là một số hữu hạn và lơn hơn 0
+    if(is_numeric($_POST['a']) && is_finite($_POST['a'])&& $_POST['a']> 0){
+        $a=$_POST['a'];
+         //xét biến $b có phải là một số hữu hạn và lơn hơn 0
+        if(is_numeric($_POST['b'])&& is_finite($_POST['b'])&& $_POST['b']> 0){
+            $b=$_POST['b'];
+            
+                //tính kết quả
+                $ketqua=3.14*pow($a,2)*$b;
+                //xét kết quả là số vô hạn
+                if(is_infinite($ketqua))
+                {
+                    $ketqua="kết quả vượt qua giới hạn tính";
+                    return view('toan.thetichhinhtru',compact('ketqua','a','b'));
+                }
+                else{
+                    return view('toan.thetichhinhtru',compact('ketqua','a','b'));
+                }
+           
+        }
+        else{
+            $ketqua="nhập h";
+            return view('toan.thetichhinhtru',compact('ketqua','a'));
+        }
+    }
+    else{
+        $ketqua="nhập r";
+        return view('toan.thetichhinhtru',compact('ketqua'));
+    }
+}
 }
 
 
