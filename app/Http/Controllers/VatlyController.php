@@ -43,6 +43,8 @@ class VatlyController extends Controller
         }
 
     }
+
+
     public function thetich(){
         return view('vatly.thetich');
     }
@@ -126,6 +128,8 @@ class VatlyController extends Controller
         }
 
     }
+
+
     public function khoiluong(){
         return view('vatly.khoiluong');
     }
@@ -646,4 +650,51 @@ class VatlyController extends Controller
              return view('vatly.congsuathaophi',compact('ketqua'));
          }
     }
+
+
+    //nhiệt lượng tỏa ra ở dây dẫn khi có dong điện
+    public function nhietluongodaydan(){
+        return view('vatly.nhietluongodaydan');
+    }
+    public function tinhnhietluongodaydan(){
+        //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
+        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
+             $a=$_POST['a'];
+            //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
+            if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0){
+                $b=$_POST['b'];
+                //xét biến $c có phải là một số lớn hơn 0 và hữu hạn
+                if(is_numeric($_POST['c']) && is_finite($_POST['c']) && $_POST['c']>0){
+                    $c=$_POST['c'];
+                    //tính kết quả
+                    $ketqua=pow($a,2)*$b*$c;
+                    //xét kết quả là số vô hạn
+                    if(is_infinite($ketqua))
+                    {
+                        $ketqua="kết quả vượt qua giới hạn tính";
+                        return view('vatly.nhietluongodaydan',compact('ketqua','a','b','c'));
+                    }
+                    else{
+                        return view('vatly.nhietluongodaydan',compact('ketqua','a','b','c'));
+                    }
+                }
+                else{
+                    $ketqua="nhập t";
+                    return view('vatly.nhietluongodaydan',compact('ketqua','a','b'));
+                }
+            }
+            else{
+                $ketqua="nhập R";
+                return view('vatly.nhietluongodaydan',compact('ketqua','a'));
+            }
+        }
+        else{
+            $ketqua="nhập I";
+            return view('vatly.nhietluongodaydan',compact('ketqua'));
+        }
+    }
+
 }
+
+
+
