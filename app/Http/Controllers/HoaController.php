@@ -59,4 +59,40 @@ class HoaController extends Controller
                return view('hoa.moltheonongdomolvathetichdungdich',compact('ketqua'));
         }
     }
+
+     //phần trăm khối lượng chất a
+     public function phantramkhoiluongchata(){
+        return view('hoa.phantramkhoiluongchata');
+    }
+    public function tinhphantramkhoiluongchata(){
+        //xét biến $a có phải là một số hữu hạn
+        if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
+            $a=$_POST['a'];
+             //xét biến $b có phải là một số hữu hạn và khác 0
+            if(is_numeric($_POST['b'])&& is_finite($_POST['b']) && $_POST['b']){
+                $b=$_POST['b'];
+                   //tính kết quả
+                    $ketqua=$a/$b*100;
+                    //xét kết quả là số vô hạn
+                    if(is_infinite($ketqua))
+                    {
+                        $ketqua="kết quả vượt qua giới hạn tính";
+                        return view('hoa.phantramkhoiluongchata',compact('ketqua','a','b'));
+                    }
+                    else{
+                        return view('hoa.phantramkhoiluongchata',compact('ketqua','a','b'));
+                    }
+               
+            }
+            else{
+                $ketqua="nhập b với b khác 0";
+                return view('hoa.phantramkhoiluongchata',compact('ketqua','a'));
+            }
+        }
+        else{
+            $ketqua="nhập a";
+            return view('hoa.phantramkhoiluongchata',compact('ketqua'));
+        }
+    }
+
 }
