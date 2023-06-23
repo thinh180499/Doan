@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-    <form action="nongdomoltheokhoiluongchattan" method="post">
+    <form action="nongdophantramtheokhoiluongchattan" method="post">
     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         <div>Tính nồng độ mol theo khối lượng chất tan</div>
         <a>C&#37=&#40;</a>

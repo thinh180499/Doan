@@ -153,7 +153,7 @@
 
                             <li><a href="<?php echo route('hoa.phantramkhoiluongchata'); ?>">phần trăm khối lượng chất</a></li>
                             <li><a href="<?php echo route('hoa.khoiluongchattan'); ?>">khối lượng chất tan</a></li>
-                            <li><a href="<?php echo route('hoa.nongdomoltheokhoiluongchattan'); ?>">nồng độ mol theo khối lượng chất tan</a></li>
+                            <li><a href="<?php echo route('hoa.nongdophantramtheokhoiluongchattan'); ?>">nồng độ mol theo khối lượng chất tan</a></li>
                             <li><a href="<?php echo route('hoa.moltheonongdophantramvakhoiluongdungdich'); ?>">tính số mol theo noongg độ phần trăm và khối lượng dung dịch</a></li>
 
                             <li><a href="<?php echo route('hoa.nongdomoltheosomol'); ?>">tính nồng độ mol theo số mol</a></li>

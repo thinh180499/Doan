@@ -135,11 +135,11 @@ class HoaController extends Controller
 
 
 
-     //nồng độ mol theo khối lượng chất tan
-     public function nongdomoltheokhoiluongchattan(){
-        return view('hoa.nongdomoltheokhoiluongchattan');
+     //nồng độ phần trăm theo khối lượng chất tan
+     public function nongdophantramtheokhoiluongchattan(){
+        return view('hoa.nongdophantramtheokhoiluongchattan');
     }
-    public function tinhnongdomoltheokhoiluongchattan(){
+    public function tinhnongdophantramtheokhoiluongchattan(){
         //xét biến $a có phải là một số hữu hạn
         if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
             $a=$_POST['a'];
@@ -152,16 +152,16 @@ class HoaController extends Controller
                     if(is_infinite($ketqua))
                     {
                         $ketqua="kết quả vượt qua giới hạn tính";
-                        return view('hoa.nongdomoltheokhoiluongchattan',compact('ketqua','a','b'));
+                        return view('hoa.nongdophantramtheokhoiluongchattan',compact('ketqua','a','b'));
                     }
                     else{
-                        return view('hoa.nongdomoltheokhoiluongchattan',compact('ketqua','a','b'));
+                        return view('hoa.nongdophantramtheokhoiluongchattan',compact('ketqua','a','b'));
                     }
                
             }
             else{
                 $ketqua="nhập mhh với mhh > 0";
-                return view('hoa.nongdomoltheokhoiluongchattan',compact('ketqua','a'));
+                return view('hoa.nongdophantramtheokhoiluongchattan',compact('ketqua','a'));
             }
         }
         else{
@@ -170,7 +170,7 @@ class HoaController extends Controller
         }
     }
 
-      //nồng độ mol theo khối lượng chất tan
+      //số mol theo nồng độ phần trăm khối lượng dung dịch
       public function moltheonongdophantramvakhoiluongdungdich(){
         return view('hoa.moltheonongdophantramvakhoiluongdungdich');
     }
