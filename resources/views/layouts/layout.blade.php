@@ -150,6 +150,7 @@
                             <li><a href="<?php echo route('hoa.moltheokhoiluong'); ?>">tính số mol theo khối lượng</a></li>
                             <li><a href="<?php echo route('hoa.moltheonongdomolvathetichdungdich'); ?>">tính số mol theo nồng độ mol và thể tích dung dịch</a></li>
                             <li><a href="<?php echo route('hoa.phantramkhoiluongchata'); ?>">phần trăm khối lượng chất</a></li>
+                            <li><a href="<?php echo route('hoa.khoiluongchattan'); ?>">khối lượng chất tan</a></li>
                         </ul>
                     </li>
 
