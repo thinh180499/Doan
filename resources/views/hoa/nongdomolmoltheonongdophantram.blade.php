@@ -3,7 +3,7 @@
 @section('content')
     <form action="nongdomolmoltheonongdophantram" method="post">
     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-        <div>Tính nồng độ mol theo nông độ phần trăm</div>
+        <div>Tính nồng độ phần trăm theo nông độ phần trăm</div>
         <a>CM=&#40 10*</a>
         <input type="number" name="a" style="width:90px"placeholder="C&#37" step="any" value="<?php if(isset($a)){ if(is_numeric($a)){echo $a;}else{false;} }else{false;} ?>">
         <a>*</a>
