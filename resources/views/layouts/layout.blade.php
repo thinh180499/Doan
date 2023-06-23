@@ -15,6 +15,7 @@
         id="bootstrap-stylesheet">
     <link href="{{ asset('assets\clients\css\icons.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets\clients\css\app.min.css') }}" rel="stylesheet" type="text/css" id="app-stylesheet">
+    @yield('css')
 </head>
 
 <body>
@@ -139,6 +140,7 @@
                         <ul class="nav-second-level" aria-expanded="false">
                             <li><a href="<?php echo route('hoa.moltheokhoiluong'); ?>">tính số mol theo khối lượng</a></li>
                             <li><a href="<?php echo route('hoa.moltheonongdomolvathetichdungdich'); ?>">tính số mol theo nồng độ mol và thể tích dung dịch</a></li>
+                            <li><a href="<?php echo route('hoa.nongdomoltheosomol'); ?>">tính nồng độ mol theo số mol</a></li>
                         </ul>
                     </li>
 
