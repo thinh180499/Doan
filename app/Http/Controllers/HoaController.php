@@ -257,4 +257,46 @@ class HoaController extends Controller
             }
 
     }
+
+    //nồng độ mol theo nồng độ phần trăm
+    public function nongdomolmoltheonongdophantram(){
+        return view('hoa.nongdomolmoltheonongdophantram');
+    }
+    public function tinhnongdomolmoltheonongdophantram(){
+        //xét biến $a có phải là một số hữu hạn
+        if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
+            $a=$_POST['a'];
+             //xét biến $b có phải là một số hữu hạn
+            if(is_numeric($_POST['b'])&& is_finite($_POST['b'])){
+                $b=$_POST['b'];
+                 //xét biến $c có phải là một số hữu hạn
+                if(is_numeric($_POST['c'])&& is_finite($_POST['c'])){
+                    $c=$_POST['c'];
+                   //tính kết quả
+                    $ketqua=(10*$a*$b)/($c);
+                    //xét kết quả là số vô hạn
+                    if(is_infinite($ketqua))
+                    {
+                        $ketqua="kết quả vượt qua giới hạn tính";
+                        return view('hoa.nongdomolmoltheonongdophantram',compact('ketqua','a','b','c'));
+                    }
+                    else{
+                        return view('hoa.nongdomolmoltheonongdophantram',compact('ketqua','a','b','c'));
+                    }
+                }
+                else{
+                    $ketqua="nhập M";
+                    return view('hoa.nongdomolmoltheonongdophantram',compact('ketqua','a','b'));
+                }
+            }
+            else{
+                $ketqua="nhập D";
+                return view('hoa.nongdomolmoltheonongdophantram',compact('ketqua','a'));
+            }
+        }
+        else{
+            $ketqua="nhập C&#37";
+            return view('hoa.nongdomolmoltheonongdophantram',compact('ketqua'));
+        }
+    }
 }

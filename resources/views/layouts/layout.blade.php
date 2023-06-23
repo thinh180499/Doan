@@ -157,7 +157,7 @@
                             <li><a href="<?php echo route('hoa.moltheonongdophantramvakhoiluongdungdich'); ?>">tính số mol theo noongg độ phần trăm và khối lượng dung dịch</a></li>
 
                             <li><a href="<?php echo route('hoa.nongdomoltheosomol'); ?>">tính nồng độ mol theo số mol</a></li>
-
+                            <li><a href="<?php echo route('hoa.nongdomolmoltheonongdophantram'); ?>">tính nồng độ mol theo nông độ phần trăm</a></li>
                         </ul>
                     </li>
 
