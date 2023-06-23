@@ -102,6 +102,8 @@ Route::prefix('/toan')->group(function () {
     Route::post('thetichhinhnon', [ToanController::class, 'tinhthetichhinhnon']);
     Route::get('thetichhinhcau', [ToanController::class, 'thetichhinhcau'])->name('toan.thetichhinhcau');
     Route::post('thetichhinhcau', [ToanController::class, 'tinhthetichhinhcau']);
+    Route::get('dientichmatcau', [ToanController::class, 'dientichmatcau'])->name('toan.dientichmatcau');
+    Route::post('dientichmatcau', [ToanController::class, 'tinhdientichmatcau']);
 });
 
 
@@ -113,6 +115,24 @@ Route::prefix('/hoa')->group(function () {
     Route::get('moltheonongdomolvathetichdungdich', [HoaController::class, 'moltheonongdomolvathetichdungdich'])->name('hoa.moltheonongdomolvathetichdungdich');
     Route::post('moltheonongdomolvathetichdungdich', [HoaController::class, 'tinhmoltheonongdomolvathetichdungdich']);
 
+    Route::get('phantramkhoiluongchata', [HoaController::class, 'phantramkhoiluongchata'])->name('hoa.phantramkhoiluongchata');
+    Route::post('phantramkhoiluongchata', [HoaController::class, 'tinhphantramkhoiluongchata']);
+    
+    Route::get('khoiluongchattan', [HoaController::class, 'khoiluongchattan'])->name('hoa.khoiluongchattan');
+    Route::post('khoiluongchattan', [HoaController::class, 'tinhkhoiluongchattan']);
+
+    Route::get('nongdophantramtheokhoiluongchattan', [HoaController::class, 'nongdophantramtheokhoiluongchattan'])->name('hoa.nongdophantramtheokhoiluongchattan');
+    Route::post('nongdophantramtheokhoiluongchattan', [HoaController::class, 'tinhnongdophantramtheokhoiluongchattan']);
+
+    Route::get('moltheonongdophantramvakhoiluongdungdich', [HoaController::class, 'moltheonongdophantramvakhoiluongdungdich'])->name('hoa.moltheonongdophantramvakhoiluongdungdich');
+    Route::post('moltheonongdophantramvakhoiluongdungdich', [HoaController::class, 'tinhmoltheonongdophantramvakhoiluongdungdich']);
+
     Route::get('nongdomoltheosomol', [HoaController::class, 'nongdomoltheosomol'])->name('hoa.nongdomoltheosomol');
     Route::post('nongdomoltheosomol', [HoaController::class, 'tinhnongdomoltheosomol']);
+ 
+    Route::get('nongdomolmoltheonongdophantram', [HoaController::class, 'nongdomolmoltheonongdophantram'])->name('hoa.nongdomolmoltheonongdophantram');
+    Route::post('nongdomolmoltheonongdophantram', [HoaController::class, 'tinhnongdomolmoltheonongdophantram']);
+    
+    Route::get('nongdophantramtheonongdomol', [HoaController::class, 'nongdophantramtheonongdomol'])->name('hoa.nongdophantramtheonongdomol');
+    Route::post('nongdophantramtheonongdomol', [HoaController::class, 'tinhnongdophantramtheonongdomol']);
 });
