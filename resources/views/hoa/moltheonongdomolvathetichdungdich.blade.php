@@ -6,38 +6,6 @@
 
     <form action="moltheonongdomolvathetichdungdich" method="post">
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-        {{-- <div>lực đẩy acsimet:</div>
-        <a>F=</a>
-        <input type="number" name="a" style="width:90px" placeholder="CM" maxlength="3" step="any"
-            value="<?php if (isset($a)) {
-                if (is_numeric($a)) {
-                    echo $a;
-                } else {
-                    false;
-                }
-            } else {
-                false;
-            } ?>">
-        <a>*</a>
-        <input type="number" name="b" style="width:90px" placeholder="Vdd" maxlength="3" step="any"
-            value="<?php if (isset($b)) {
-                if (is_numeric($b)) {
-                    echo $b;
-                } else {
-                    false;
-                }
-            } else {
-                false;
-            } ?>">
-        <button type="submit">=</button>
-        <?php if (isset($ketqua)) {
-            echo $ketqua;
-        } else {
-            false;
-        } ?>
-     --}}
-
-
 
         <div class="container-fluid mt-4 mb-4">
             <div class="row justify-content-center">
@@ -50,10 +18,9 @@
 
 
         <div class="container">
-
             <div class="nhap d-flex justify-content-between">
                 <div class="row mb-4">
-                    <label class="" for="nongdomol"> C<sub>M</sub></label>
+                    <label class="lb" for="nongdomol"> C<sub>M</sub></label>
                     <input type="number" id="nongdomol" name="a" placeholder="Nhập nồng độ mol" class="input"
                         step="any" value="<?php
                         if (isset($a)) {
@@ -68,7 +35,7 @@
                 </div>
 
                 <div class="row mb-4">
-                    <label class="" for="thetichdungdich">V<sub>dd</sub></label>
+                    <label class="lb" for="thetichdungdich">V<sub>dd</sub></label>
                     <input type="number" id="thetichdungdich" name="b" placeholder="Nhập thể tích dung dịch"
                         class="input" step="any" value="<?php
                         if (isset($b)) {
@@ -117,7 +84,7 @@
             border: 2px solid #ccc;
         }
 
-        label {
+        .lb {
             font-size: 25px
         }
 

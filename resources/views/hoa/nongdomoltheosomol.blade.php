@@ -6,7 +6,6 @@
     <form action="nongdomoltheosomol" method="post">
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
-
         <div class="container-fluid mt-4 mb-4">
             <div class="row justify-content-center">
                 <div class="col-auto border rounded-lg p-3 d-flex align-items-center">
@@ -25,7 +24,7 @@
 
         <div class="container">
             <div class="row mb-4">
-                <label class="" for="somolchattan"> n<sub>ct</sub></label>
+                <label class="lb" for="somolchattan"> n<sub>ct</sub></label>
                 <input type="number" id="somolchattan" name="a" placeholder="Nhập số mol chất tan" class="input"
                     step="any" value="<?php
                     if (isset($a)) {
@@ -40,7 +39,7 @@
             </div>
 
             <div class="row mb-4">
-                <label class="" for="thetichdungdich">V<sub>dd</sub></label>
+                <label class="lb" for="thetichdungdich">V<sub>dd</sub></label>
                 <input type="number" id="thetichdungdich" name="b" placeholder="Nhập thể tích dung dịch"
                     class="input" step="any" value="<?php
                     if (isset($b)) {
@@ -88,7 +87,7 @@
             border: 2px solid #ccc;
         }
 
-        label {
+        .lb {
             font-size: 25px
         }
 
