@@ -133,7 +133,7 @@
                             <li><a href="<?php echo route('toan.luythuacuamotluythua'); ?>">lũy thừa của một lũy thừa</a></li>
                             <li><a href="<?php echo route('toan.duongcaotamgiac'); ?>">đường cao của một tam giác</a></li>
                             <li><a href="<?php echo route('toan.thetichhinhtru'); ?>">thể tích hình trụ</a></li>
-                        
+                            <li><a href="<?php echo route('toan.thetichhinhnon'); ?>">thể tích hình nón</a></li>
                         </ul>
                     </li>
 

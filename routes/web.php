@@ -98,6 +98,8 @@ Route::prefix('/toan')->group(function () {
     Route::post('duongcaotamgiac', [ToanController::class, 'tinhduongcaotamgiac']);
     Route::get('thetichhinhtru', [ToanController::class, 'thetichhinhtru'])->name('toan.thetichhinhtru');
     Route::post('thetichhinhtru', [ToanController::class, 'tinhthetichhinhtru']);
+    Route::get('thetichhinhnon', [ToanController::class, 'thetichhinhnon'])->name('toan.thetichhinhnon');
+    Route::post('thetichhinhnon', [ToanController::class, 'tinhthetichhinhnon']);
 });
 
 
