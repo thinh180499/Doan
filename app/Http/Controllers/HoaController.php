@@ -26,6 +26,7 @@ class HoaController extends Controller
         }
     }
 
+
     //Tính số mol theo nồng độ mol và thể tích dung dịch
     public function moltheonongdomolvathetichdungdich(){
         return view('hoa.moltheonongdomolvathetichdungdich');
@@ -209,5 +210,51 @@ class HoaController extends Controller
             $ketqua="nhập C&#37";
             return view('hoa.moltheonongdophantramvakhoiluongdungdich',compact('ketqua'));
         }
+    }
+
+     // Tính nồng độ mol theo số mol
+     public function nongdomoltheosomol(){
+        return view('hoa.nongdomoltheosomol');
+    }
+    public function tinhnongdomoltheosomol(){
+            //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
+        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0)
+            {
+                $a=$_POST['a'];
+                //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
+                if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0)
+                {
+                    $b=$_POST['b'];
+                    //tính kết quả
+                    (float)$ketqua=$a/$b;
+                    //xét kết quả khác 0
+                    if($ketqua)
+                    {
+                        //xét kết quả là số vô hạn
+                        if(is_infinite($ketqua))
+                        {
+                            $ketqua="kết quả vượt qua giới hạn tính";
+                            return view('hoa.nongdomoltheosomol',compact('ketqua','a','b'));
+                        }
+                        else{
+                            return view('hoa.nongdomoltheosomol',compact('ketqua','a','b'));
+                        }
+                    }
+                    else {
+                        static $ketqua=0;
+                        return view('hoa.nongdomoltheosomol',compact('ketqua','a','b'));
+                    }
+                }
+                else{
+                    $ketqua="nhập V<sub>dd</sub> với V<sub>dd</sub> khác 0";
+                    return view('hoa.nongdomoltheosomol',compact('ketqua','a'));
+                }
+            }
+         else
+            {
+                $ketqua="nhập n<sub>ct</sub>";
+                return view('hoa.nongdomoltheosomol',compact('ketqua'));
+            }
+
     }
 }
