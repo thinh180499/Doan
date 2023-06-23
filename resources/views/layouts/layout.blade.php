@@ -15,36 +15,34 @@
   <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
   <style>
-    <style>
-        .container {
-            margin: auto;
-        }
+    .container {
+        margin: auto;
+    }
 
-        h2 {
-            text-align: center;
-        }
+    h2 {
+        text-align: center;
+    }
 
-        .input {
-            display: block;
-            width: 100%;
-            padding: 5px;
-            font-size: 20px;
-            border-radius: 5px;
-            border: 2px solid #ccc;
-        }
+    .input {
+        display: block;
+        width: 100%;
+        padding: 5px;
+        font-size: 20px;
+        border-radius: 5px;
+        border: 2px solid #ccc;
+    }
 
-        .lb {
-            font-size: 25px
-        }
+    .lb {
+        font-size: 25px
+    }
 
-        .cardform span {
-            font-size: 30px
-        }
+    .cardform span {
+        font-size: 30px
+    }
 
-        button.calculate{
-            font-size: 35px;
-        }
-    </style>
+    button.calculate{
+        font-size: 35px;
+    }
   </style>
   @yield('css')
 </head>

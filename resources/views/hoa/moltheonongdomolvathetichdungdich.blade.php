@@ -4,7 +4,7 @@
     <div class="row mt-5">
         <div class="col">
             <div class="card-style cardform">
-                <h2>Tính nồng độ mol theo số mol (C<sub>M</sub>)</h2>
+                <h2>Tính số mol theo nồng độ mol và thể tích dung dịch (C<sub>M</sub>)</h2>
 
                 <form action="moltheonongdomolvathetichdungdich" method="post">
 
