@@ -391,6 +391,9 @@ public function tinhthetichhinhtru(){
         return view('toan.thetichhinhtru',compact('ketqua'));
     }
 }
+
+
+
 //Tính thể tích hình nón
 public function thetichhinhnon(){
     return view('toan.thetichhinhnon');
@@ -424,6 +427,32 @@ public function tinhthetichhinhnon(){
     else{
         $ketqua="nhập r";
         return view('toan.thetichhinhnon',compact('ketqua'));
+    }
+}
+//Tính thể tích hình cầu
+public function thetichhinhcau(){
+    return view('toan.thetichhinhcau');
+}
+public function tinhthetichhinhcau(){
+    //xét biến $a có phải là một số hữu hạn và lơn hơn 0
+    if(is_numeric($_POST['a']) && is_finite($_POST['a'])&& $_POST['a']> 0){
+        $a=$_POST['a'];
+        
+                //tính kết quả
+                $ketqua=(4/3)*3.14*pow($a,3);
+                //xét kết quả là số vô hạn
+                if(is_infinite($ketqua))
+                {
+                    $ketqua="kết quả vượt qua giới hạn tính";
+                    return view('toan.thetichhinhcau',compact('ketqua','a'));
+                }
+                else{
+                    return view('toan.thetichhinhcau',compact('ketqua','a'));
+                }
+            }
+    else{
+        $ketqua="nhập R";
+        return view('toan.thetichhinhcau',compact('ketqua'));
     }
 }
 }

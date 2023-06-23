@@ -134,6 +134,7 @@
                             <li><a href="<?php echo route('toan.duongcaotamgiac'); ?>">đường cao của một tam giác</a></li>
                             <li><a href="<?php echo route('toan.thetichhinhtru'); ?>">thể tích hình trụ</a></li>
                             <li><a href="<?php echo route('toan.thetichhinhnon'); ?>">thể tích hình nón</a></li>
+                            <li><a href="<?php echo route('toan.thetichhinhcau'); ?>">thể tích hình cầu</a></li>
                         </ul>
                     </li>
 
