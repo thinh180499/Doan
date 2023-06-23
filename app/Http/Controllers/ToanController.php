@@ -39,6 +39,8 @@ class ToanController extends Controller
             return view('toan.luythuamunguyenduong',compact('ketqua'));
         }
     }
+
+
     //lũy thừa một phân số
     public function luythuacuamotphanso(){
         return view('toan.luythuacuamotphanso');
@@ -81,6 +83,178 @@ class ToanController extends Controller
         }
     }
 
+
+    //lũy thừa một tích
+    public function luythuacuamottich(){
+        return view('toan.luythuacuamottich');
+    }
+    public function tinhluythuacuamottich(){
+        //xét biến $a có phải là một số hữu hạn
+        if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
+            $a=$_POST['a'];
+             //xét biến $b có phải là một số hữu hạn
+            if(is_numeric($_POST['b'])&& is_finite($_POST['b'])){
+                $b=$_POST['b'];
+                //xét biến $c có phải là một số hữu hạn
+                if(is_numeric($_POST['c']) && is_finite($_POST['c'])){
+                    $c=$_POST['c'];
+                    //tính kết quả
+                    $ketqua=pow(($a*$b),$c);
+                    //xét kết quả là số vô hạn
+                    if(is_infinite($ketqua))
+                    {
+                        $ketqua="kết quả vượt qua giới hạn tính";
+                        return view('toan.luythuacuamottich',compact('ketqua','a','b','c'));
+                    }
+                    else{
+                        return view('toan.luythuacuamottich',compact('ketqua','a','b','c'));
+                    }
+                }
+                else{
+                    $ketqua="nhập n";
+                    return view('toan.luythuacuamottich',compact('ketqua','a','b'));
+                }
+            }
+            else{
+                $ketqua="nhập b ";
+                return view('toan.luythuacuamottich',compact('ketqua','a'));
+            }
+        }
+        else{
+            $ketqua="nhập a";
+            return view('toan.luythuacuamottich',compact('ketqua'));
+        }
+    }
+
+
+//lũy thừa cua một lũy thừa
+public function luythuacuamotluythua(){
+    return view('toan.luythuacuamotluythua');
+}
+public function tinhluythuacuamotluythua(){
+    //xét biến $a có phải là một số hữu hạn
+    if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
+        $a=$_POST['a'];
+         //xét biến $b có phải là một số hữu hạn
+        if(is_numeric($_POST['b'])&& is_finite($_POST['b'])){
+            $b=$_POST['b'];
+            //xét biến $c có phải là một số hữu hạn
+            if(is_numeric($_POST['c']) && is_finite($_POST['c'])){
+                $c=$_POST['c'];
+                //tính kết quả
+                $ketqua=pow($a,$b*$c);
+                //xét kết quả là số vô hạn
+                if(is_infinite($ketqua))
+                {
+                    $ketqua="kết quả vượt qua giới hạn tính";
+                    return view('toan.luythuacuamotluythua',compact('ketqua','a','b','c'));
+                }
+                else{
+                    return view('toan.luythuacuamotluythua',compact('ketqua','a','b','c'));
+                }
+            }
+            else{
+                $ketqua="nhập m";
+                return view('toan.luythuacuamotluythua',compact('ketqua','a','b'));
+            }
+        }
+        else{
+            $ketqua="nhập n ";
+            return view('toan.luythuacuamotluythua',compact('ketqua','a'));
+        }
+    }
+    else{
+        $ketqua="nhập a";
+        return view('toan.luythuacuamotluythua',compact('ketqua'));
+    }
+}
+
+
+
+//Tính tích của hai lũy thừa với cùng một cơ số:a^n*a^m
+public function tichcuahailuythuacungcoso(){
+    return view('toan.tichcuahailuythuacungcoso');
+}
+public function tinhtichcuahailuythuacungcoso(){
+    //xét biến $a có phải là một số hữu hạn
+    if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
+        $a=$_POST['a'];
+         //xét biến $b có phải là một số hữu hạn
+        if(is_numeric($_POST['b'])&& is_finite($_POST['b'])){
+            $b=$_POST['b'];
+            //xét biến $c có phải là một số hữu hạn
+            if(is_numeric($_POST['c']) && is_finite($_POST['c'])){
+                $c=$_POST['c'];
+                //tính kết quả
+                $ketqua=pow($a,$b+$c);
+                //xét kết quả là số vô hạn
+                if(is_infinite($ketqua))
+                {
+                    $ketqua="kết quả vượt qua giới hạn tính";
+                    return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a','b','c'));
+                }
+                else{
+                    return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a','b','c'));
+                }
+            }
+            else{
+                $ketqua="nhập m";
+                return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a','b'));
+            }
+        }
+        else{
+            $ketqua="nhập n";
+            return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a'));
+        }
+    }
+    else{
+        $ketqua="nhập a";
+        return view('toan.tichcuahailuythuacungcoso',compact('ketqua'));
+    }
+}
+
+
+//Tính thương của hai lũy thừa với cùng một cơ số:a^n*a^m
+public function thuongcuahailuythuacungcoso(){
+    return view('toan.thuongcuahailuythuacungcoso');
+}
+public function tinhthuongcuahailuythuacungcoso(){
+    //xét biến $a có phải là một số hữu hạn
+    if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
+        $a=$_POST['a'];
+         //xét biến $b có phải là một số hữu hạn
+        if(is_numeric($_POST['b'])&& is_finite($_POST['b'])){
+            $b=$_POST['b'];
+            //xét biến $c có phải là một số hữu hạn
+            if(is_numeric($_POST['c']) && is_finite($_POST['c'])){
+                $c=$_POST['c'];
+                //tính kết quả
+                $ketqua=pow($a,$b-$c);
+                //xét kết quả là số vô hạn
+                if(is_infinite($ketqua))
+                {
+                    $ketqua="kết quả vượt qua giới hạn tính";
+                    return view('toan.thuongcuahailuythuacungcoso',compact('ketqua','a','b','c'));
+                }
+                else{
+                    return view('toan.thuongcuahailuythuacungcoso',compact('ketqua','a','b','c'));
+                }
+            }
+            else{
+                $ketqua="nhập m";
+                return view('toan.thuongcuahailuythuacungcoso',compact('ketqua','a','b'));
+            }
+        }
+        else{
+            $ketqua="nhập n";
+            return view('toan.thuongcuahailuythuacungcoso',compact('ketqua','a'));
+        }
+    }
+    else{
+        $ketqua="nhập a";
+        return view('toan.thuongcuahailuythuacungcoso',compact('ketqua'));
+    }
+}
 
 
     //phương trình bậc 2
@@ -141,4 +315,146 @@ class ToanController extends Controller
             return view('toan.phuongtrinhbachai',compact('ketqua'));
         }
     }
+
+
+
+
+     //đường cao tam giác
+     public function duongcaotamgiac(){
+        return view('toan.duongcaotamgiac');
+    }
+    public function tinhduongcaotamgiac(){
+        //xét biến $a có phải là một số hữu hạn và lớn hơn 0
+        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']> 0){
+            $a=$_POST['a'];
+             //xét biến $b có phải là một số hữu hạn và lớn hơn 0
+            if(is_numeric($_POST['b'])&& is_finite($_POST['b']) && $_POST['b']>0){
+                $b=$_POST['b'];
+                //xét biến $c có phải là một số hữu hạn và lớn hơn 0
+                if(is_numeric($_POST['c']) && is_finite($_POST['c'])&& $_POST['c']>0){
+                    $c=$_POST['c'];
+                    //tính kết quả
+                    $p = ($a + $b + $c)/2;
+                    $ketqua=2*(sqrt($p*($p-$a)*($p-$b)*($p-$c))/$a);
+                    $ketqua="đường cao h của tam giác=". $ketqua;
+                    return view('toan.duongcaotamgiac',compact('ketqua','a','b','c'));
+                }
+                else{
+                    $ketqua="nhập c";
+                    return view('toan.duongcaotamgiac',compact('ketqua','a','b'));
+                }
+            }
+            else{
+                $ketqua="nhập b ";
+                return view('toan.duongcaotamgiac',compact('ketqua','a'));
+            }
+        }
+        else{
+            $ketqua="nhập a";
+            return view('toan.duongcaotamgiac',compact('ketqua'));
+        }
+    }
+
+
+    //Tính thể tích hình trụ
+public function thetichhinhtru(){
+    return view('toan.thetichhinhtru');
 }
+public function tinhthetichhinhtru(){
+    //xét biến $a có phải là một số hữu hạn và lơn hơn 0
+    if(is_numeric($_POST['a']) && is_finite($_POST['a'])&& $_POST['a']> 0){
+        $a=$_POST['a'];
+         //xét biến $b có phải là một số hữu hạn và lơn hơn 0
+        if(is_numeric($_POST['b'])&& is_finite($_POST['b'])&& $_POST['b']> 0){
+            $b=$_POST['b'];
+            
+                //tính kết quả
+                $ketqua=3.14*pow($a,2)*$b;
+                //xét kết quả là số vô hạn
+                if(is_infinite($ketqua))
+                {
+                    $ketqua="kết quả vượt qua giới hạn tính";
+                    return view('toan.thetichhinhtru',compact('ketqua','a','b'));
+                }
+                else{
+                    return view('toan.thetichhinhtru',compact('ketqua','a','b'));
+                }
+           
+        }
+        else{
+            $ketqua="nhập h";
+            return view('toan.thetichhinhtru',compact('ketqua','a'));
+        }
+    }
+    else{
+        $ketqua="nhập r";
+        return view('toan.thetichhinhtru',compact('ketqua'));
+    }
+}
+
+
+
+//Tính thể tích hình nón
+public function thetichhinhnon(){
+    return view('toan.thetichhinhnon');
+}
+public function tinhthetichhinhnon(){
+    //xét biến $a có phải là một số hữu hạn và lơn hơn 0
+    if(is_numeric($_POST['a']) && is_finite($_POST['a'])&& $_POST['a']> 0){
+        $a=$_POST['a'];
+         //xét biến $b có phải là một số hữu hạn và lơn hơn 0
+        if(is_numeric($_POST['b'])&& is_finite($_POST['b'])&& $_POST['b']> 0){
+            $b=$_POST['b'];
+            
+                //tính kết quả
+                $ketqua=(1/3)*3.14*pow($a,2)*$b;
+                //xét kết quả là số vô hạn
+                if(is_infinite($ketqua))
+                {
+                    $ketqua="kết quả vượt qua giới hạn tính";
+                    return view('toan.thetichhinhnon',compact('ketqua','a','b'));
+                }
+                else{
+                    return view('toan.thetichhinhnon',compact('ketqua','a','b'));
+                }
+           
+        }
+        else{
+            $ketqua="nhập h";
+            return view('toan.thetichhinhnon',compact('ketqua','a'));
+        }
+    }
+    else{
+        $ketqua="nhập r";
+        return view('toan.thetichhinhnon',compact('ketqua'));
+    }
+}
+//Tính thể tích hình cầu
+public function thetichhinhcau(){
+    return view('toan.thetichhinhcau');
+}
+public function tinhthetichhinhcau(){
+    //xét biến $a có phải là một số hữu hạn và lơn hơn 0
+    if(is_numeric($_POST['a']) && is_finite($_POST['a'])&& $_POST['a']> 0){
+        $a=$_POST['a'];
+        
+                //tính kết quả
+                $ketqua=(4/3)*3.14*pow($a,3);
+                //xét kết quả là số vô hạn
+                if(is_infinite($ketqua))
+                {
+                    $ketqua="kết quả vượt qua giới hạn tính";
+                    return view('toan.thetichhinhcau',compact('ketqua','a'));
+                }
+                else{
+                    return view('toan.thetichhinhcau',compact('ketqua','a'));
+                }
+            }
+    else{
+        $ketqua="nhập R";
+        return view('toan.thetichhinhcau',compact('ketqua'));
+    }
+}
+}
+
+

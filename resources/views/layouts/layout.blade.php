@@ -113,6 +113,7 @@
                             <li><a href="<?php echo route('vatly.hieudienthe'); ?>">hiệu điện thế</a></li>
                             <li><a href="<?php echo route('vatly.dientro'); ?>">điện trở</a></li>
                             <li><a href="<?php echo route('vatly.congsuathaophi'); ?>">công suất hao phí</a></li>
+                            <li><a href="<?php echo route('vatly.nhietluongodaydan'); ?>">nhiệt lượng ở dây dẫn</a></li>
                         </ul>
                     </li>
 
@@ -126,7 +127,15 @@
                         <ul class="nav-second-level" aria-expanded="false">
                             <li><a href="<?php echo route('toan.luythuamunguyenduong'); ?>">lũy thừa với mũ n</a></li>
                             <li><a href="<?php echo route('toan.luythuacuamotphanso'); ?>">lũy thừa của một phân số</a></li>
+                            <li><a href="<?php echo route('toan.luythuacuamottich'); ?>">lũy thừa của một tích</a></li>
+                            <li><a href="<?php echo route('toan.tichcuahailuythuacungcoso'); ?>">Tính tích của hai lũy thừa với cùng một cơ số</a></li>
+                            <li><a href="<?php echo route('toan.thuongcuahailuythuacungcoso'); ?>">Tính thương của hai lũy thừa với cùng một cơ số</a></li>
                             <li><a href="<?php echo route('toan.phuongtrinhbachai'); ?>">phương trình bậc 2</a></li>
+                            <li><a href="<?php echo route('toan.luythuacuamotluythua'); ?>">lũy thừa của một lũy thừa</a></li>
+                            <li><a href="<?php echo route('toan.duongcaotamgiac'); ?>">đường cao của một tam giác</a></li>
+                            <li><a href="<?php echo route('toan.thetichhinhtru'); ?>">thể tích hình trụ</a></li>
+                            <li><a href="<?php echo route('toan.thetichhinhnon'); ?>">thể tích hình nón</a></li>
+                            <li><a href="<?php echo route('toan.thetichhinhcau'); ?>">thể tích hình cầu</a></li>
                         </ul>
                     </li>
 

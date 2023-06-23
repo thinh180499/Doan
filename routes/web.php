@@ -73,6 +73,8 @@ Route::prefix('/vatly')->group(function () {
     Route::post('dientro', [VatlyController::class, 'tinhdientro']);
     Route::get('congsuathaophi', [VatlyController::class, 'congsuathaophi'])->name('vatly.congsuathaophi');
     Route::post('congsuathaophi', [VatlyController::class, 'tinhcongsuathaophi']);
+    Route::get('nhietluongodaydan', [VatlyController::class, 'nhietluongodaydan'])->name('vatly.nhietluongodaydan');
+    Route::post('nhietluongodaydan', [VatlyController::class, 'tinhnhietluongodaydan']);
 });
 
 
@@ -82,8 +84,24 @@ Route::prefix('/toan')->group(function () {
     Route::post('luythuamunguyenduong', [ToanController::class, 'tinhluythuamunguyenduong']);
     Route::get('luythuacuamotphanso', [ToanController::class, 'luythuacuamotphanso'])->name('toan.luythuacuamotphanso');
     Route::post('luythuacuamotphanso', [ToanController::class, 'tinhluythuacuamotphanso']);
+    Route::get('luythuacuamottich', [ToanController::class, 'luythuacuamottich'])->name('toan.luythuacuamottich');
+    Route::post('luythuacuamottich', [ToanController::class, 'tinhluythuacuamottich']);
+    Route::get('luythuacuamotluythua', [ToanController::class, 'luythuacuamotluythua'])->name('toan.luythuacuamotluythua');
+    Route::post('luythuacuamotluythua', [ToanController::class, 'tinhluythuacuamotluythua']);
+    Route::get('tichcuahailuythuacungcoso', [ToanController::class, 'tichcuahailuythuacungcoso'])->name('toan.tichcuahailuythuacungcoso');
+    Route::post('tichcuahailuythuacungcoso', [ToanController::class, 'tinhtichcuahailuythuacungcoso']);
+    Route::get('thuongcuahailuythuacungcoso', [ToanController::class, 'thuongcuahailuythuacungcoso'])->name('toan.thuongcuahailuythuacungcoso');
+    Route::post('thuongcuahailuythuacungcoso', [ToanController::class, 'tinhthuongcuahailuythuacungcoso']);
     Route::get('phuongtrinhbachai', [ToanController::class, 'phuongtrinhbachai'])->name('toan.phuongtrinhbachai');
     Route::post('phuongtrinhbachai', [ToanController::class, 'tinhphuongtrinhbachai']);
+    Route::get('duongcaotamgiac', [ToanController::class, 'duongcaotamgiac'])->name('toan.duongcaotamgiac');
+    Route::post('duongcaotamgiac', [ToanController::class, 'tinhduongcaotamgiac']);
+    Route::get('thetichhinhtru', [ToanController::class, 'thetichhinhtru'])->name('toan.thetichhinhtru');
+    Route::post('thetichhinhtru', [ToanController::class, 'tinhthetichhinhtru']);
+    Route::get('thetichhinhnon', [ToanController::class, 'thetichhinhnon'])->name('toan.thetichhinhnon');
+    Route::post('thetichhinhnon', [ToanController::class, 'tinhthetichhinhnon']);
+    Route::get('thetichhinhcau', [ToanController::class, 'thetichhinhcau'])->name('toan.thetichhinhcau');
+    Route::post('thetichhinhcau', [ToanController::class, 'tinhthetichhinhcau']);
 });
 
 
