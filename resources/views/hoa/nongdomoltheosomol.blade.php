@@ -10,10 +10,10 @@
         <div class="container-fluid mt-4 mb-4">
             <div class="row justify-content-center">
                 <div class="col-auto border rounded-lg p-3 d-flex align-items-center">
-                    <div class="kt mr-3">
+                    <div class="mr-3">
                         <span class="fw-bold">C<sub>M</sub> = </span>
                     </div>
-                    <div class="ct">
+                    <div>
                         <span>n<sub>ct</sub></span>
                         <hr>
                         <span>V<sub>dd</sub></span>
@@ -65,8 +65,6 @@
                 </span>
             </div>
         </div>
-
-
     </form>
 @endsection
 
@@ -88,10 +86,6 @@
             font-size: 20px;
             border-radius: 5px;
             border: 2px solid #ccc;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
         }
 
         label {
