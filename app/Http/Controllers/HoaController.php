@@ -168,4 +168,46 @@ class HoaController extends Controller
             return view('hoa.nongdomoltheokhoiluongchattan',compact('ketqua'));
         }
     }
+
+      //nồng độ mol theo khối lượng chất tan
+      public function moltheonongdophantramvakhoiluongdungdich(){
+        return view('hoa.moltheonongdophantramvakhoiluongdungdich');
+    }
+    public function tinhmoltheonongdophantramvakhoiluongdungdich(){
+        //xét biến $a có phải là một số hữu hạn
+        if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
+            $a=$_POST['a'];
+             //xét biến $b có phải là một số hữu hạn
+            if(is_numeric($_POST['b'])&& is_finite($_POST['b'])){
+                $b=$_POST['b'];
+                 //xét biến $c có phải là một số hữu hạn
+                if(is_numeric($_POST['c'])&& is_finite($_POST['c'])){
+                    $c=$_POST['c'];
+                   //tính kết quả
+                    $ketqua=($a*$b)/(100*$c);
+                    //xét kết quả là số vô hạn
+                    if(is_infinite($ketqua))
+                    {
+                        $ketqua="kết quả vượt qua giới hạn tính";
+                        return view('hoa.moltheonongdophantramvakhoiluongdungdich',compact('ketqua','a','b','c'));
+                    }
+                    else{
+                        return view('hoa.moltheonongdophantramvakhoiluongdungdich',compact('ketqua','a','b','c'));
+                    }
+                }
+                else{
+                    $ketqua="nhập M";
+                    return view('hoa.moltheonongdophantramvakhoiluongdungdich',compact('ketqua','a','b','c'));
+                }
+            }
+            else{
+                $ketqua="nhập mdd";
+                return view('hoa.moltheonongdophantramvakhoiluongdungdich',compact('ketqua','a','b'));
+            }
+        }
+        else{
+            $ketqua="nhập C&#37";
+            return view('hoa.moltheonongdophantramvakhoiluongdungdich',compact('ketqua'));
+        }
+    }
 }
