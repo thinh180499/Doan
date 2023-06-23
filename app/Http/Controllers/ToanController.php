@@ -315,4 +315,45 @@ public function tinhthuongcuahailuythuacungcoso(){
             return view('toan.phuongtrinhbachai',compact('ketqua'));
         }
     }
+
+
+
+
+     //đường cao tam giác
+     public function duongcaotamgiac(){
+        return view('toan.duongcaotamgiac');
+    }
+    public function tinhduongcaotamgiac(){
+        //xét biến $a có phải là một số hữu hạn và lớn hơn 0
+        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']> 0){
+            $a=$_POST['a'];
+             //xét biến $b có phải là một số hữu hạn và lớn hơn 0
+            if(is_numeric($_POST['b'])&& is_finite($_POST['b']) && $_POST['b']>0){
+                $b=$_POST['b'];
+                //xét biến $c có phải là một số hữu hạn và lớn hơn 0
+                if(is_numeric($_POST['c']) && is_finite($_POST['c'])&& $_POST['c']>0){
+                    $c=$_POST['c'];
+                    //tính kết quả
+                    $p = ($a + $b + $c)/2;
+                    $ketqua=2*(sqrt($p*($p-$a)*($p-$b)*($p-$c))/$a);
+                    $ketqua="đường cao h của tam giác=". $ketqua;
+                    return view('toan.duongcaotamgiac',compact('ketqua','a','b','c'));
+                }
+                else{
+                    $ketqua="nhập c";
+                    return view('toan.duongcaotamgiac',compact('ketqua','a','b'));
+                }
+            }
+            else{
+                $ketqua="nhập b ";
+                return view('toan.duongcaotamgiac',compact('ketqua','a'));
+            }
+        }
+        else{
+            $ketqua="nhập a";
+            return view('toan.duongcaotamgiac',compact('ketqua'));
+        }
+    }
 }
+
+
