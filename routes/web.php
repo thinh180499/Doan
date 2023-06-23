@@ -120,4 +120,7 @@ Route::prefix('/hoa')->group(function () {
     
     Route::get('khoiluongchattan', [HoaController::class, 'khoiluongchattan'])->name('hoa.khoiluongchattan');
     Route::post('khoiluongchattan', [HoaController::class, 'tinhkhoiluongchattan']);
+
+    Route::get('nongdomoltheokhoiluongchattan', [HoaController::class, 'nongdomoltheokhoiluongchattan'])->name('hoa.nongdomoltheokhoiluongchattan');
+    Route::post('nongdomoltheokhoiluongchattan', [HoaController::class, 'tinhnongdomoltheokhoiluongchattan']);
 });

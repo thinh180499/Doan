@@ -131,4 +131,41 @@ class HoaController extends Controller
             return view('hoa.khoiluongchattan',compact('ketqua'));
         }
     }
+
+
+
+     //nồng độ mol theo khối lượng chất tan
+     public function nongdomoltheokhoiluongchattan(){
+        return view('hoa.nongdomoltheokhoiluongchattan');
+    }
+    public function tinhnongdomoltheokhoiluongchattan(){
+        //xét biến $a có phải là một số hữu hạn
+        if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
+            $a=$_POST['a'];
+             //xét biến $b có phải là một số hữu hạn và lớn hơn 0
+            if(is_numeric($_POST['b'])&& is_finite($_POST['b'])&& $_POST['b']>0){
+                $b=$_POST['b'];
+                   //tính kết quả
+                    $ketqua=$a*100/$b;
+                    //xét kết quả là số vô hạn
+                    if(is_infinite($ketqua))
+                    {
+                        $ketqua="kết quả vượt qua giới hạn tính";
+                        return view('hoa.nongdomoltheokhoiluongchattan',compact('ketqua','a','b'));
+                    }
+                    else{
+                        return view('hoa.nongdomoltheokhoiluongchattan',compact('ketqua','a','b'));
+                    }
+               
+            }
+            else{
+                $ketqua="nhập mhh với mhh > 0";
+                return view('hoa.nongdomoltheokhoiluongchattan',compact('ketqua','a'));
+            }
+        }
+        else{
+            $ketqua="nhập mct";
+            return view('hoa.nongdomoltheokhoiluongchattan',compact('ketqua'));
+        }
+    }
 }
