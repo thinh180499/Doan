@@ -2,274 +2,265 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>Tool toán lý hóa</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Responsive bootstrap 4 admin template" name="description">
-    <meta content="Coderthemes" name="author">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets\clients\images\favicon.ico') }}">
-    <!-- App css -->
-    <link href="{{ asset('assets\clients\css\bootstrap.min.css') }}" rel="stylesheet" type="text/css"
-        id="bootstrap-stylesheet">
-    <link href="{{ asset('assets\clients\css\icons.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets\clients\css\app.min.css') }}" rel="stylesheet" type="text/css" id="app-stylesheet">
-    @yield('css')
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon" />
+  <title>Tool toán lý hóa</title>
+
+  <!-- ========== All CSS files linkup ========= -->
+  <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/lineicons.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/materialdesignicons.min.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
+  <style>
+    <style>
+        .container {
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .input {
+            display: block;
+            width: 100%;
+            padding: 5px;
+            font-size: 20px;
+            border-radius: 5px;
+            border: 2px solid #ccc;
+        }
+
+        .lb {
+            font-size: 25px
+        }
+
+        .cardform span {
+            font-size: 30px
+        }
+
+        button.calculate{
+            font-size: 35px;
+        }
+    </style>
+  </style>
+  @yield('css')
 </head>
 
 <body>
-
-    <!-- Begin page -->
-    <div id="wrapper">
-
-
-        <!-- Topbar Start -->
-        <div class="navbar-custom">
-
-            <!-- LOGO -->
-            <div class="logo-box">
-                <a href="<?php echo route('home');?>" class="logo text-center logo-dark">
-                    <span class="logo-lg">
-                        <img src="{{ asset('assets\clients\images\logo-dark.png') }}" alt="" height="26">
-                        <!-- <span class="logo-lg-text-dark">Simple</span> -->
-                    </span>
-                    <span class="logo-sm">
-                        <!-- <span class="logo-lg-text-dark">S</span> -->
-                        <img src="{{ asset('assets\clients\images\logo-sm.png') }}" alt="" height="22">
-                    </span>
-                </a>
-
-                <a href="index.html" class="logo text-center logo-light">
-                    <span class="logo-lg">
-                        <img src="{{ asset('assets\clients\images\logo-light.png') }}" alt="" height="26">
-                        <!-- <span class="logo-lg-text-light">Simple</span> -->
-                    </span>
-                    <span class="logo-sm">
-                        <!-- <span class="logo-lg-text-light">S</span> -->
-                        <img src="{{ asset('assets\clients\images\logo-sm.png') }}" alt="" height="22">
-                    </span>
-                </a>
-            </div>
-
-            <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
-                <li>
-                    <button class="button-menu-mobile">
-                        <i class="mdi mdi-menu"></i>
-                    </button>
-                </li>
-
-                <li class="d-none d-sm-block">
-                    <form class="app-search">
-                        <div class="app-search-box">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                                <div class="input-group-append">
-                                    <button class="btn" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </li>
-            </ul>
-        </div>
-        <!-- end Topbar -->
-        <!-- ========== Left Sidebar Start ========== -->
-        <div class="left-side-menu">
-
-
-            <!--- Sidemenu -->
-            <div id="sidebar-menu">
-
-                <ul class="metismenu" id="side-menu">
-
-                    <li class="menu-title">Môn học</li>
-
-                    {{-- Vat ly --}}
-                    <li>
-                        <a href="javascript: void(0);">
-                            <i class="ti-light-bulb"></i>
-                            <span> Vật lý </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <ul class="nav-second-level" aria-expanded="false">
-                            <li><a href="<?php echo route('vatly.dodai'); ?>">độ dài</a></li>
-                            <li><a href="<?php echo route('vatly.thetich'); ?>">thể tích</a></li>
-                            <li><a href="<?php echo route('vatly.khoiluong'); ?>">khối lượng</a></li>
-                            <li><a href="<?php echo route('vatly.khoiluongrieng'); ?>">khối lượng riêng</a></li>
-                            <li><a href="<?php echo route('vatly.trongluongrieng'); ?>">trọng lượng riêng</a></li>
-                            <li><a href="<?php echo route('vatly.vantoc'); ?>">vận tốc</a></li>
-                            <li><a href="<?php echo route('vatly.quangduong'); ?>">quảng đường</a></li>
-                            <li><a href="<?php echo route('vatly.thoigian'); ?>">thời gian</a></li>
-                            <li><a href="<?php echo route('vatly.lucacsimet'); ?>">lực đẩy acsimet</a></li>
-                            <li><a href="<?php echo route('vatly.apsuat'); ?>">áp suất</a></li>
-                            <li><a href="<?php echo route('vatly.congcohoc'); ?>">công cơ học</a></li>
-                            <li><a href="<?php echo route('vatly.congsuat'); ?>">công suất</a></li>
-                            <li><a href="<?php echo route('vatly.nhietluong'); ?>">nhiệt lượng</a></li>
-                            <li><a href="<?php echo route('vatly.hieusuatdongconhiet'); ?>">hiệu suất động cơ nhiệt</a></li>
-                            <li><a href="<?php echo route('vatly.cuongdodongdien'); ?>">cường độ dòng điện</a></li>
-                            <li><a href="<?php echo route('vatly.hieudienthe'); ?>">hiệu điện thế</a></li>
-                            <li><a href="<?php echo route('vatly.dientro'); ?>">điện trở</a></li>
-                            <li><a href="<?php echo route('vatly.congsuathaophi'); ?>">công suất hao phí</a></li>
-                            <li><a href="<?php echo route('vatly.nhietluongodaydan'); ?>">nhiệt lượng ở dây dẫn</a></li>
-                        </ul>
-                    </li>
-
-                    {{-- Toan --}}
-                    <li>
-                        <a href="javascript: void(0);">
-                            <i class=" mdi mdi-math-integral"></i>
-                            <span> Toán </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <ul class="nav-second-level" aria-expanded="false">
-                            <li><a href="<?php echo route('toan.luythuamunguyenduong'); ?>">lũy thừa với mũ n</a></li>
-                            <li><a href="<?php echo route('toan.luythuacuamotphanso'); ?>">lũy thừa của một phân số</a></li>
-                            <li><a href="<?php echo route('toan.luythuacuamottich'); ?>">lũy thừa của một tích</a></li>
-                            <li><a href="<?php echo route('toan.tichcuahailuythuacungcoso'); ?>">Tính tích của hai lũy thừa với cùng một cơ số</a></li>
-                            <li><a href="<?php echo route('toan.thuongcuahailuythuacungcoso'); ?>">Tính thương của hai lũy thừa với cùng một cơ số</a></li>
-                            <li><a href="<?php echo route('toan.phuongtrinhbachai'); ?>">phương trình bậc 2</a></li>
-                            <li><a href="<?php echo route('toan.luythuacuamotluythua'); ?>">lũy thừa của một lũy thừa</a></li>
-                            <li><a href="<?php echo route('toan.duongcaotamgiac'); ?>">đường cao của một tam giác</a></li>
-                            <li><a href="<?php echo route('toan.thetichhinhtru'); ?>">thể tích hình trụ</a></li>
-                            <li><a href="<?php echo route('toan.thetichhinhnon'); ?>">thể tích hình nón</a></li>
-                            <li><a href="<?php echo route('toan.thetichhinhcau'); ?>">thể tích hình cầu</a></li>
-                        </ul>
-                    </li>
-
-                    {{-- Hoa hoc --}}
-                    <li>
-                        <a href="javascript: void(0);">
-                            <i class=" mdi mdi-flask-outline"></i>
-                            <span> Hóa học </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <ul class="nav-second-level" aria-expanded="false">
-                            <li><a href="<?php echo route('hoa.moltheokhoiluong'); ?>">tính số mol theo khối lượng</a></li>
-                            <li><a href="<?php echo route('hoa.moltheonongdomolvathetichdungdich'); ?>">tính số mol theo nồng độ mol và thể tích dung dịch</a></li>
-                            <li><a href="<?php echo route('hoa.nongdomoltheosomol'); ?>">tính nồng độ mol theo số mol</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-
-            </div>
-            <!-- End Sidebar -->
-
-            <div class="clearfix"></div>
-
-
-        </div>
-        <!-- Left Sidebar End -->
-
-        <!-- ============================================================== -->
-        <!-- Start Page Content here -->
-        <!-- ============================================================== -->
-
-        <div class="content-page">
-            <div class="content">
-
-                <!-- Start container-fluid -->
-
-                    <!-- main start   -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div>
-                                @yield('content')
-                            </div>
-                            <p class="mt-3">
-                                &larr; <a href="<?php echo route('home'); ?>">Quay về trang chủ</a>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- main end -->
-
-                </div>
-                <!-- end container-fluid -->
-
-
-
-                <!-- Footer Start -->
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                2023 - Tool toán lý hóa
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-                <!-- end Footer -->
-
-            </div>
-            <!-- end content -->
-
-        </div>
-        <!-- END content-page -->
-
-    </div>
-    <!-- END wrapper -->
-
-
-    <!-- Right Sidebar -->
-    <div class="right-bar">
-        <div class="rightbar-title">
-            <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                <i class="mdi mdi-close"></i>
+  <div class="container-fluid">
+    <!-- ======== sidebar-nav start =========== -->
+    <aside class="sidebar-nav-wrapper">
+      <div class="navbar-logo">
+        <h3>
+            <a href="<?php echo route('home'); ?>">
+            {{-- <img src="{{ asset('assets/images/logo/logo.svg') }}" alt="logo" /> --}}
+            Tool
             </a>
-            <h5 class="font-16 m-0 text-white">Theme Customizer</h5>
-        </div>
-        <div class="slimscroll-menu">
+        </h3>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
 
-            <div class="p-4">
-                <div class="alert alert-warning" role="alert">
-                    <strong>Customize </strong> the overall color scheme, layout, etc.
-                </div>
-                <div class="mb-2">
-                    <img src="{{ asset('assets\clients\images\layouts\light.png') }}" class="img-fluid img-thumbnail"
-                        alt="">
-                </div>
-                <div class="custom-control custom-switch mb-3">
-                    <input type="checkbox" class="custom-control-input theme-choice" id="light-mode-switch"
-                        checked="">
-                    <label class="custom-control-label" for="light-mode-switch">Light Mode</label>
-                </div>
+        {{-- Vật lý --}}
+          <li class="nav-item nav-item-has-children">
+            <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_1" aria-controls="ddmenu_1"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <span class="icon">
+                <svg width="22" height="22" viewBox="0 0 22 22">
+                  <path
+                    d="M17.4167 4.58333V6.41667H13.75V4.58333H17.4167ZM8.25 4.58333V10.0833H4.58333V4.58333H8.25ZM17.4167 11.9167V17.4167H13.75V11.9167H17.4167ZM8.25 15.5833V17.4167H4.58333V15.5833H8.25ZM19.25 2.75H11.9167V8.25H19.25V2.75ZM10.0833 2.75H2.75V11.9167H10.0833V2.75ZM19.25 10.0833H11.9167V19.25H19.25V10.0833ZM10.0833 13.75H2.75V19.25H10.0833V13.75Z" />
+                </svg>
+              </span>
+              <span class="text">Vật lý</span>
+            </a>
+            <ul id="ddmenu_1" class="collapse dropdown-nav">
+                <li><a href="<?php echo route('vatly.dodai'); ?>">độ dài</a></li>
+                <li><a href="<?php echo route('vatly.thetich'); ?>">thể tích</a></li>
+                <li><a href="<?php echo route('vatly.khoiluong'); ?>">khối lượng</a></li>
+                <li><a href="<?php echo route('vatly.khoiluongrieng'); ?>">khối lượng riêng</a></li>
+                <li><a href="<?php echo route('vatly.trongluongrieng'); ?>">trọng lượng riêng</a></li>
+                <li><a href="<?php echo route('vatly.vantoc'); ?>">vận tốc</a></li>
+                <li><a href="<?php echo route('vatly.quangduong'); ?>">quảng đường</a></li>
+                <li><a href="<?php echo route('vatly.thoigian'); ?>">thời gian</a></li>
+                <li><a href="<?php echo route('vatly.lucacsimet'); ?>">lực đẩy acsimet</a></li>
+                <li><a href="<?php echo route('vatly.apsuat'); ?>">áp suất</a></li>
+                <li><a href="<?php echo route('vatly.congcohoc'); ?>">công cơ học</a></li>
+                <li><a href="<?php echo route('vatly.congsuat'); ?>">công suất</a></li>
+                <li><a href="<?php echo route('vatly.nhietluong'); ?>">nhiệt lượng</a></li>
+                <li><a href="<?php echo route('vatly.hieusuatdongconhiet'); ?>">hiệu suất động cơ nhiệt</a></li>
+                <li><a href="<?php echo route('vatly.cuongdodongdien'); ?>">cường độ dòng điện</a></li>
+                <li><a href="<?php echo route('vatly.hieudienthe'); ?>">hiệu điện thế</a></li>
+                <li><a href="<?php echo route('vatly.dientro'); ?>">điện trở</a></li>
+                <li><a href="<?php echo route('vatly.congsuathaophi'); ?>">công suất hao phí</a></li>
+                <li><a href="<?php echo route('vatly.nhietluongodaydan'); ?>">nhiệt lượng ở dây dẫn</a></li>
+            </ul>
+          </li>
 
-                <div class="mb-2">
-                    <img src="{{ asset('assets\clients\images\layouts\dark.png') }}" class="img-fluid img-thumbnail"
-                        alt="">
-                </div>
-                <div class="custom-control custom-switch mb-3">
-                    <input type="checkbox" class="custom-control-input theme-choice" id="dark-mode-switch"
-                        data-bsstyle="{{ asset('assets\clients\css\bootstrap\dark.min.css') }}"
-                        data-appstyle="{{ asset('assets\clients\css\app\dark.min.css') }}">
-                    <label class="custom-control-label" for="dark-mode-switch">Dark Mode</label>
-                </div>
 
-                <div class="mb-2">
-                    <img src="{{ asset('assets\clients\images\layouts\rtl.png') }}" class="img-fluid img-thumbnail"
-                        alt="">
-                </div>
-                <div class="custom-control custom-switch mb-5">
-                    <input type="checkbox" class="custom-control-input theme-choice" id="rtl-mode-switch"
-                        data-appstyle="{{ asset('assets\clients\css\app\rtl.min.css') }}">
-                    <label class="custom-control-label" for="rtl-mode-switch">RTL Mode</label>
-                </div>
+          {{-- Toán --}}
+          <li class="nav-item nav-item-has-children">
+            <a href="#0" class="" data-bs-toggle="collapse" data-bs-target="#ddmenu_2" aria-controls="ddmenu_2"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <span class="icon">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M12.8334 1.83325H5.50008C5.01385 1.83325 4.54754 2.02641 4.20372 2.37022C3.8599 2.71404 3.66675 3.18036 3.66675 3.66659V18.3333C3.66675 18.8195 3.8599 19.2858 4.20372 19.6296C4.54754 19.9734 5.01385 20.1666 5.50008 20.1666H16.5001C16.9863 20.1666 17.4526 19.9734 17.7964 19.6296C18.1403 19.2858 18.3334 18.8195 18.3334 18.3333V7.33325L12.8334 1.83325ZM16.5001 18.3333H5.50008V3.66659H11.9167V8.24992H16.5001V18.3333Z" />
+                </svg>
+              </span>
+              <span class="text">Toán</span>
+            </a>
+            <ul id="ddmenu_2" class="collapse show dropdown-nav">
+                <li><a href="<?php echo route('toan.luythuamunguyenduong'); ?>">lũy thừa với mũ n</a></li>
+                <li><a href="<?php echo route('toan.luythuacuamotphanso'); ?>">lũy thừa của một phân số</a></li>
+                <li><a href="<?php echo route('toan.luythuacuamottich'); ?>">lũy thừa của một tích</a></li>
+                <li><a href="<?php echo route('toan.tichcuahailuythuacungcoso'); ?>">Tính tích của hai lũy thừa với cùng một cơ số</a></li>
+                <li><a href="<?php echo route('toan.thuongcuahailuythuacungcoso'); ?>">Tính thương của hai lũy thừa với cùng một cơ số</a></li>
+                <li><a href="<?php echo route('toan.phuongtrinhbachai'); ?>">phương trình bậc 2</a></li>
+                <li><a href="<?php echo route('toan.luythuacuamotluythua'); ?>">lũy thừa của một lũy thừa</a></li>
+                <li><a href="<?php echo route('toan.duongcaotamgiac'); ?>">đường cao của một tam giác</a></li>
+                <li><a href="<?php echo route('toan.thetichhinhtru'); ?>">thể tích hình trụ</a></li>
+                <li><a href="<?php echo route('toan.thetichhinhnon'); ?>">thể tích hình nón</a></li>
+                <li><a href="<?php echo route('toan.thetichhinhcau'); ?>">thể tích hình cầu</a></li>
+            </ul>
+          </li>
 
-                <a href="https://1.envato.market/EK71X" class="btn btn-danger btn-block mt-3" target="_blank"><i
-                        class="mdi mdi-download mr-1"></i> Download Now</a>
+
+          {{-- Hóa --}}
+          <li class="nav-item nav-item-has-children">
+            <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_3" aria-controls="ddmenu_3"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <span class="icon">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M12.9067 14.2908L15.2808 11.9167H6.41667V10.0833H15.2808L12.9067 7.70917L14.2083 6.41667L18.7917 11L14.2083 15.5833L12.9067 14.2908ZM17.4167 2.75C17.9029 2.75 18.3692 2.94315 18.713 3.28697C19.0568 3.63079 19.25 4.0971 19.25 4.58333V8.86417L17.4167 7.03083V4.58333H4.58333V17.4167H17.4167V14.9692L19.25 13.1358V17.4167C19.25 17.9029 19.0568 18.3692 18.713 18.713C18.3692 19.0568 17.9029 19.25 17.4167 19.25H4.58333C3.56583 19.25 2.75 18.425 2.75 17.4167V4.58333C2.75 3.56583 3.56583 2.75 4.58333 2.75H17.4167Z" />
+                </svg>
+              </span>
+              <span class="text">Hóa học</span>
+            </a>
+            <ul id="ddmenu_3" class="collapse dropdown-nav">
+                <li><a href="<?php echo route('hoa.moltheokhoiluong'); ?>">tính số mol theo khối lượng</a></li>
+                <li><a href="<?php echo route('hoa.moltheonongdomolvathetichdungdich'); ?>">tính số mol theo nồng độ mol và thể tích dung dịch</a></li>
+                <li><a href="<?php echo route('hoa.nongdomoltheosomol'); ?>">tính nồng độ mol theo số mol</a></li>
+            </ul>
+          </li>
+    </aside>
+    <div class="overlay"></div>
+    <!-- ======== sidebar-nav end =========== -->
+
+    <!-- ======== main-wrapper start =========== -->
+    <main class="main-wrapper">
+      <!-- ========== header start ========== -->
+      <header class="header">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-5 col-md-5 col-6">
+              <div class="header-left d-flex align-items-center">
+                <div class="menu-toggle-btn mr-20">
+                  <button id="menu-toggle" class="main-btn primary-btn btn-hover">
+                    <i class="lni lni-chevron-left me-2"></i> Menu
+                  </button>
+                </div>
+                <div class="header-search d-none d-md-flex">
+                  <form action="#">
+                    <input type="text" placeholder="Search..." />
+                    <button><i class="lni lni-search-alt"></i></button>
+                  </form>
+                </div>
+              </div>
             </div>
-        </div> <!-- end slimscroll-menu-->
-    </div>
+            <div class="col-lg-7 col-md-7 col-6">
+              <div class="header-right">
+                <!-- profile start -->
+                <div class="profile-box ml-15">
+                  <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="profile-info">
+                      <div class="info">
+                        <p>Tiếng Việt</p>
+                      </div>
+                    </div>
+                    <i class="lni lni-chevron-down"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
+                    <li>
+                      <a href="#0">
+                        <i class="lni lni-user"></i> Tiếng Việt
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#0">
+                        <i class="lni lni-alarm"></i> Tiếng Anh
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- profile end -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- ========== header end ========== -->
 
-    <!-- Vendor js -->
-    <script src="{{ asset('assets\clients\js\vendor.min.js') }}"></script>
+      <!-- ========== section start ========== -->
+      <section class="section">
+        <div class="container-fluid">
 
-    <!-- App js -->
-    <script src="{{ asset('assets\clients\js\app.min.js') }}"></script>
+          <!-- ========== content start ========== -->
+            @yield('content')
+          <!-- ========== content end ========== -->
 
+        </div>
+        <!-- end container -->
+      </section>
+      <!-- ========== section end ========== -->
+
+      <!-- ========== footer start =========== -->
+      {{-- <footer class="footer">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6 order-last order-md-first">
+              <div class="copyright text-center text-md-start">
+                <p class="text-sm">
+                 tool toán lý hóa
+                </p>
+              </div>
+            </div>
+            <!-- end col-->
+            <div class="col-md-6">
+              <div class="
+                    terms
+                    d-flex
+                    justify-content-center justify-content-md-end
+                  ">
+                <a href="#0" class="text-sm">Term & Conditions</a>
+                <a href="#0" class="text-sm ml-15">Privacy & Policy</a>
+              </div>
+            </div>
+          </div>
+          <!-- end row -->
+        </div>
+        <!-- end container -->
+      </footer> --}}
+      <!-- ========== footer end =========== -->
+    </main>
+    <!-- ======== main-wrapper end =========== -->
+  </div>
+
+
+  <!-- ========= All Javascript files linkup ======== -->
+  <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
+  <script src="{{ asset('assets/js/dynamic-pie-chart.js') }}"></script>
+  <script src="{{ asset('assets/js/moment.min.js') }}"></script>
+  <script src="{{ asset('assets/js/fullcalendar.js') }}"></script>
+  <script src="{{ asset('assets/js/jvectormap.min.js') }}"></script>
+  <script src="{{ asset('assets/js/world-merc.js') }}"></script>
+  <script src="{{ asset('assets/js/polyfill.js') }}"></script>
+  <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 
 </html>
