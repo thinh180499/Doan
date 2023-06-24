@@ -125,6 +125,8 @@
                 <li><a href="<?php echo route('toan.thetichhinhnon'); ?>">thể tích hình nón</a></li>
                 <li><a href="<?php echo route('toan.thetichhinhcau'); ?>">thể tích hình cầu</a></li>
                 <li><a href="<?php echo route('toan.dientichmatcau'); ?>">diện tích mặt cầu cầu</a></li>
+                <li><a href="<?php echo route('toan.canhtamgiac'); ?>">cạnh huyền của tam giác vuông</a></li>
+                <li><a href="<?php echo route('toan.chuvihinhchunhat'); ?>">chu vi hình chữ nhật</a></li>
             </ul>
           </li>
 

@@ -487,6 +487,77 @@ public function tinhdientichmatcau(){
         return view('toan.dientichmatcau',compact('ketqua'));
     }
 }
+
+
+//cạnh của tam giác
+public function canhtamgiac(){
+    return view('toan.canhtamgiac');
+}
+public function tinhcanhtamgiac(){
+    //xét biến $a có phải là một số hữu hạn
+    if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
+        $a=$_POST['a'];
+         //xét biến $b có phải là một số hữu hạn
+        if(is_numeric($_POST['b']) && is_finite($_POST['b'])){
+            $b=$_POST['b'];
+            //tính kết quả
+            $ketqua=sqrt(pow($a,2)+pow($b,2));
+            //xét kết quả là số vô hạn
+            if(is_infinite($ketqua))
+            {
+                $ketqua="kết quả vượt qua giới hạn tính";
+                return view('toan.canhtamgiac',compact('ketqua','a','b'));
+            }
+            else{
+                return view('toan.canhtamgiac',compact('ketqua','a','b'));
+            }
+        }
+        else{
+            $ketqua="nhập c";
+            return view('toan.canhtamgiac',compact('ketqua','a'));
+        }
+    }
+    else{
+        $ketqua="nhập b";
+        return view('toan.canhtamgiac',compact('ketqua'));
+    }
+}
+
+
+
+//chu vi hình chữ nhật
+public function chuvihinhchunhat(){
+    return view('toan.chuvihinhchunhat');
+}
+public function tinhchuvihinhchunhat(){
+    //xét biến $a có phải là một số hữu hạn
+    if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
+        $a=$_POST['a'];
+         //xét biến $b có phải là một số hữu hạn
+        if(is_numeric($_POST['b']) && is_finite($_POST['b'])){
+            $b=$_POST['b'];
+            //tính kết quả
+            $ketqua=2*($a+$b);
+            //xét kết quả là số vô hạn
+            if(is_infinite($ketqua))
+            {
+                $ketqua="kết quả vượt qua giới hạn tính";
+                return view('toan.chuvihinhchunhat',compact('ketqua','a','b'));
+            }
+            else{
+                return view('toan.chuvihinhchunhat',compact('ketqua','a','b'));
+            }
+        }
+        else{
+            $ketqua="nhập b";
+            return view('toan.chuvihinhchunhat',compact('ketqua','a'));
+        }
+    }
+    else{
+        $ketqua="nhập a";
+        return view('toan.chuvihinhchunhat',compact('ketqua'));
+    }
+}
 }
 
 
