@@ -96,6 +96,49 @@ class HoaController extends Controller
         }
     }
 
+    //Tính thể tích dung dịch theo nồng dộ mol thetichdungdichtheonongdomol
+    public function thetichdungdichtheonongdomol(){
+        return view('hoa.thetichdungdichtheonongdomol');
+    }
+    public function tinhthetichdungdichtheonongdomol(){
+            //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
+        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
+            $a=$_POST['a'];
+            //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
+            if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0)
+            {
+                $b=$_POST['b'];
+                //tính kết quả
+                (float)$ketqua=$a/$b;
+                //xét kết quả khác 0
+                if($ketqua)
+                {
+                    //xét kết quả là số vô hạn
+                    if(is_infinite($ketqua))
+                    {
+                        $ketqua="kết quả vượt qua giới hạn tính";
+                        return view('hoa.thetichdungdichtheonongdomol',compact('ketqua','a','b'));
+                    }
+                    else{
+                        return view('hoa.thetichdungdichtheonongdomol',compact('ketqua','a','b'));
+                    }
+                }
+                else {
+                    static $ketqua=0;
+                    return view('hoa.thetichdungdichtheonongdomol',compact('ketqua','a','b'));
+                }
+            }
+            else {
+                $ketqua="nhập V<sub>dd</sub> với V<sub>dd</sub> khác 0";
+                return view('hoa.thetichdungdichtheonongdomol',compact('ketqua','a'));
+            }
+        }
+        else {
+            $ketqua="nhập n<sub>ct</sub>";
+            return view('hoa.thetichdungdichtheonongdomol',compact('ketqua'));
+        }
+    }
+
 
      //phần trăm khối lượng chất a
      public function phantramkhoiluongchata(){
@@ -249,50 +292,48 @@ class HoaController extends Controller
     }
 
      // Tính nồng độ mol theo số mol
-     public function nongdomoltheosomol(){
+    public function nongdomoltheosomol(){
         return view('hoa.nongdomoltheosomol');
     }
     public function tinhnongdomoltheosomol(){
             //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
-        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0)
+        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
+            $a=$_POST['a'];
+            //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
+            if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0)
             {
-                $a=$_POST['a'];
-                //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
-                if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0)
+                $b=$_POST['b'];
+                //tính kết quả
+                (float)$ketqua=$a/$b;
+                //xét kết quả khác 0
+                if($ketqua)
                 {
-                    $b=$_POST['b'];
-                    //tính kết quả
-                    (float)$ketqua=$a/$b;
-                    //xét kết quả khác 0
-                    if($ketqua)
+                    //xét kết quả là số vô hạn
+                    if(is_infinite($ketqua))
                     {
-                        //xét kết quả là số vô hạn
-                        if(is_infinite($ketqua))
-                        {
-                            $ketqua="kết quả vượt qua giới hạn tính";
-                            return view('hoa.nongdomoltheosomol',compact('ketqua','a','b'));
-                        }
-                        else{
-                            return view('hoa.nongdomoltheosomol',compact('ketqua','a','b'));
-                        }
+                        $ketqua="kết quả vượt qua giới hạn tính";
+                        return view('hoa.nongdomoltheosomol',compact('ketqua','a','b'));
                     }
-                    else {
-                        static $ketqua=0;
+                    else{
                         return view('hoa.nongdomoltheosomol',compact('ketqua','a','b'));
                     }
                 }
-                else{
-                    $ketqua="nhập V<sub>dd</sub> với V<sub>dd</sub> khác 0";
-                    return view('hoa.nongdomoltheosomol',compact('ketqua','a'));
+                else {
+                    static $ketqua=0;
+                    return view('hoa.nongdomoltheosomol',compact('ketqua','a','b'));
                 }
             }
-         else
-            {
-                $ketqua="nhập n<sub>ct</sub>";
-                return view('hoa.nongdomoltheosomol',compact('ketqua'));
+            else {
+                $ketqua="nhập V<sub>dd</sub> với V<sub>dd</sub> khác 0";
+                return view('hoa.nongdomoltheosomol',compact('ketqua','a'));
             }
-
+        }
+        else {
+            $ketqua="nhập n<sub>ct</sub>";
+            return view('hoa.nongdomoltheosomol',compact('ketqua'));
+        }
     }
+
 
     //nồng độ mol theo nồng độ phần trăm
     public function nongdomolmoltheonongdophantram(){
