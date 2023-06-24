@@ -15,36 +15,34 @@
   <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
   <style>
-    <style>
-        .container {
-            margin: auto;
-        }
+    .container {
+        margin: auto;
+    }
 
-        h2 {
-            text-align: center;
-        }
+    h2 {
+        text-align: center;
+    }
 
-        .input {
-            display: block;
-            width: 100%;
-            padding: 5px;
-            font-size: 20px;
-            border-radius: 5px;
-            border: 2px solid #ccc;
-        }
+    .input {
+        display: block;
+        width: 100%;
+        padding: 5px;
+        font-size: 20px;
+        border-radius: 5px;
+        border: 2px solid #ccc;
+    }
 
-        .lb {
-            font-size: 25px
-        }
+    .lb {
+        font-size: 25px
+    }
 
-        .cardform span {
-            font-size: 30px
-        }
+    .cardform span {
+        font-size: 30px
+    }
 
-        button.calculate{
-            font-size: 35px;
-        }
-    </style>
+    button.calculate{
+        font-size: 35px;
+    }
   </style>
   @yield('css')
 </head>
@@ -145,15 +143,27 @@
             </a>
             <ul id="ddmenu_3" class="collapse dropdown-nav">
                 <li><a href="<?php echo route('hoa.moltheokhoiluong'); ?>">tính số mol theo khối lượng</a></li>
+
                 <li><a href="<?php echo route('hoa.moltheonongdomolvathetichdungdich'); ?>">tính số mol theo nồng độ mol và thể tích dung dịch</a></li>
 
                 <li><a href="<?php echo route('hoa.phantramkhoiluongchata'); ?>">phần trăm khối lượng chất</a></li>
+
                 <li><a href="<?php echo route('hoa.khoiluongchattan'); ?>">khối lượng chất tan</a></li>
+
                 <li><a href="<?php echo route('hoa.nongdophantramtheokhoiluongchattan'); ?>">nồng độ phần trăm theo khối lượng chất tan</a></li>
+
                 <li><a href="<?php echo route('hoa.moltheonongdophantramvakhoiluongdungdich'); ?>">tính số mol theo nông độ phần trăm và khối lượng dung dịch</a></li>
 
                 <li><a href="<?php echo route('hoa.nongdomoltheosomol'); ?>">tính nồng độ mol theo số mol</a></li>
+
                 <li><a href="<?php echo route('hoa.nongdomolmoltheonongdophantram'); ?>">tính nồng độ mol theo nông độ phần trăm</a></li>
+
+                <li><a href="<?php echo route('hoa.khoiluongchat'); ?>">tính khối lượng chất</a></li>
+
+                <li><a href="<?php echo route('hoa.thetichdungdichtheonongdomol'); ?>">tính thể tích dung dich theo nồng độ mol</a></li>
+
+                <li><a href="<?php echo route('hoa.thetichdungdichtheokhoiluongdungdich'); ?>">tính thể tích dung dich theo khối lượng dung dịch</a></li>
+
                 <li><a href="<?php echo route('hoa.nongdophantramtheonongdomol'); ?>">nồng độ phần trăm theo nồng độ mol</a></li>
             </ul>
           </li>

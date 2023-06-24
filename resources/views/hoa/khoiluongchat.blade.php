@@ -4,17 +4,17 @@
     <div class="row mt-5">
         <div class="col">
             <div class="card-style cardform">
-                <h2>Tính số mol theo nồng độ mol và thể tích dung dịch (C<sub>M</sub>)</h2>
+                <h2>Tính khối lượng chất (C<sub>M</sub>)</h2>
 
-                <form action="moltheonongdomolvathetichdungdich" method="post">
+                <form action="khoiluongchat" method="post">
 
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
                     <div class="container-fluid mt-4 mb-4">
                         <div class="row justify-content-center">
                             <div class="col-auto border rounded-lg p-3 d-flex align-items-center">
-                                <span class="mr-5">n = </span>
-                                <span>C<sub>M</sub> * V<sub>dd</sub></span>
+                                <span class="mr-5">m = </span>
+                                <span>n * M</span>
                             </div>
                         </div>
                     </div>
@@ -23,8 +23,8 @@
                     <div class="container">
                         <div class="row nhap d-flex justify-content-between">
                             <div class="col mb-4">
-                                <label class="lb" for="nongdomol"> C<sub>M</sub></label>
-                                <input type="number" id="nongdomol" name="a" placeholder="Nhập nồng độ mol"
+                                <label class="lb" for="somol">n</label>
+                                <input type="number" id="somol" name="a" placeholder="Nhập số mol"
                                     class="input" step="any" value="<?php
                                     if (isset($a)) {
                                         if (is_numeric($a)) {
@@ -38,9 +38,9 @@
                             </div>
 
                             <div class="col mb-4">
-                                <label class="lb" for="thetichdungdich">V<sub>dd</sub></label>
-                                <input type="number" id="thetichdungdich" name="b"
-                                    placeholder="Nhập thể tích dung dịch" class="input" step="any"
+                                <label class="lb" for="khoiluongmol">M</label>
+                                <input type="number" id="khoiluongmol" name="b"
+                                    placeholder="Nhập khối lượng mol" class="input" step="any"
                                     value="<?php
                                     if (isset($b)) {
                                         if (is_numeric($b)) {
