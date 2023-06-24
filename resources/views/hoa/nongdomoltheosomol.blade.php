@@ -5,7 +5,12 @@
         <div class="col">
             <div class="card-style cardform">
                 <h2>Tính nồng độ mol theo số mol (C<sub>M</sub>)</h2>
-
+                @if ($errors->any())
+                <h2 style="color: red;">
+                    vui lòng kiểm tra lại dữ liệu
+                </h2>
+                 @endif
+        
                 <form action="nongdomoltheosomol" method="post">
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
@@ -30,41 +35,25 @@
                             <div class="col mb-4">
                                 <label class="lb" for="somolchattan"> n<sub>ct</sub></label>
                                 <input type="number" id="somolchattan" name="a" placeholder="Nhập số mol chất tan"
-                                    class="input" step="any" value="<?php
-                                    if (isset($a)) {
-                                        if (is_numeric($a)) {
-                                            echo $a;
-                                        } else {
-                                            false;
-                                        }
-                                    } else {
-                                        false;
-                                    } ?>" />
+                                    class="input" step="any" value="{{ isset($a)&&is_numeric($a) ? $a:false }}" />
+                                    @error('a')
+                                        <span style="color: red;">{{$message}}</span>
+                                    @enderror
                             </div>
 
                             <div class="col mb-4">
                                 <label class="lb" for="thetichdungdich">V<sub>dd</sub></label>
                                 <input type="number" id="thetichdungdich" name="b" placeholder="Nhập thể tích dung dịch"
-                                    class="input" step="any" value="<?php
-                                    if (isset($b)) {
-                                        if (is_numeric($b)) {
-                                            echo $b;
-                                        } else {
-                                            false;
-                                        }
-                                    } else {
-                                        false;
-                                    } ?>" />
+                                    class="input" step="any" value="{{ isset($b)&&is_numeric($b) ? $b:false }}" />
+                                @error('b')
+                                    <span style="color: red;">{{$message}}</span>
+                                @enderror
                             </div>
 
                             <div class="col d-flex align-items-center mb-4">
                                 <button class="btn btn-primary me-5 py-0 px-4 calculate" type="submit">=</button>
                                 <span>
-                                    <?php if (isset($ketqua)) {
-                                        echo $ketqua;
-                                    } else {
-                                        false;
-                                    } ?>
+                                {!! isset($ketqua)?$ketqua:false !!}
                                 </span>
                             </div>
                         </div>

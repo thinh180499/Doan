@@ -5,6 +5,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VatlyController;
 use App\Http\Controllers\ToanController;
 use App\Http\Controllers\HoaController;
+use App\Http\Controllers\Admin\LythuyetController;
+use App\Http\Controllers\Admin\HinhController;
+use App\Http\Controllers\Admin\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -148,4 +151,20 @@ Route::prefix('/hoa')->group(function () {
 
     Route::get('nongdophantramtheonongdomol', [HoaController::class, 'nongdophantramtheonongdomol'])->name('hoa.nongdophantramtheonongdomol');
     Route::post('nongdophantramtheonongdomol', [HoaController::class, 'tinhnongdophantramtheonongdomol']);
+});
+
+
+//đăng nhập
+Route::get('/login', function () {
+     echo "đăng nhập";
+    })->name('login');
+
+Route::middleware('auth.admin')->prefix('/admin')->group(function () {
+
+    
+    Route::resource('lythuyet',LythuyetController::class);
+
+    Route::resource('hinh',LythuyetController::class);
+
+    Route::resource('user',LythuyetController::class);
 });
