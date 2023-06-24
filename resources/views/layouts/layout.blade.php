@@ -160,6 +160,8 @@
 
                 <li><a href="<?php echo route('hoa.thetichdungdichtheonongdomol'); ?>">tính thể tích dung dich theo nồng độ mol</a></li>
 
+                <li><a href="<?php echo route('hoa.thetichdungdichtheokhoiluongdungdich'); ?>">tính thể tích dung dich theo khối lượng dung dịch</a></li>
+
                 <li><a href="<?php echo route('hoa.nongdophantramtheonongdomol'); ?>">nồng độ phần trăm theo nồng độ mol</a></li>
             </ul>
           </li>
