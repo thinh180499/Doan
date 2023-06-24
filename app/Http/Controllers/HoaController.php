@@ -61,6 +61,42 @@ class HoaController extends Controller
         }
     }
 
+
+    //Tính khối lượng chất
+    public function khoiluongchat(){
+        return view('hoa.khoiluongchat');
+    }
+    public function tinhkhoiluongchat(){
+         //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
+        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
+            $a=$_POST['a'];
+             //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
+            if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0){
+                $b=$_POST['b'];
+                //tính kết quả
+                $ketqua=$a*$b;
+                //xét kết quả là số vô hạn
+                if(is_infinite($ketqua))
+                {
+                    $ketqua="kết quả vượt qua giới hạn tính";
+                    return view('hoa.khoiluongchat',compact('ketqua','a','b'));
+                }
+                else{
+                    return view('hoa.khoiluongchat',compact('ketqua','a','b'));
+                }
+            }
+            else{
+                $ketqua="nhập V<sub>dd</sub>";
+                return view('hoa.khoiluongchat',compact('ketqua','a'));
+            }
+        }
+        else{
+            $ketqua="nhập C<sub>M</sub>";
+               return view('hoa.khoiluongchat',compact('ketqua'));
+        }
+    }
+
+
      //phần trăm khối lượng chất a
      public function phantramkhoiluongchata(){
         return view('hoa.phantramkhoiluongchata');
@@ -83,7 +119,7 @@ class HoaController extends Controller
                     else{
                         return view('hoa.phantramkhoiluongchata',compact('ketqua','a','b'));
                     }
-               
+
             }
             else{
                 $ketqua="nhập mhh với mhh khác 0";
@@ -120,7 +156,7 @@ class HoaController extends Controller
                     else{
                         return view('hoa.khoiluongchattan',compact('ketqua','a','b'));
                     }
-               
+
             }
             else{
                 $ketqua="nhập mhh với Vdd";
@@ -157,7 +193,7 @@ class HoaController extends Controller
                     else{
                         return view('hoa.nongdophantramtheokhoiluongchattan',compact('ketqua','a','b'));
                     }
-               
+
             }
             else{
                 $ketqua="nhập mhh với mhh > 0";

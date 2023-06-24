@@ -141,15 +141,23 @@
             </a>
             <ul id="ddmenu_3" class="collapse dropdown-nav">
                 <li><a href="<?php echo route('hoa.moltheokhoiluong'); ?>">tính số mol theo khối lượng</a></li>
+
                 <li><a href="<?php echo route('hoa.moltheonongdomolvathetichdungdich'); ?>">tính số mol theo nồng độ mol và thể tích dung dịch</a></li>
 
                 <li><a href="<?php echo route('hoa.phantramkhoiluongchata'); ?>">phần trăm khối lượng chất</a></li>
+
                 <li><a href="<?php echo route('hoa.khoiluongchattan'); ?>">khối lượng chất tan</a></li>
+
                 <li><a href="<?php echo route('hoa.nongdophantramtheokhoiluongchattan'); ?>">nồng độ phần trăm theo khối lượng chất tan</a></li>
+
                 <li><a href="<?php echo route('hoa.moltheonongdophantramvakhoiluongdungdich'); ?>">tính số mol theo nông độ phần trăm và khối lượng dung dịch</a></li>
 
                 <li><a href="<?php echo route('hoa.nongdomoltheosomol'); ?>">tính nồng độ mol theo số mol</a></li>
+
                 <li><a href="<?php echo route('hoa.nongdomolmoltheonongdophantram'); ?>">tính nồng độ mol theo nông độ phần trăm</a></li>
+
+                <li><a href="<?php echo route('hoa.khoiluongchat'); ?>">tính khối lượng chất</a></li>
+
                 <li><a href="<?php echo route('hoa.nongdophantramtheonongdomol'); ?>">nồng độ phần trăm theo nồng độ mol</a></li>
             </ul>
           </li>

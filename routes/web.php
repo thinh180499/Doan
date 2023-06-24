@@ -117,7 +117,7 @@ Route::prefix('/hoa')->group(function () {
 
     Route::get('phantramkhoiluongchata', [HoaController::class, 'phantramkhoiluongchata'])->name('hoa.phantramkhoiluongchata');
     Route::post('phantramkhoiluongchata', [HoaController::class, 'tinhphantramkhoiluongchata']);
-    
+
     Route::get('khoiluongchattan', [HoaController::class, 'khoiluongchattan'])->name('hoa.khoiluongchattan');
     Route::post('khoiluongchattan', [HoaController::class, 'tinhkhoiluongchattan']);
 
@@ -129,10 +129,13 @@ Route::prefix('/hoa')->group(function () {
 
     Route::get('nongdomoltheosomol', [HoaController::class, 'nongdomoltheosomol'])->name('hoa.nongdomoltheosomol');
     Route::post('nongdomoltheosomol', [HoaController::class, 'tinhnongdomoltheosomol']);
- 
+
     Route::get('nongdomolmoltheonongdophantram', [HoaController::class, 'nongdomolmoltheonongdophantram'])->name('hoa.nongdomolmoltheonongdophantram');
     Route::post('nongdomolmoltheonongdophantram', [HoaController::class, 'tinhnongdomolmoltheonongdophantram']);
-    
+
+    Route::get('khoiluongchat', [HoaController::class, 'khoiluongchat'])->name('hoa.khoiluongchat');
+    Route::post('khoiluongchat', [HoaController::class, 'tinhkhoiluongchat']);
+
     Route::get('nongdophantramtheonongdomol', [HoaController::class, 'nongdophantramtheonongdomol'])->name('hoa.nongdophantramtheonongdomol');
     Route::post('nongdophantramtheonongdomol', [HoaController::class, 'tinhnongdophantramtheonongdomol']);
 });
