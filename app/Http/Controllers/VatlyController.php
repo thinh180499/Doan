@@ -492,18 +492,29 @@ class VatlyController extends Controller
         return view('vatly.hieusuatdongconhiet');
     }
     public function tinhhieusuatdongconhiet(Request $request){
-         if(isset($_POST['='])&&($_POST['='])){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'công mà động cơ thực hiện được bắt buộc phải nhập',
+            'a.numeric'=>'công mà động cơ thực hiện được buộc phải là số',
+            'a.min'=>'công mà động cơ thực hiện được phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'nhiệt lượng do nhiên liệu bị đốt cháy tỏa ra bắt buộc phải nhập',
+            'b.numeric'=>'nhiệt lượng do nhiên liệu bị đốt cháy tỏa ra bắt buộc phải là số',
+            'b.min'=>'nhiệt lượng do nhiên liệu bị đốt cháy tỏa ra phải lớn hơn 0.00000000000000000000001',
+        ]);
             $a=$_POST['a'];
             $b=$_POST['b'];
-            if($b==0){
-                $ketqua="nhập lại";
-                return view('vatly.hieusuatdongconhiet',compact('ketqua'));
-            }
-            else if($b!=0){
             $ketqua=$a/$b;
-            return view('vatly.hieusuatdongconhiet',compact('ketqua','a','b'));
-            }
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+                return view('vatly.hieusuatdongconhiet',compact('ketqua','a','b'));
         }
+        else{
+            return view('vatly.hieusuatdongconhiet',compact('ketqua','a','b'));
+        }
+        
     }
 
 
