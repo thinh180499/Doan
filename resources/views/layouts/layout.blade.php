@@ -75,9 +75,14 @@
               <span class="text">Vật lý</span>
             </a>
             <ul id="ddmenu_1" class="collapse dropdown-nav">
+                {{-- Chuyển đổi đơn vị --}}
                 <li><a href="<?php echo route('vatly.dodai'); ?>">độ dài</a></li>
                 <li><a href="<?php echo route('vatly.thetich'); ?>">thể tích</a></li>
                 <li><a href="<?php echo route('vatly.khoiluong'); ?>">khối lượng</a></li>
+
+
+                {{-- Tính toán theo công thức lý --}}
+                {{-- Cơ học --}}
                 <li><a href="<?php echo route('vatly.khoiluongrieng'); ?>">khối lượng riêng</a></li>
                 <li><a href="<?php echo route('vatly.trongluongrieng'); ?>">trọng lượng riêng</a></li>
                 <li><a href="<?php echo route('vatly.vantoc'); ?>">vận tốc</a></li>
@@ -87,14 +92,20 @@
                 <li><a href="<?php echo route('vatly.apsuat'); ?>">áp suất</a></li>
                 <li><a href="<?php echo route('vatly.congcohoc'); ?>">công cơ học</a></li>
                 <li><a href="<?php echo route('vatly.congsuat'); ?>">công suất</a></li>
+
+                {{-- Nhiệt học --}}
                 <li><a href="<?php echo route('vatly.nhietluong'); ?>">nhiệt lượng trong quá trình truyền nhiệt ở vật</a></li>
                 <li><a href="<?php echo route('vatly.hieusuatdongconhiet'); ?>">hiệu suất động cơ nhiệt</a></li>
+
+                {{-- Điện học --}}
                 <li><a href="<?php echo route('vatly.cuongdodongdien'); ?>">cường độ dòng điện</a></li>
                 <li><a href="<?php echo route('vatly.hieudienthe'); ?>">hiệu điện thế</a></li>
                 <li><a href="<?php echo route('vatly.dientro'); ?>">điện trở</a></li>
                 <li><a href="<?php echo route('vatly.congsuatdongdien'); ?>">công suất của dòng điện</a></li>
                 <li><a href="<?php echo route('vatly.congdongdien'); ?>">công của dòng điện</a></li>
                 <li><a href="<?php echo route('vatly.nhietluongodaydan'); ?>">nhiệt lượng ở dây dẫn</a></li>
+
+                {{-- Điện từ học --}}
                 <li><a href="<?php echo route('vatly.congsuathaophi'); ?>">công suất hao phí</a></li>
             </ul>
           </li>
@@ -113,20 +124,31 @@
               <span class="text">Toán</span>
             </a>
             <ul id="ddmenu_2" class="collapse dropdown-nav">
+                {{-- Đại số --}}
+                {{-- Lũy thừa --}}
                 <li><a href="<?php echo route('toan.luythuamunguyenduong'); ?>">lũy thừa với mũ n</a></li>
                 <li><a href="<?php echo route('toan.luythuacuamotphanso'); ?>">lũy thừa của một phân số</a></li>
-                <li><a href="<?php echo route('toan.luythuacuamottich'); ?>">lũy thừa của một tích</a></li>
                 <li><a href="<?php echo route('toan.tichcuahailuythuacungcoso'); ?>">Tính tích của hai lũy thừa với cùng một cơ số</a></li>
                 <li><a href="<?php echo route('toan.thuongcuahailuythuacungcoso'); ?>">Tính thương của hai lũy thừa với cùng một cơ số</a></li>
-                <li><a href="<?php echo route('toan.phuongtrinhbachai'); ?>">phương trình bậc 2</a></li>
+                <li><a href="<?php echo route('toan.luythuacuamottich'); ?>">lũy thừa của một tích</a></li>
                 <li><a href="<?php echo route('toan.luythuacuamotluythua'); ?>">lũy thừa của một lũy thừa</a></li>
+
+                {{-- Phương trình --}}
+                <li><a href="<?php echo route('toan.phuongtrinhbachai'); ?>">phương trình bậc 2</a></li>
+
+                {{-- Hình học --}}
+                {{-- Tam giác --}}
+                <li><a href="<?php echo route('toan.canhtamgiac'); ?>">cạnh huyền của tam giác vuông</a></li>
                 <li><a href="<?php echo route('toan.duongcaotamgiac'); ?>">đường cao của một tam giác</a></li>
+
+                {{-- Tứ giác --}}
+                <li><a href="<?php echo route('toan.chuvihinhchunhat'); ?>">chu vi hình chữ nhật</a></li>
+
+                {{-- Hỉnh khối --}}
                 <li><a href="<?php echo route('toan.thetichhinhtru'); ?>">thể tích hình trụ</a></li>
                 <li><a href="<?php echo route('toan.thetichhinhnon'); ?>">thể tích hình nón</a></li>
                 <li><a href="<?php echo route('toan.thetichhinhcau'); ?>">thể tích hình cầu</a></li>
                 <li><a href="<?php echo route('toan.dientichmatcau'); ?>">diện tích mặt cầu cầu</a></li>
-                <li><a href="<?php echo route('toan.canhtamgiac'); ?>">cạnh huyền của tam giác vuông</a></li>
-                <li><a href="<?php echo route('toan.chuvihinhchunhat'); ?>">chu vi hình chữ nhật</a></li>
             </ul>
           </li>
 
@@ -143,32 +165,40 @@
               </span>
               <span class="text">Hóa học</span>
             </a>
+
             <ul id="ddmenu_3" class="collapse dropdown-nav">
+                {{-- Tính số mol theo ... --}}
                 <li><a href="<?php echo route('hoa.moltheokhoiluong'); ?>">tính số mol theo khối lượng</a></li>
-
                 <li><a href="<?php echo route('hoa.moltheonongdomolvathetichdungdich'); ?>">tính số mol theo nồng độ mol và thể tích dung dịch</a></li>
-
-                <li><a href="<?php echo route('hoa.phantramkhoiluongchata'); ?>">phần trăm khối lượng chất</a></li>
-
-                <li><a href="<?php echo route('hoa.khoiluongchattan'); ?>">khối lượng chất tan</a></li>
-
-                <li><a href="<?php echo route('hoa.nongdophantramtheokhoiluongchattan'); ?>">nồng độ phần trăm theo khối lượng chất tan</a></li>
-
                 <li><a href="<?php echo route('hoa.moltheonongdophantramvakhoiluongdungdich'); ?>">tính số mol theo nông độ phần trăm và khối lượng dung dịch</a></li>
 
+
+                {{-- Tính nồng độ phần trăm theo ... --}}
+                <li><a href="<?php echo route('hoa.nongdophantramtheokhoiluongchattan'); ?>">nồng độ phần trăm theo khối lượng chất tan và khối lượng dung dịch</a></li>
+                <li><a href="<?php echo route('hoa.nongdophantramtheonongdomol'); ?>">nồng độ phần trăm theo nồng độ mol và khối lượng mol</a></li>
+
+
+                {{-- Tính nồng độ mol theo ... --}}
                 <li><a href="<?php echo route('hoa.nongdomoltheosomol'); ?>">tính nồng độ mol theo số mol</a></li>
+                <li><a href="<?php echo route('hoa.nongdomolmoltheonongdophantram'); ?>">tính nồng độ mol theo nồng độ phần trăm</a></li>
 
-                <li><a href="<?php echo route('hoa.nongdomolmoltheonongdophantram'); ?>">tính nồng độ mol theo nông độ phần trăm</a></li>
 
+                {{-- Tính khối lượng chất --}}
                 <li><a href="<?php echo route('hoa.khoiluongchat'); ?>">tính khối lượng chất</a></li>
+                <li><a href="<?php echo route('hoa.khoiluongchattan'); ?>">khối lượng chất tan</a></li>
 
+
+                {{-- Tính thể tích dung dịch theo ...  --}}
                 <li><a href="<?php echo route('hoa.thetichdungdichtheonongdomol'); ?>">tính thể tích dung dich theo nồng độ mol</a></li>
+                <li><a href="<?php echo route('hoa.thetichdungdichtheokhoiluongdungdich'); ?>">tính thể tích dung dịch theo khối lượng dung dịch</a></li>
 
-                <li><a href="<?php echo route('hoa.thetichdungdichtheokhoiluongdungdich'); ?>">tính thể tích dung dich theo khối lượng dung dịch</a></li>
 
-                <li><a href="<?php echo route('hoa.nongdophantramtheonongdomol'); ?>">nồng độ phần trăm theo nồng độ mol</a></li>
+                {{-- Tính thành phần % về khối lượng các chất trong hỗn hợp --}}
+                <li><a href="<?php echo route('hoa.phantramkhoiluongchata'); ?>">phần trăm khối lượng chất</a></li>
             </ul>
           </li>
+        </ul>
+      </nav>
     </aside>
     <div class="overlay"></div>
     <!-- ======== sidebar-nav end =========== -->
