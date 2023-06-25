@@ -14,6 +14,11 @@ class ToanController extends Controller
         $request->validate([
             'a'=>'required|numeric',
             'b'=>'required|numeric',
+        ],[
+            'a.required'=>'cường độ của dòng điện bắt buộc phải nhập',
+            'a.numeric'=>'cường độ của dòng điện buộc phải là số',
+            'b.required'=>'điện trở bắt buộc phải nhập',
+            'b.numeric'=>'điện trở bắt buộc phải là số',
         ]);
         $a=$_POST['a'];
         $b=$_POST['b'];
