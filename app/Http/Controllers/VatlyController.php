@@ -241,55 +241,89 @@ class VatlyController extends Controller
         return view('vatly.vantoc');
     }
     public function tinhvantoc(Request $request){
-         if(isset($_POST['='])&&($_POST['='])){
-            $a=$_POST['a'];
-            $b=$_POST['b'];
-            if($b==0){
-                $ketqua="nhập lại";
-                return view('vatly.vantoc',compact('ketqua'));
-            }
-            else if($b!=0){
-            $ketqua=$a/$b;
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'quảng đường bắt buộc phải nhập',
+            'a.numeric'=>'quảng đường buộc phải là số',
+            'a.min'=>'quảng đường phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'Thời gian bắt buộc phải nhập',
+            'b.numeric'=>'Thời gian bắt buộc phải là số',
+            'b.min'=>'Thời gian phải lớn hơn 0.00000000000000000000001',
+        ]);
+
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        (float)$ketqua=$a/$b;
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('vatly.vantoc',compact('ketqua'));
+        }
+        else{
             return view('vatly.vantoc',compact('ketqua','a','b'));
-            }
         }
     }
+    
 
+
+    
+
+
+    public function quangduong(){
+        return view('vatly.quangduong');
+    }
+    public function tinhquangduong(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'vận tốc bắt buộc phải nhập',
+            'a.numeric'=>'vận tốc buộc phải là số',
+            'a.min'=>'vận tốc phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'thời gian bắt buộc phải nhập',
+            'b.numeric'=>'thời gian bắt buộc phải là số',
+            'b.min'=>'thời gian phải lớn hơn 0.00000000000000000000001',
+        ]);
+
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        (float)$ketqua=$a*$b;
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('vatly.quangduong',compact('ketqua'));
+        }
+        else{
+            return view('vatly.quangduong',compact('ketqua','a','b'));
+        }
+    }
+ 
 
     public function thoigian(){
         return view('vatly.thoigian');
     }
     public function tinhthoigian(Request $request){
-         if(isset($_POST['='])&&($_POST['='])){
-            $a=$_POST['a'];
-            $b=$_POST['b'];
-            if($b==0){
-                $ketqua="nhập lại";
-                return view('vatly.thoigian',compact('ketqua'));
-            }
-            else if($b!=0){
-            $ketqua=$a/$b;
-            return view('vatly.thoigian',compact('ketqua','a','b'));
-            }
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'quảng đường bắt buộc phải nhập',
+            'a.numeric'=>'quảng đường buộc phải là số',
+            'a.min'=>'quảng đường phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'vận tốc bắt buộc phải nhập',
+            'b.numeric'=>'vận tốc bắt buộc phải là số',
+            'b.min'=>'vận tốc phải lớn hơn 0.00000000000000000000001',
+        ]);
+
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        (float)$ketqua=$a/$b;
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('vatly.thoigian',compact('ketqua'));
         }
-    }
-
-
-    public function quangduong(Request $request){
-        return view('vatly.quangduong');
-    }
-    public function tinhquangduong(){
-         if(isset($_POST['='])&&($_POST['='])){
-            $a=$_POST['a'];
-            $b=$_POST['b'];
-            if($b==0){
-                $ketqua="nhập lại";
-                return view('vatly.quangduong',compact('ketqua'));
-            }
-            else if($b!=0){
-            $ketqua=$a*$b;
-            return view('vatly.quangduong',compact('ketqua','a','b'));
-            }
+        else{
+            return view('vatly.thoigian',compact('ketqua','a','b'));
         }
     }
 
@@ -299,33 +333,30 @@ class VatlyController extends Controller
         return view('vatly.lucacsimet');
     }
     public function tinhlucacsimet(Request $request){
-         //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
-        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
-            $a=$_POST['a'];
-             //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
-            if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0){
-                $b=$_POST['b'];
-                //tính kết quả
-                $ketqua=$a*$b;
-                //xét kết quả là số vô hạn
-                if(is_infinite($ketqua))
-                {
-                    $ketqua="kết quả vượt qua giới hạn tính";
-                    return view('vatly.lucacsimet',compact('ketqua','a','b'));
-                }
-                else{
-                    return view('vatly.lucacsimet',compact('ketqua','a','b'));
-                }
-            }
-            else{
-                $ketqua="nhập V";
-                return view('vatly.lucacsimet',compact('ketqua','a'));
-            }
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'trọng lượng riêng của vật bắt buộc phải nhập',
+            'a.numeric'=>'trọng lượng riêng của vật buộc phải là số',
+            'a.min'=>'trọng lượng riêng của vật phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'thể tích của vật bắt buộc phải nhập',
+            'b.numeric'=>'thể tích của vật bắt buộc phải là số',
+            'b.min'=>'thể tích của vật phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        //tính kết quả
+        $ketqua=$a*$b;
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+             return view('vatly.lucacsimet',compact('ketqua','a','b'));
         }
         else{
-            $ketqua="nhập d";
-               return view('vatly.lucacsimet',compact('ketqua'));
+            return view('vatly.lucacsimet',compact('ketqua','a','b'));
         }
+           
     }
 
 

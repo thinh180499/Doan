@@ -1,18 +1,79 @@
 @extends('layouts.layout')
 
 @section('content')
-    <form action="quangduong" method="post">
-        <div>quảng đường:</div>
-        <a>s=</a>
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card-style cardform">
+                <h2>quảng đường của chuyển động đều:</h2>
+                @if ($errors->any())
+                <h2 style="color: red;">
+                    vui lòng kiểm tra lại dữ liệu
+                </h2>
+                 @endif
+        
+                <form action="quangduong" method="post">
+                    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
-<input type="number" name="a" style="width:90px" maxlength="3" value="{{ !empty($a) ? $a : false }}">
-<a>*</a>
-<input type="number" name="b" style="width:90px" maxlength="3" value="{{ !empty($b) ? $b : false }}">
+                    <div class="container-fluid mt-4 mb-4">
+                        <div class="row justify-content-center">
+                            <div class="col-auto border rounded-lg p-3 d-flex align-items-center">
+                                <div class="mr-5">
+                                    <span>s = </span>
+                                </div>
+                                <div>
+                                    <span>v*t</span>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-<input type="submit" name="=" value="=">
 
-<a>{{ !empty($ketqua) ? $ketqua : false }}</a>
-<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                    <div class="container">
+                        <div class="row d-flex flex-column">
+                            <div class="col mb-4">
+                                <label class="lb" for="somolchattan"> v</label>
+                                <input type="number" id="somolchattan" name="a" placeholder="Nhập vận tốc"
+                                    class="input" step="any" value="{{ isset($a)&&is_numeric($a) ? $a:old('a')}}" />
+                                    @error('a')
+                                        <span style="color: red;">{{$message}}</span>
+                                    @enderror
+                            </div>
 
-    </form>
+                            <div class="col mb-4">
+                                <label class="lb" for="thetichdungdich">t</label>
+                                <input type="number" id="thetichdungdich" name="b" placeholder="Nhập thời gian"
+                                    class="input" step="any" value="{{ isset($b)&&is_numeric($b) ? $b:old('b') }}" />
+                                @error('b')
+                                    <span style="color: red;">{{$message}}</span>
+                                @enderror
+                            </div>
+
+                            <div class="col d-flex align-items-center mb-4">
+                                <button class="btn btn-primary me-5 py-0 px-4 calculate" type="submit">=</button>
+                                <span>
+                                {!! isset($ketqua)?$ketqua:false !!}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('css')
+    <style>
+        .container {
+            max-width: 500px;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: rgb(137, 137, 137);
+        }
+    </style>
 @endsection

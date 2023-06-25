@@ -1,27 +1,80 @@
 @extends('layouts.layout')
 
 @section('content')
-    <form action="vantoc" method="post">
-        <div>vận tốc:</div>
-        <span style="display:inline-block;height:50px;vertical-align: middle">
-            <a>v=</a>
-        </span>
-        <div style="display:inline-block;height:90px;vertical-align: middle">
-            <span style="display:inline-block;padding: 0 5px 10px 5px;border-bottom: 2px solid #999">
-                <input type="number" name="a" style="width:90px" maxlength="3" placeholder="s"
-                    value="{{ !empty($a) ? $a : false }}">
-            </span>
-            <br>
-            <span style="display:inline-block;padding: 10px 5px 0 5px">
-                <input type="number" name="b" style="width:90px" maxlength="3" placeholder="t"
-                    value="{{ !empty($b) ? $b : false }}">
-            </span>
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card-style cardform">
+                <h2>Vận tốc của chuyển động đều:</h2>
+                @if ($errors->any())
+                <h2 style="color: red;">
+                    vui lòng kiểm tra lại dữ liệu
+                </h2>
+                 @endif
+        
+                <form action="vantoc" method="post">
+                    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
+                    <div class="container-fluid mt-4 mb-4">
+                        <div class="row justify-content-center">
+                            <div class="col-auto border rounded-lg p-3 d-flex align-items-center">
+                                <div class="mr-5">
+                                    <span>v = </span>
+                                </div>
+                                <div>
+                                    <span>s</span>
+                                    <hr>
+                                    <span>t</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="container">
+                        <div class="row d-flex flex-column">
+                            <div class="col mb-4">
+                                <label class="lb" for="somolchattan"> s</label>
+                                <input type="number" id="somolchattan" name="a" placeholder="Nhập quảng đường"
+                                    class="input" step="any" value="{{ isset($a)&&is_numeric($a) ? $a:old('a')}}" />
+                                    @error('a')
+                                        <span style="color: red;">{{$message}}</span>
+                                    @enderror
+                            </div>
+
+                            <div class="col mb-4">
+                                <label class="lb" for="thetichdungdich">t</label>
+                                <input type="number" id="thetichdungdich" name="b" placeholder="Nhập thời gian"
+                                    class="input" step="any" value="{{ isset($b)&&is_numeric($b) ? $b:old('b') }}" />
+                                @error('b')
+                                    <span style="color: red;">{{$message}}</span>
+                                @enderror
+                            </div>
+
+                            <div class="col d-flex align-items-center mb-4">
+                                <button class="btn btn-primary me-5 py-0 px-4 calculate" type="submit">=</button>
+                                <span>
+                                {!! isset($ketqua)?$ketqua:false !!}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
         </div>
-        <span style="display:inline-block;height:50px;vertical-align: middle">
-            <input type="submit" name="=" value="=">
-            <a>{{ !empty($ketqua) ? $ketqua : false }}</a>
-            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-        </span>
-    </form>
+    </div>
+@endsection
+
+@section('css')
+    <style>
+        .container {
+            max-width: 500px;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: rgb(137, 137, 137);
+        }
+    </style>
 @endsection
