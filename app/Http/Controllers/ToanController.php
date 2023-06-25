@@ -40,9 +40,9 @@ class ToanController extends Controller
     }
     public function tinhluythuacuamotphanso(Request $request){
         $request->validate([
-            'a'=>'required|numeric|min:0.00000000000000000000001',
-            'b'=>'required|numeric|min:0.00000000000000000000001',
-            'c'=>'required|numeric|min:0.00000000000000000000001',
+            'a'=>'required|numeric',
+            'b'=>'required|numeric',
+            'c'=>'required|numeric',
         ],[
             'a.required'=>'a bắt buộc phải nhập',
             'a.numeric'=>'a buộc phải là số',
@@ -57,8 +57,8 @@ class ToanController extends Controller
         //tính kết quả
         if($b==0)
         {
-            $this->data['err']='phải khác 0';
-            return view('toan.luythuacuamotphanso',compact('err'));
+            $err='phải khác 0';
+            return view('toan.luythuacuamotphanso',compact('err','a','b','c'));
         }
          $ketqua=pow(($a/$b),$c);
         //xét kết quả là số vô hạn

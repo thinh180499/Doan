@@ -53,13 +53,17 @@
                                 @error('b')
                                     <span style="color: red;">{{$message}}</span>
                                 @enderror
-
+                                @if (isset($err))
+                                    <h2 style="color: red;">
+                                        {{$err}}
+                                    </h2>
+                                @endif
                             </div>
 
                             <div class="col mb-4">
                                 <label class="lb" for="thetichdungdich">n</label>
                                 <input type="number" id="thetichdungdich" name="c" placeholder="Nhập n"
-                                    class="input" step="any" value="{{ isset($c)&&is_numeric($c) ? $b:old('c') }}" />
+                                    class="input" step="any" value="{{ isset($c)&&is_numeric($c) ? $c:old('c') }}" />
                                 @error('c')
                                     <span style="color: red;">{{$message}}</span>
                                 @enderror
