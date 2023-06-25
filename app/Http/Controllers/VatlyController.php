@@ -266,10 +266,6 @@ class VatlyController extends Controller
     }
     
 
-
-    
-
-
     public function quangduong(){
         return view('vatly.quangduong');
     }
@@ -359,6 +355,36 @@ class VatlyController extends Controller
            
     }
 
+
+    public function apsuat(){
+        return view('vatly.apsuat');
+    }
+    public function tinhapsuat(Request $request){
+         $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'lực tác dụng vào vật bắt buộc phải nhập',
+            'a.numeric'=>'lực tác dụng vào vật buộc phải là số',
+            'a.min'=>'lực tác dụng vào vật phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'diện tích của vật bắt buộc phải nhập',
+            'b.numeric'=>'diện tích của vật bắt buộc phải là số',
+            'b.min'=>'diện tích của vật phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+            
+        $ketqua=$a/$b;
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+             return view('vatly.apsuat',compact('ketqua','a','b'));
+        }
+        else{
+            return view('vatly.apsuat',compact('ketqua','a','b'));
+        }
+        
+    }
 
 
     public function congcohoc(){
@@ -460,24 +486,6 @@ class VatlyController extends Controller
         }
     }
 
-
-    public function apsuat(){
-        return view('vatly.apsuat');
-    }
-    public function tinhapsuat(Request $request){
-         if(isset($_POST['='])&&($_POST['='])){
-            $a=$_POST['a'];
-            $b=$_POST['b'];
-            if($b==0){
-                $ketqua="nhập lại";
-                return view('vatly.apsuat',compact('ketqua'));
-            }
-            else if($b!=0){
-            $ketqua=$a/$b;
-            return view('vatly.apsuat',compact('ketqua','a','b'));
-            }
-        }
-    }
 
 
     //Cường độ dòng điện
