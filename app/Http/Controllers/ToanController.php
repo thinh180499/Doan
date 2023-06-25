@@ -38,42 +38,38 @@ class ToanController extends Controller
     public function luythuacuamotphanso(){
         return view('toan.luythuacuamotphanso');
     }
-    public function tinhluythuacuamotphanso(){
-        //xét biến $a có phải là một số hữu hạn
-        if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
-            $a=$_POST['a'];
-             //xét biến $b có phải là một số hữu hạn và khác 0
-            if(is_numeric($_POST['b'])&& is_finite($_POST['b']) && $_POST['b']){
-                $b=$_POST['b'];
-                //xét biến $c có phải là một số hữu hạn
-                if(is_numeric($_POST['c']) && is_finite($_POST['c'])){
-                    $c=$_POST['c'];
-                    //tính kết quả
-                    $ketqua=pow(($a/$b),$c);
-                    //xét kết quả là số vô hạn
-                    if(is_infinite($ketqua))
-                    {
-                        $ketqua="kết quả vượt qua giới hạn tính";
-                        return view('toan.luythuacuamotphanso',compact('ketqua','a','b','c'));
-                    }
-                    else{
-                        return view('toan.luythuacuamotphanso',compact('ketqua','a','b','c'));
-                    }
-                }
-                else{
-                    $ketqua="nhập n";
-                    return view('toan.luythuacuamotphanso',compact('ketqua','a','b'));
-                }
-            }
-            else{
-                $ketqua="nhập b với b khác 0";
-                return view('toan.luythuacuamotphanso',compact('ketqua','a'));
-            }
+    public function tinhluythuacuamotphanso(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+            'c'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'a bắt buộc phải nhập',
+            'a.numeric'=>'a buộc phải là số',
+            'b.required'=>'b bắt buộc phải nhập',
+            'b.numeric'=>'b bắt buộc phải là số',
+            'c.required'=>'n bắt buộc phải nhập',
+            'c.numeric'=>'n bắt buộc phải là số',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        $c=$_POST['c'];
+        //tính kết quả
+        if($b==0)
+        {
+            $this->data['err']='phải khác 0';
+            return view('toan.luythuacuamotphanso',compact('err'));
+        }
+         $ketqua=pow(($a/$b),$c);
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('toan.luythuacuamotphanso',compact('ketqua','a','b','c'));
         }
         else{
-            $ketqua="nhập a";
-            return view('toan.luythuacuamotphanso',compact('ketqua'));
-        }
+             return view('toan.luythuacuamotphanso',compact('ketqua','a','b','c'));
+        }            
+                
     }
 
 
@@ -81,7 +77,7 @@ class ToanController extends Controller
     public function luythuacuamottich(){
         return view('toan.luythuacuamottich');
     }
-    public function tinhluythuacuamottich(){
+    public function tinhluythuacuamottich(Request $request){
         //xét biến $a có phải là một số hữu hạn
         if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
             $a=$_POST['a'];
@@ -124,7 +120,7 @@ class ToanController extends Controller
 public function luythuacuamotluythua(){
     return view('toan.luythuacuamotluythua');
 }
-public function tinhluythuacuamotluythua(){
+public function tinhluythuacuamotluythua(Request $request){
     //xét biến $a có phải là một số hữu hạn
     if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
         $a=$_POST['a'];
@@ -168,7 +164,7 @@ public function tinhluythuacuamotluythua(){
 public function tichcuahailuythuacungcoso(){
     return view('toan.tichcuahailuythuacungcoso');
 }
-public function tinhtichcuahailuythuacungcoso(){
+public function tinhtichcuahailuythuacungcoso(Request $request){
     //xét biến $a có phải là một số hữu hạn
     if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
         $a=$_POST['a'];
@@ -211,7 +207,7 @@ public function tinhtichcuahailuythuacungcoso(){
 public function thuongcuahailuythuacungcoso(){
     return view('toan.thuongcuahailuythuacungcoso');
 }
-public function tinhthuongcuahailuythuacungcoso(){
+public function tinhthuongcuahailuythuacungcoso(Request $request){
     //xét biến $a có phải là một số hữu hạn
     if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
         $a=$_POST['a'];
@@ -254,7 +250,7 @@ public function tinhthuongcuahailuythuacungcoso(){
     public function phuongtrinhbachai(){
         return view('toan.phuongtrinhbachai');
     }
-    public function tinhphuongtrinhbachai(){
+    public function tinhphuongtrinhbachai(Request $request){
         //xét biến $a có phải là một số hữu hạn
         if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
             $a=$_POST['a'];
@@ -316,7 +312,7 @@ public function tinhthuongcuahailuythuacungcoso(){
      public function duongcaotamgiac(){
         return view('toan.duongcaotamgiac');
     }
-    public function tinhduongcaotamgiac(){
+    public function tinhduongcaotamgiac(Request $request){
         //xét biến $a có phải là một số hữu hạn và lớn hơn 0
         if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']> 0){
             $a=$_POST['a'];
@@ -353,7 +349,7 @@ public function tinhthuongcuahailuythuacungcoso(){
 public function thetichhinhtru(){
     return view('toan.thetichhinhtru');
 }
-public function tinhthetichhinhtru(){
+public function tinhthetichhinhtru(Request $request){
     //xét biến $a có phải là một số hữu hạn và lơn hơn 0
     if(is_numeric($_POST['a']) && is_finite($_POST['a'])&& $_POST['a']> 0){
         $a=$_POST['a'];
@@ -391,7 +387,7 @@ public function tinhthetichhinhtru(){
 public function thetichhinhnon(){
     return view('toan.thetichhinhnon');
 }
-public function tinhthetichhinhnon(){
+public function tinhthetichhinhnon(Request $request){
     //xét biến $a có phải là một số hữu hạn và lơn hơn 0
     if(is_numeric($_POST['a']) && is_finite($_POST['a'])&& $_POST['a']> 0){
         $a=$_POST['a'];
@@ -429,7 +425,7 @@ public function tinhthetichhinhnon(){
 public function thetichhinhcau(){
     return view('toan.thetichhinhcau');
 }
-public function tinhthetichhinhcau(){
+public function tinhthetichhinhcau(Request $request){
     //xét biến $a có phải là một số hữu hạn và lơn hơn 0
     if(is_numeric($_POST['a']) && is_finite($_POST['a'])&& $_POST['a']> 0){
         $a=$_POST['a'];
@@ -458,7 +454,7 @@ public function tinhthetichhinhcau(){
 public function dientichmatcau(){
     return view('toan.dientichmatcau');
 }
-public function tinhdientichmatcau(){
+public function tinhdientichmatcau(Request $request){
     //xét biến $a có phải là một số hữu hạn và lơn hơn 0
     if(is_numeric($_POST['a']) && is_finite($_POST['a'])&& $_POST['a']> 0){
         $a=$_POST['a'];
@@ -486,7 +482,7 @@ public function tinhdientichmatcau(){
 public function canhtamgiac(){
     return view('toan.canhtamgiac');
 }
-public function tinhcanhtamgiac(){
+public function tinhcanhtamgiac(Request $request){
     //xét biến $a có phải là một số hữu hạn
     if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
         $a=$_POST['a'];
