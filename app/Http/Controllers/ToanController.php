@@ -217,58 +217,52 @@ public function tinhluythuacuamotluythua(Request $request){
         return view('toan.phuongtrinhbachai');
     }
     public function tinhphuongtrinhbachai(Request $request){
-        //xét biến $a có phải là một số hữu hạn
-        if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
-            $a=$_POST['a'];
-             //xét biến $b có phải là một số hữu hạn
-            if(is_numeric($_POST['b'])&& is_finite($_POST['b']) ){
-                $b=$_POST['b'];
-                //xét biến $c có phải là một số hữu hạn
-                if(is_numeric($_POST['c']) && is_finite($_POST['c'])){
-                    $c=$_POST['c'];
-                    //giải phương trình
-                    if($a==0 && $b==0 && $c==0)
-                    {
-                        $ketqua="Phương trình: " . $a . "x2 + " . $b . "x + " . $c . " = 0";
-                        return view('toan.phuongtrinhbachai',compact('ketqua'));
-                    }
-                    if ($a == 0) {
-                        if ($b == 0) {
-                            $ketqua="Phương trình vô nghiệm!";
-                        } else {
-                            $ketqua="Phương trình có một nghiệm: " . "x = " . (- $c / $b);
-                        }
-                        return view('toan.phuongtrinhbachai',compact('ketqua','a','b','c'));
-                    }
-                    $delta = $b * $b - 4 * $a * $c;
-                    $x1 = "";
-                    $x2 = "";
-                    if ($delta > 0) {
-                        $x1 = (- $b + sqrt ( $delta )) / (2 * $a);
-                        $x2 = (- $b - sqrt ( $delta )) / (2 * $a);
-                        $ketqua= ("Phương trình có 2 nghiệm là: " . "x1 = " . $x1 . " và x2 = " . $x2);
-                    } else if ($delta == 0) {
-                        $x1 = (- $b / (2 * $a));
-                        $ketqua= ("Phương trình có nghiệm kép: x1 = x2 = " . $x1);
-                    } else {
-                        $ketqua= ("Phương trình vô nghiệm!");
-                    }
-                    return view('toan.phuongtrinhbachai',compact('ketqua','a','b','c'));
-                }
-                else{
-                    $ketqua="nhập c";
-                    return view('toan.phuongtrinhbachai',compact('ketqua','a','b'));
-                }
-            }
-            else{
-                $ketqua="nhập b ";
-                return view('toan.phuongtrinhbachai',compact('ketqua','a'));
-            }
-        }
-        else{
-            $ketqua="nhập a";
+        $request->validate([
+            'a'=>'required|numeric',
+            'b'=>'required|numeric',
+            'c'=>'required|numeric',
+            ],[
+            'a.required'=>'a bắt buộc phải nhập',
+            'a.numeric'=>'a buộc phải là số',
+            'b.required'=>'b bắt buộc phải nhập',
+            'b.numeric'=>'b bắt buộc phải là số',
+            'c.required'=>'c bắt buộc phải nhập',
+            'c.numeric'=>'c bắt buộc phải là số',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        $c=$_POST['c'];
+
+
+        //giải phương trình
+        if($a==0 && $b==0 && $c==0)
+        {
+            $ketqua="Phương trình: " . $a . "x2 + " . $b . "x + " . $c . " = 0";
             return view('toan.phuongtrinhbachai',compact('ketqua'));
         }
+        if ($a == 0) {
+            if ($b == 0) {
+                $ketqua="Phương trình vô nghiệm!";
+            } else {
+                $ketqua="Phương trình có một nghiệm: " . "x = " . (- $c / $b);
+            }
+            return view('toan.phuongtrinhbachai',compact('ketqua','a','b','c'));
+        }
+        $delta = $b * $b - 4 * $a * $c;
+        $x1 = "";
+        $x2 = "";
+        if ($delta > 0) {
+            $x1 = (- $b + sqrt ( $delta )) / (2 * $a);
+            $x2 = (- $b - sqrt ( $delta )) / (2 * $a);
+            $ketqua= ("Phương trình có 2 nghiệm là: " . "x1 = " . $x1 . " và x2 = " . $x2);
+        } else if ($delta == 0) {
+            $x1 = (- $b / (2 * $a));
+            $ketqua= ("Phương trình có nghiệm kép: x1 = x2 = " . $x1);
+        } else {
+            $ketqua= ("Phương trình vô nghiệm!");
+        }
+        return view('toan.phuongtrinhbachai',compact('ketqua','a','b','c'));
+               
     }
 
 
