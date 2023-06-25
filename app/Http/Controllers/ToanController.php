@@ -72,6 +72,88 @@ class ToanController extends Controller
                 
     }
 
+    //Tính tích của hai lũy thừa với cùng một cơ số:a^n*a^m
+    public function tichcuahailuythuacungcoso(){
+        return view('toan.tichcuahailuythuacungcoso');
+    }
+    public function tinhtichcuahailuythuacungcoso(Request $request){
+    //xét biến $a có phải là một số hữu hạn
+    if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
+        $a=$_POST['a'];
+         //xét biến $b có phải là một số hữu hạn
+        if(is_numeric($_POST['b'])&& is_finite($_POST['b'])){
+            $b=$_POST['b'];
+            //xét biến $c có phải là một số hữu hạn
+            if(is_numeric($_POST['c']) && is_finite($_POST['c'])){
+                $c=$_POST['c'];
+                //tính kết quả
+                $ketqua=pow($a,$b+$c);
+                //xét kết quả là số vô hạn
+                if(is_infinite($ketqua))
+                {
+                    $ketqua="kết quả vượt qua giới hạn tính";
+                    return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a','b','c'));
+                }
+                else{
+                    return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a','b','c'));
+                }
+            }
+            else{
+                $ketqua="nhập m";
+                return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a','b'));
+            }
+        }
+        else{
+            $ketqua="nhập n";
+            return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a'));
+        }
+    }
+    else{
+        $ketqua="nhập a";
+        return view('toan.tichcuahailuythuacungcoso',compact('ketqua'));
+    }
+    }
+
+
+    //Tính thương của hai lũy thừa với cùng một cơ số:a^n*a^m
+    public function thuongcuahailuythuacungcoso(){
+        return view('toan.thuongcuahailuythuacungcoso');
+    }
+    public function tinhthuongcuahailuythuacungcoso(Request $request){
+        $request->validate([
+            'a'=>'required|numeric',
+            'b'=>'required|numeric',
+            'c'=>'required|numeric',
+            ],[
+            'a.required'=>'a bắt buộc phải nhập',
+            'a.numeric'=>'a buộc phải là số',
+            'b.required'=>'n bắt buộc phải nhập',
+            'b.numeric'=>'n bắt buộc phải là số',
+            'c.required'=>'m bắt buộc phải nhập',
+            'c.numeric'=>'m bắt buộc phải là số',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        $c=$_POST['c'];
+        if($a==0)
+        {
+            $err='phải khác 0';
+            return view('toan.thuongcuahailuythuacungcoso',compact('err','a','b','c'));
+        }
+        //tính kết quả
+        $ketqua=pow($a,$b-$c);
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('toan.thuongcuahailuythuacungcoso',compact('ketqua','a','b','c'));
+        }
+        else{
+            return view('toan.thuongcuahailuythuacungcoso',compact('ketqua','a','b','c'));
+        }
+            
+    }
+
+
 
     //lũy thừa một tích
     public function luythuacuamottich(){
@@ -155,93 +237,6 @@ public function tinhluythuacuamotluythua(Request $request){
     else{
         $ketqua="nhập a";
         return view('toan.luythuacuamotluythua',compact('ketqua'));
-    }
-}
-
-
-
-//Tính tích của hai lũy thừa với cùng một cơ số:a^n*a^m
-public function tichcuahailuythuacungcoso(){
-    return view('toan.tichcuahailuythuacungcoso');
-}
-public function tinhtichcuahailuythuacungcoso(Request $request){
-    //xét biến $a có phải là một số hữu hạn
-    if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
-        $a=$_POST['a'];
-         //xét biến $b có phải là một số hữu hạn
-        if(is_numeric($_POST['b'])&& is_finite($_POST['b'])){
-            $b=$_POST['b'];
-            //xét biến $c có phải là một số hữu hạn
-            if(is_numeric($_POST['c']) && is_finite($_POST['c'])){
-                $c=$_POST['c'];
-                //tính kết quả
-                $ketqua=pow($a,$b+$c);
-                //xét kết quả là số vô hạn
-                if(is_infinite($ketqua))
-                {
-                    $ketqua="kết quả vượt qua giới hạn tính";
-                    return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a','b','c'));
-                }
-                else{
-                    return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a','b','c'));
-                }
-            }
-            else{
-                $ketqua="nhập m";
-                return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a','b'));
-            }
-        }
-        else{
-            $ketqua="nhập n";
-            return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a'));
-        }
-    }
-    else{
-        $ketqua="nhập a";
-        return view('toan.tichcuahailuythuacungcoso',compact('ketqua'));
-    }
-}
-
-
-//Tính thương của hai lũy thừa với cùng một cơ số:a^n*a^m
-public function thuongcuahailuythuacungcoso(){
-    return view('toan.thuongcuahailuythuacungcoso');
-}
-public function tinhthuongcuahailuythuacungcoso(Request $request){
-    //xét biến $a có phải là một số hữu hạn
-    if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
-        $a=$_POST['a'];
-         //xét biến $b có phải là một số hữu hạn
-        if(is_numeric($_POST['b'])&& is_finite($_POST['b'])){
-            $b=$_POST['b'];
-            //xét biến $c có phải là một số hữu hạn
-            if(is_numeric($_POST['c']) && is_finite($_POST['c'])){
-                $c=$_POST['c'];
-                //tính kết quả
-                $ketqua=pow($a,$b-$c);
-                //xét kết quả là số vô hạn
-                if(is_infinite($ketqua))
-                {
-                    $ketqua="kết quả vượt qua giới hạn tính";
-                    return view('toan.thuongcuahailuythuacungcoso',compact('ketqua','a','b','c'));
-                }
-                else{
-                    return view('toan.thuongcuahailuythuacungcoso',compact('ketqua','a','b','c'));
-                }
-            }
-            else{
-                $ketqua="nhập m";
-                return view('toan.thuongcuahailuythuacungcoso',compact('ketqua','a','b'));
-            }
-        }
-        else{
-            $ketqua="nhập n";
-            return view('toan.thuongcuahailuythuacungcoso',compact('ketqua','a'));
-        }
-    }
-    else{
-        $ketqua="nhập a";
-        return view('toan.thuongcuahailuythuacungcoso',compact('ketqua'));
     }
 }
 
