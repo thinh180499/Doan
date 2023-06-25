@@ -614,6 +614,36 @@ class VatlyController extends Controller
     }
 
 
+    //công suất của dòng điện
+    public function congsuatdongdien(){
+        return view('vatly.congsuatdongdien');
+    }
+    public function tinhcongsuatdongdien(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'hiệu điện thế bắt buộc phải nhập',
+            'a.numeric'=>'hiệu điện thế buộc phải là số',
+            'a.min'=>'hiệu điện thế phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'cường độ dòng điện bắt buộc phải nhập',
+            'b.numeric'=>'cường độ dòng điện buộc phải là số',
+            'b.min'=>'cường độ dòng điện phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        //tính kết quả
+        (float)$ketqua=$a*$b;
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('vatly.congsuatdongdien',compact('ketqua','a','b'));
+        }
+        else{
+            return view('vatly.congsuatdongdien',compact('ketqua','a','b'));
+        }
+    }
+
     //công suất hao phí do tỏa nhiệt trên đường dây
     public function congsuathaophi(){
         return view('vatly.congsuathaophi');
