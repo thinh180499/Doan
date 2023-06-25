@@ -644,57 +644,7 @@ class VatlyController extends Controller
         }
     }
 
-    //công suất hao phí do tỏa nhiệt trên đường dây
-    public function congsuathaophi(){
-        return view('vatly.congsuathaophi');
-    }
-    public function tinhcongsuathaophi(Request $request){
-         //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
-         if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0)
-         {
-             $a=$_POST['a'];
-             //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
-            if(is_numeric($_POST['b']) && is_finite($_POST['b']) && $_POST['b']>0){
-             $b=$_POST['b'];
-             //xét biến $c có phải là một số lớn hơn 0 và hữu hạn
-                if($_POST['c'] && is_finite($_POST['c']) && $_POST['c']>0){
-                    $c=$_POST['c'];
-                    //tính kết quả
-                    (float)$ketqua=(pow($b,2)*$a)/(pow($c,2));
-                    //xét kết quả khác 0
-                    if($ketqua)
-                    {
-                        //xét kết quả là số vô hạn
-                        if(is_infinite($ketqua))
-                        {
-                            $ketqua="kết quả vượt qua giới hạn tính";
-                            return view('vatly.congsuathaophi',compact('ketqua','a','b','c'));
-                        }
-                        else{
-                            return view('vatly.congsuathaophi',compact('ketqua','a','b','c'));
-                        }
-                    }
-                    else {
-                        static $ketqua=0;
-                        return view('vatly.congsuathaophi',compact('ketqua','a','b','c'));
-                    }
-                }
-                else{
-                    $ketqua="nhập U với U khác 0";
-                    return view('vatly.congsuathaophi',compact('ketqua','a','b'));
-                }
-            }
-            else{
-                $ketqua="nhập P ";
-                return view('vatly.congsuathaophi',compact('ketqua','a'));
-            }
-         }
-      else
-         {
-             $ketqua="nhập R ";
-             return view('vatly.congsuathaophi',compact('ketqua'));
-         }
-    }
+    
 
 
     //nhiệt lượng tỏa ra ở dây dẫn khi có dong điện
@@ -737,6 +687,45 @@ class VatlyController extends Controller
             $ketqua="nhập I";
             return view('vatly.nhietluongodaydan',compact('ketqua'));
         }
+    }
+
+
+
+    //công suất hao phí do tỏa nhiệt trên đường dây
+    public function congsuathaophi(){
+        return view('vatly.congsuathaophi');
+    }
+    public function tinhcongsuathaophi(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+            'c'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'điện trở bắt buộc phải nhập',
+            'a.numeric'=>'điện trở buộc phải là số',
+            'a.min'=>'điện trở phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'công suất của dòng điện bắt buộc phải nhập',
+            'b.numeric'=>'công suất của dòng điện bắt buộc phải là số',
+            'b.min'=>'công suất của dòng điện phải lớn hơn 0.00000000000000000000001',
+            'c.required'=>'hiệu điện thế bắt buộc phải nhập',
+            'c.numeric'=>'hiệu điện thế bắt buộc phải là số',
+            'c.min'=>'hiệu điện thế phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        $c=$_POST['c'];
+        //tính kết quả
+        (float)$ketqua=(pow($b,2)*$a)/(pow($c,2));
+        
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('vatly.congsuathaophi',compact('ketqua','a','b','c'));
+        }
+        else{
+            return view('vatly.congsuathaophi',compact('ketqua','a','b','c'));
+        }
+                   
     }
 
 }
