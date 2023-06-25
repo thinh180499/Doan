@@ -556,33 +556,30 @@ class VatlyController extends Controller
         return view('vatly.hieudienthe');
     }
     public function tinhhieudienthe(Request $request){
-         //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
-        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
-            $a=$_POST['a'];
-             //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
-            if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0){
-                $b=$_POST['b'];
-                //tính kết quả
-                $ketqua=$a*$b;
-                //xét kết quả là số vô hạn
-                if(is_infinite($ketqua))
-                {
-                    $ketqua="kết quả vượt qua giới hạn tính";
-                    return view('vatly.hieudienthe',compact('ketqua','a','b'));
-                }
-                else{
-                    return view('vatly.hieudienthe',compact('ketqua','a','b'));
-                }
-            }
-            else{
-                $ketqua="nhập R";
-                return view('vatly.hieudienthe',compact('ketqua','a'));
-            }
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'cường độ dòng điện bắt buộc phải nhập',
+            'a.numeric'=>'cường độ dòng điện buộc phải là số',
+            'a.min'=>'cường độ dòng điện phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'điện trở bắt buộc phải nhập',
+            'b.numeric'=>'điện trở bắt buộc phải là số',
+            'b.min'=>'điện trở phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        //tính kết quả
+        $ketqua=$a*$b;
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('vatly.hieudienthe',compact('ketqua','a','b'));
         }
         else{
-            $ketqua="nhập I";
-               return view('vatly.hieudienthe',compact('ketqua'));
+            return view('vatly.hieudienthe',compact('ketqua','a','b'));
         }
+           
     }
 
 
