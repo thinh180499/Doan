@@ -4,7 +4,7 @@
     <div class="row mt-5">
         <div class="col">
             <div class="card-style cardform">
-                <h2>Tính lũy thừa của một phân số:</h2>
+                <h2>Tính lũy thừa của một tích:</h2>
                 @if ($errors->any())
                 <h2 style="color: red;">
                     vui lòng kiểm tra lại dữ liệu
@@ -48,7 +48,7 @@
                             </div>
 
                             <div class="col mb-4">
-                                <label class="lb" for="thetichdungdich">b</label>
+                                <label class="lb" for="thetichdungdich">n</label>
                                 <input type="number" id="thetichdungdich" name="b" placeholder="Nhập n"
                                     class="input" step="any" value="{{ isset($b)&&is_numeric($b) ? $b:old('b') }}" />
                                 @error('b')
@@ -58,7 +58,7 @@
                             </div>
 
                             <div class="col mb-4">
-                                <label class="lb" for="thetichdungdich">n</label>
+                                <label class="lb" for="thetichdungdich">m</label>
                                 <input type="number" id="thetichdungdich" name="c" placeholder="Nhập m"
                                     class="input" step="any" value="{{ isset($c)&&is_numeric($c) ? $c:old('c') }}" />
                                 @error('c')

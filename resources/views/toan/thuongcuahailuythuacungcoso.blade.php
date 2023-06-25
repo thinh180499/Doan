@@ -25,7 +25,7 @@
                                    
                                         <span>a^n</span>
                                         <hr>
-                                        <span>b^m</span>
+                                        <span>a^m</span>
                                     
                                 </div>
                                 
