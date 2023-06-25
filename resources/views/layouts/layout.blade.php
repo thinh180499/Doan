@@ -93,8 +93,9 @@
                 <li><a href="<?php echo route('vatly.hieudienthe'); ?>">hiệu điện thế</a></li>
                 <li><a href="<?php echo route('vatly.dientro'); ?>">điện trở</a></li>
                 <li><a href="<?php echo route('vatly.congsuatdongdien'); ?>">công suất của dòng điện</a></li>
-                <li><a href="<?php echo route('vatly.congsuathaophi'); ?>">công suất hao phí</a></li>
+                <li><a href="<?php echo route('vatly.congdongdien'); ?>">công của dòng điện</a></li>
                 <li><a href="<?php echo route('vatly.nhietluongodaydan'); ?>">nhiệt lượng ở dây dẫn</a></li>
+                <li><a href="<?php echo route('vatly.congsuathaophi'); ?>">công suất hao phí</a></li>
             </ul>
           </li>
 

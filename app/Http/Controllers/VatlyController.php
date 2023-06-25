@@ -644,7 +644,35 @@ class VatlyController extends Controller
         }
     }
 
-    
+    //công suất của dòng điện
+    public function congdongdien(){
+        return view('vatly.congdongdien');
+    }
+    public function tinhcongdongdien(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'công suất của dòng điện bắt buộc phải nhập',
+            'a.numeric'=>'công suất của dòng điện buộc phải là số',
+            'a.min'=>'công suất của dòng điện thế phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'thời gian bắt buộc phải nhập',
+            'b.numeric'=>'thời gian buộc phải là số',
+            'b.min'=>'thời gian phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        //tính kết quả
+        (float)$ketqua=$a*$b;
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('vatly.congdongdien',compact('ketqua','a','b'));
+        }
+        else{
+            return view('vatly.congdongdien',compact('ketqua','a','b'));
+        }
+    }
 
 
     //nhiệt lượng tỏa ra ở dây dẫn khi có dong điện
@@ -652,41 +680,35 @@ class VatlyController extends Controller
         return view('vatly.nhietluongodaydan');
     }
     public function tinhnhietluongodaydan(Request $request){
-        //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
-        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
-             $a=$_POST['a'];
-            //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
-            if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0){
-                $b=$_POST['b'];
-                //xét biến $c có phải là một số lớn hơn 0 và hữu hạn
-                if(is_numeric($_POST['c']) && is_finite($_POST['c']) && $_POST['c']>0){
-                    $c=$_POST['c'];
-                    //tính kết quả
-                    $ketqua=pow($a,2)*$b*$c;
-                    //xét kết quả là số vô hạn
-                    if(is_infinite($ketqua))
-                    {
-                        $ketqua="kết quả vượt qua giới hạn tính";
-                        return view('vatly.nhietluongodaydan',compact('ketqua','a','b','c'));
-                    }
-                    else{
-                        return view('vatly.nhietluongodaydan',compact('ketqua','a','b','c'));
-                    }
-                }
-                else{
-                    $ketqua="nhập t";
-                    return view('vatly.nhietluongodaydan',compact('ketqua','a','b'));
-                }
-            }
-            else{
-                $ketqua="nhập R";
-                return view('vatly.nhietluongodaydan',compact('ketqua','a'));
-            }
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+            'c'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'cường độ của dòng điện bắt buộc phải nhập',
+            'a.numeric'=>'cường độ của dòng điện buộc phải là số',
+            'a.min'=>'cường độ của dòng điện phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'điện trở bắt buộc phải nhập',
+            'b.numeric'=>'điện trở bắt buộc phải là số',
+            'b.min'=>'điện trở phải lớn hơn 0.00000000000000000000001',
+            'c.required'=>'điện trở bắt buộc phải nhập',
+            'c.numeric'=>'điện trở bắt buộc phải là số',
+            'c.min'=>'điện trở phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        $c=$_POST['c'];
+        //tính kết quả
+        $ketqua=pow($a,2)*$b*$c;
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('vatly.nhietluongodaydan',compact('ketqua','a','b','c'));
         }
         else{
-            $ketqua="nhập I";
-            return view('vatly.nhietluongodaydan',compact('ketqua'));
+            return view('vatly.nhietluongodaydan',compact('ketqua','a','b','c'));
         }
+        
     }
 
 
