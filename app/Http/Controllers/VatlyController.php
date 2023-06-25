@@ -208,41 +208,31 @@ class VatlyController extends Controller
         return view('vatly.trongluongrieng');
     }
     public function tinhtrongluongrieng(Request $request){
-           //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
-           if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
-               $a=$_POST['a'];
-               //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
-               if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0){
-                   $b=$_POST['b'];
-                   //tính kết quả
-                   (float)$ketqua=$a/$b;
-                   //xét kết quả khác 0
-                   if($ketqua)
-                   {
-                       //xét kết quả là số vô hạn
-                       if(is_infinite($ketqua))
-                       {
-                           $ketqua="kết quả vượt qua giới hạn tính";
-                           return view('vatly.trongluongrieng',compact('ketqua','a','b'));
-                       }
-                       else{
-                           return view('vatly.trongluongrieng',compact('ketqua','a','b'));
-                       }
-                   }
-                   else {
-                       static $ketqua=0;
-                       return view('vatly.trongluongrieng',compact('ketqua','a','b'));
-                   }
-               }
-               else{
-                   $ketqua="nhập V với V lớn hơn và khác 0";
-                   return view('vatly.trongluongrieng',compact('ketqua','a'));
-               }
-           }
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'trọng lượng bắt buộc phải nhập',
+            'a.numeric'=>'trọng lượng buộc phải là số',
+            'a.min'=>'trọng lượng phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'Thể tích bắt buộc phải nhập',
+            'b.numeric'=>'Thể tích bắt buộc phải là số',
+            'b.min'=>'Thể tích phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        //tính kết quả
+        (float)$ketqua=$a/$b;
+                   
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('vatly.trongluongrieng',compact('ketqua','a','b'));
+        }
         else{
-               $ketqua="nhập m";
-               return view('vatly.trongluongrieng',compact('ketqua'));
-           }
+            return view('vatly.trongluongrieng',compact('ketqua','a','b'));
+        }
+                 
     }
 
 

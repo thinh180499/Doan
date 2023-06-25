@@ -4,7 +4,7 @@
     <div class="row mt-5">
         <div class="col">
             <div class="card-style cardform">
-                <h2>Khối lượng riêng: (D)</h2>
+                <h2>Khối lượng riêng:</h2>
                 @if ($errors->any())
                 <h2 style="color: red;">
                     vui lòng kiểm tra lại dữ liệu
