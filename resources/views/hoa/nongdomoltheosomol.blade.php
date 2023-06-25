@@ -35,7 +35,7 @@
                             <div class="col mb-4">
                                 <label class="lb" for="somolchattan"> n<sub>ct</sub></label>
                                 <input type="number" id="somolchattan" name="a" placeholder="Nhập số mol chất tan"
-                                    class="input" step="any" value="{{ old('a') }}{{ isset($a)&&is_numeric($a) ? $a:false}}" />
+                                    class="input" step="any" value="{{ old('a') }} {{ isset($a)&&is_numeric($a) ? $a:false}}" />
                                     @error('a')
                                         <span style="color: red;">{{$message}}</span>
                                     @enderror
@@ -44,7 +44,7 @@
                             <div class="col mb-4">
                                 <label class="lb" for="thetichdungdich">V<sub>dd</sub></label>
                                 <input type="number" id="thetichdungdich" name="b" placeholder="Nhập thể tích dung dịch"
-                                    class="input" step="any" value="{{ old('b') }}{{ isset($b)&&is_numeric($b) ? $b:false }}" />
+                                    class="input" step="any" value="{{ old('b') }} {{ isset($b)&&is_numeric($b) ? $b:false }}" />
                                 @error('b')
                                     <span style="color: red;">{{$message}}</span>
                                 @enderror
