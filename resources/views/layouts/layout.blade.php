@@ -120,12 +120,13 @@
                 <li><a href="<?php echo route('toan.thuongcuahailuythuacungcoso'); ?>">Tính thương của hai lũy thừa với cùng một cơ số</a></li>
                 <li><a href="<?php echo route('toan.luythuacuamotluythua'); ?>">lũy thừa của một lũy thừa</a></li>
                 <li><a href="<?php echo route('toan.phuongtrinhbachai'); ?>">phương trình bậc 2</a></li>
+                <li><a href="<?php echo route('toan.canhtamgiac'); ?>">cạnh huyền của tam giác vuông</a></li>
+                <li><a href="<?php echo route('toan.chuvitamgiac'); ?>">chu vi tam giác</a></li>
                 <li><a href="<?php echo route('toan.duongcaotamgiac'); ?>">đường cao của một tam giác</a></li>
                 <li><a href="<?php echo route('toan.thetichhinhtru'); ?>">thể tích hình trụ</a></li>
                 <li><a href="<?php echo route('toan.thetichhinhnon'); ?>">thể tích hình nón</a></li>
                 <li><a href="<?php echo route('toan.thetichhinhcau'); ?>">thể tích hình cầu</a></li>
                 <li><a href="<?php echo route('toan.dientichmatcau'); ?>">diện tích mặt cầu cầu</a></li>
-                <li><a href="<?php echo route('toan.canhtamgiac'); ?>">cạnh huyền của tam giác vuông</a></li>
                 <li><a href="<?php echo route('toan.chuvihinhchunhat'); ?>">chu vi hình chữ nhật</a></li>
             </ul>
           </li>

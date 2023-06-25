@@ -266,6 +266,72 @@ public function tinhluythuacuamotluythua(Request $request){
     }
 
 
+    //cạnh của tam giác
+    public function canhtamgiac(){
+        return view('toan.canhtamgiac');
+    }
+    public function tinhcanhtamgiac(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'b bắt buộc phải nhập',
+            'a.numeric'=>'b điện buộc phải là số',
+            'a.min'=>'a phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'c bắt buộc phải nhập',
+            'b.numeric'=>'c bắt buộc phải là số',
+            'b.min'=>'b phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        //tính kết quả
+        $ketqua=sqrt(pow($a,2)+pow($b,2));
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('toan.canhtamgiac',compact('ketqua','a','b'));
+        }
+        else{
+            return view('toan.canhtamgiac',compact('ketqua','a','b'));
+        }
+    }
+
+
+
+    //chu vi tam giác
+    public function chuvitamgiac(){
+        return view('toan.chuvitamgiac');
+    }
+    public function tinhchuvitamgiac(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+            'c'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'a bắt buộc phải nhập',
+            'a.numeric'=>'a điện buộc phải là số',
+            'a.min'=>'a phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'b bắt buộc phải nhập',
+            'b.numeric'=>'b bắt buộc phải là số',
+            'b.min'=>'b phải lớn hơn 0.00000000000000000000001',
+            'c.required'=>'c bắt buộc phải nhập',
+            'c.numeric'=>'c bắt buộc phải là số',
+            'c.min'=>'c phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        $c=$_POST['c'];
+        //tính kết quả
+        $ketqua = ($a + $b + $c);
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('toan.chuvitamgiac',compact('ketqua','a','b'));
+        }
+        else{
+        return view('toan.chuvitamgiac',compact('ketqua','a','b','c'));
+        }
+        
+    }
 
 
      //đường cao tam giác
@@ -303,6 +369,7 @@ public function tinhluythuacuamotluythua(Request $request){
             return view('toan.duongcaotamgiac',compact('ketqua'));
         }
     }
+
 
 
     //Tính thể tích hình trụ
@@ -434,41 +501,6 @@ public function tinhdientichmatcau(Request $request){
     else{
         $ketqua="nhập R";
         return view('toan.dientichmatcau',compact('ketqua'));
-    }
-}
-
-
-//cạnh của tam giác
-public function canhtamgiac(){
-    return view('toan.canhtamgiac');
-}
-public function tinhcanhtamgiac(Request $request){
-    //xét biến $a có phải là một số hữu hạn
-    if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
-        $a=$_POST['a'];
-         //xét biến $b có phải là một số hữu hạn
-        if(is_numeric($_POST['b']) && is_finite($_POST['b'])){
-            $b=$_POST['b'];
-            //tính kết quả
-            $ketqua=sqrt(pow($a,2)+pow($b,2));
-            //xét kết quả là số vô hạn
-            if(is_infinite($ketqua))
-            {
-                $ketqua="kết quả vượt qua giới hạn tính";
-                return view('toan.canhtamgiac',compact('ketqua','a','b'));
-            }
-            else{
-                return view('toan.canhtamgiac',compact('ketqua','a','b'));
-            }
-        }
-        else{
-            $ketqua="nhập c";
-            return view('toan.canhtamgiac',compact('ketqua','a'));
-        }
-    }
-    else{
-        $ketqua="nhập b";
-        return view('toan.canhtamgiac',compact('ketqua'));
     }
 }
 

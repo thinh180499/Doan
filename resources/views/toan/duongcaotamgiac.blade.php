@@ -3,7 +3,7 @@
 @section('content')
     <form action="duongcaotamgiac" method="post">
     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-        <div>Tính đường của một tam giác h=2*&#40;&#8730&#40;p*&#40;p-a;&#41;*&#40;p-b&#41;*&#40;p-c&#41;&#41;/a:&#40;trong đó:p=&#40;a+b+c&#41;/2&#41;</div>
+        <div>Tính đường cao của một tam giác h=2*&#40;&#8730&#40;p*&#40;p-a;&#41;*&#40;p-b&#41;*&#40;p-c&#41;&#41;/a:&#40;trong đó:p=&#40;a+b+c&#41;/2&#41;</div>
         <table>
             <tr>
                 <td>cạnh a</td>

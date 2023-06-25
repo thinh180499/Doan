@@ -4,21 +4,21 @@
     <div class="row mt-5">
         <div class="col">
             <div class="card-style cardform">
-                <h2>Tính cạnh huyền của tam giác vuông:</h2>
+                <h2>Chu vi của tam giác:</h2>
                 @if ($errors->any())
                 <h2 style="color: red;">
                     vui lòng kiểm tra lại dữ liệu
                 </h2>
                  @endif
         
-                <form action="canhtamgiac" method="post">
+                <form action="chuvitamgiac" method="post">
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
                     <div class="container-fluid mt-4 mb-4">
                         <div class="row justify-content-center">
                             <div class="col-auto border rounded-lg p-3 d-flex align-items-center">
                                 <div class="mr-5">
-                                    <span>a2=b2+c2</span>
+                                    <span>P=a+b+c</span>
                                 </div>
                                 
                             </div>
@@ -29,8 +29,8 @@
                     <div class="container">
                         <div class="row d-flex flex-column">
                             <div class="col mb-4">
-                                <label class="lb" for="somolchattan">cạnh b</label>
-                                <input type="number" id="somolchattan" name="a" placeholder="Nhập cạnh b"
+                                <label class="lb" for="somolchattan">cạnh a</label>
+                                <input type="number" id="somolchattan" name="a" placeholder="Nhập cạnh a"
                                     class="input" step="any" value="{{ isset($a)&&is_numeric($a) ? $a:old('a')}}" />
                                     @error('a')
                                         <span style="color: red;">{{$message}}</span>
@@ -38,13 +38,23 @@
                             </div>
 
                             <div class="col mb-4">
-                                <label class="lb" for="thetichdungdich">cạnh c</label>
-                                <input type="number" id="thetichdungdich" name="b" placeholder="Nhập cạnh c"
+                                <label class="lb" for="thetichdungdich">cạnh b</label>
+                                <input type="number" id="thetichdungdich" name="b" placeholder="Nhập cạnh b"
                                     class="input" step="any" value="{{ isset($b)&&is_numeric($b) ? $b:old('b') }}" />
                                 @error('b')
                                     <span style="color: red;">{{$message}}</span>
                                 @enderror
                             </div>
+
+                            <div class="col mb-4">
+                                <label class="lb" for="thetichdungdich">cạnh c</label>
+                                <input type="number" id="thetichdungdich" name="c" placeholder="Nhập cạnh c"
+                                    class="input" step="any" value="{{ isset($c)&&is_numeric($c) ? $c:old('c') }}" />
+                                @error('c')
+                                    <span style="color: red;">{{$message}}</span>
+                                @enderror
+                            </div>
+
 
                             <div class="col d-flex align-items-center mb-4">
                                 <button class="btn btn-primary me-5 py-0 px-4 calculate" type="submit">=</button>
