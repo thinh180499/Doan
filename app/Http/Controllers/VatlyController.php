@@ -173,46 +173,33 @@ class VatlyController extends Controller
     public function khoiluongrieng(){
         return view('vatly.khoiluongrieng');
     }
-    public function tinhkhoiluongrieng(){
-            //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
-        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0)
-            {
-                $a=$_POST['a'];
-                //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
-                if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0)
-                {
-                    $b=$_POST['b'];
-                    //tính kết quả
-                    (float)$ketqua=$a/$b;
-                    //xét kết quả khác 0
-                    if($ketqua)
-                    {
-                        //xét kết quả là số vô hạn
-                        if(is_infinite($ketqua))
-                        {
-                            $ketqua="kết quả vượt qua giới hạn tính";
-                            return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
-                        }
-                        else{
-                            return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
-                        }
-                    }
-                    else {
-                        static $ketqua=0;
-                        return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
-                    }
-                }
-                else{
-                    $ketqua="nhập V với V khác 0";
-                    return view('vatly.khoiluongrieng',compact('ketqua','a'));
-                }
+    public function tinhkhoiluongrieng(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+                'a.required'=>'khối lượng của vật bắt buộc phải nhập',
+                'a.numeric'=>'khối lượng của vật buộc phải là số',
+                'a.min'=>'khối lượng của vật phải lớn hơn 0.00000000000000000000001',
+                'b.required'=>'Thể tích của vật bắt buộc phải nhập',
+                'b.numeric'=>'Thể tích của vật bắt buộc phải là số',
+                'b.min'=>'Thể tích của vật phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        //tính kết quả
+        (float)$ketqua=$a/$b;
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
             }
-         else
-            {
-                $ketqua="nhập m ";
-                return view('vatly.khoiluongrieng',compact('ketqua'));
+            else{
+                return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
             }
-    }
+                   
+     }
+              
 
 
 
@@ -220,7 +207,7 @@ class VatlyController extends Controller
     public function trongluongrieng(){
         return view('vatly.trongluongrieng');
     }
-    public function tinhtrongluongrieng(){
+    public function tinhtrongluongrieng(Request $request){
            //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
            if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
                $a=$_POST['a'];
@@ -263,7 +250,7 @@ class VatlyController extends Controller
     public function vantoc(){
         return view('vatly.vantoc');
     }
-    public function tinhvantoc(){
+    public function tinhvantoc(Request $request){
          if(isset($_POST['='])&&($_POST['='])){
             $a=$_POST['a'];
             $b=$_POST['b'];
@@ -282,7 +269,7 @@ class VatlyController extends Controller
     public function thoigian(){
         return view('vatly.thoigian');
     }
-    public function tinhthoigian(){
+    public function tinhthoigian(Request $request){
          if(isset($_POST['='])&&($_POST['='])){
             $a=$_POST['a'];
             $b=$_POST['b'];
@@ -298,7 +285,7 @@ class VatlyController extends Controller
     }
 
 
-    public function quangduong(){
+    public function quangduong(Request $request){
         return view('vatly.quangduong');
     }
     public function tinhquangduong(){
@@ -321,7 +308,7 @@ class VatlyController extends Controller
     public function lucacsimet(){
         return view('vatly.lucacsimet');
     }
-    public function tinhlucacsimet(){
+    public function tinhlucacsimet(Request $request){
          //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
         if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
             $a=$_POST['a'];
@@ -356,7 +343,7 @@ class VatlyController extends Controller
     public function congcohoc(){
         return view('vatly.congcohoc');
     }
-    public function tinhcongcohoc(){
+    public function tinhcongcohoc(Request $request){
         if(isset($_POST['='])&&($_POST['='])){
             $a=$_POST['a'];
             $b=$_POST['b'];
@@ -373,7 +360,7 @@ class VatlyController extends Controller
     public function congsuat(){
         return view('vatly.congsuat');
     }
-    public function tinhcongsuat(){
+    public function tinhcongsuat(Request $request){
          if(isset($_POST['='])&&($_POST['='])){
             $a=$_POST['a'];
             $b=$_POST['b'];
@@ -394,7 +381,7 @@ class VatlyController extends Controller
     public function nhietluong(){
         return view('vatly.nhietluong');
     }
-    public function tinhnhietluong(){
+    public function tinhnhietluong(Request $request){
          //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
          if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
              $a=$_POST['a'];
@@ -437,7 +424,7 @@ class VatlyController extends Controller
     public function hieusuatdongconhiet(){
         return view('vatly.hieusuatdongconhiet');
     }
-    public function tinhhieusuatdongconhiet(){
+    public function tinhhieusuatdongconhiet(Request $request){
          if(isset($_POST['='])&&($_POST['='])){
             $a=$_POST['a'];
             $b=$_POST['b'];
@@ -456,7 +443,7 @@ class VatlyController extends Controller
     public function apsuat(){
         return view('vatly.apsuat');
     }
-    public function tinhapsuat(){
+    public function tinhapsuat(Request $request){
          if(isset($_POST['='])&&($_POST['='])){
             $a=$_POST['a'];
             $b=$_POST['b'];
@@ -476,7 +463,7 @@ class VatlyController extends Controller
     public function cuongdodongdien(){
         return view('vatly.cuongdodongdien');
     }
-    public function tinhcuongdodongdien(){
+    public function tinhcuongdodongdien(Request $request){
             //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
         if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0)
             {
@@ -522,7 +509,7 @@ class VatlyController extends Controller
     public function hieudienthe(){
         return view('vatly.hieudienthe');
     }
-    public function tinhhieudienthe(){
+    public function tinhhieudienthe(Request $request){
          //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
         if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
             $a=$_POST['a'];
@@ -557,7 +544,7 @@ class VatlyController extends Controller
      public function dientro(){
         return view('vatly.dientro');
     }
-    public function tinhdientro(){
+    public function tinhdientro(Request $request){
             //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
         if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0)
             {
@@ -603,7 +590,7 @@ class VatlyController extends Controller
     public function congsuathaophi(){
         return view('vatly.congsuathaophi');
     }
-    public function tinhcongsuathaophi(){
+    public function tinhcongsuathaophi(Request $request){
          //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
          if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0)
          {
@@ -656,7 +643,7 @@ class VatlyController extends Controller
     public function nhietluongodaydan(){
         return view('vatly.nhietluongodaydan');
     }
-    public function tinhnhietluongodaydan(){
+    public function tinhnhietluongodaydan(Request $request){
         //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
         if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
              $a=$_POST['a'];
