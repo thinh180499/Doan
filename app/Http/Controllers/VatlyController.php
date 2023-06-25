@@ -391,15 +391,30 @@ class VatlyController extends Controller
         return view('vatly.congcohoc');
     }
     public function tinhcongcohoc(Request $request){
-        if(isset($_POST['='])&&($_POST['='])){
-            $a=$_POST['a'];
-            $b=$_POST['b'];
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'lực tác dụng vào vật bắt buộc phải nhập',
+            'a.numeric'=>'lực tác dụng vào vật buộc phải là số',
+            'a.min'=>'lực tác dụng vào vật phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'quãng đường vật dịch chuyển bắt buộc phải nhập',
+            'b.numeric'=>'quãng đường vật dịch chuyển bắt buộc phải là số',
+            'b.min'=>'quãng đường vật dịch chuyển phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
 
-            $ketqua=$a*$b;
+        $ketqua=$a*$b;
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
             return view('vatly.congcohoc',compact('ketqua','a','b'));
-
-
         }
+        else{
+            return view('vatly.congcohoc',compact('ketqua','a','b'));
+        }
+        
     }
 
 
