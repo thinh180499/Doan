@@ -77,41 +77,31 @@ class ToanController extends Controller
         return view('toan.tichcuahailuythuacungcoso');
     }
     public function tinhtichcuahailuythuacungcoso(Request $request){
-    //xét biến $a có phải là một số hữu hạn
-    if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
+        $request->validate([
+            'a'=>'required|numeric',
+            'b'=>'required|numeric',
+            'c'=>'required|numeric',
+            ],[
+            'a.required'=>'a bắt buộc phải nhập',
+            'a.numeric'=>'a buộc phải là số',
+            'b.required'=>'n bắt buộc phải nhập',
+            'b.numeric'=>'n bắt buộc phải là số',
+            'c.required'=>'m bắt buộc phải nhập',
+            'c.numeric'=>'m bắt buộc phải là số',
+        ]);
         $a=$_POST['a'];
-         //xét biến $b có phải là một số hữu hạn
-        if(is_numeric($_POST['b'])&& is_finite($_POST['b'])){
-            $b=$_POST['b'];
-            //xét biến $c có phải là một số hữu hạn
-            if(is_numeric($_POST['c']) && is_finite($_POST['c'])){
-                $c=$_POST['c'];
-                //tính kết quả
-                $ketqua=pow($a,$b+$c);
-                //xét kết quả là số vô hạn
-                if(is_infinite($ketqua))
-                {
-                    $ketqua="kết quả vượt qua giới hạn tính";
-                    return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a','b','c'));
-                }
-                else{
-                    return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a','b','c'));
-                }
-            }
-            else{
-                $ketqua="nhập m";
-                return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a','b'));
-            }
+        $b=$_POST['b'];
+        $c=$_POST['c'];
+        //tính kết quả
+        $ketqua=pow($a,$b+$c);
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a','b','c'));
         }
         else{
-            $ketqua="nhập n";
-            return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a'));
+            return view('toan.tichcuahailuythuacungcoso',compact('ketqua','a','b','c'));
         }
-    }
-    else{
-        $ketqua="nhập a";
-        return view('toan.tichcuahailuythuacungcoso',compact('ketqua'));
-    }
     }
 
 
