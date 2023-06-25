@@ -588,44 +588,29 @@ class VatlyController extends Controller
         return view('vatly.dientro');
     }
     public function tinhdientro(Request $request){
-            //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
-        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0)
-            {
-                $a=$_POST['a'];
-                //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
-                if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0)
-                {
-                    $b=$_POST['b'];
-                    //tính kết quả
-                    (float)$ketqua=$a/$b;
-                    //xét kết quả khác 0
-                    if($ketqua)
-                    {
-                        //xét kết quả là số vô hạn
-                        if(is_infinite($ketqua))
-                        {
-                            $ketqua="kết quả vượt qua giới hạn tính";
-                            return view('vatly.dientro',compact('ketqua','a','b'));
-                        }
-                        else{
-                            return view('vatly.dientro',compact('ketqua','a','b'));
-                        }
-                    }
-                    else {
-                        static $ketqua=0;
-                        return view('vatly.dientro',compact('ketqua','a','b'));
-                    }
-                }
-                else{
-                    $ketqua="nhập I với I khác 0";
-                    return view('vatly.dientro',compact('ketqua','a'));
-                }
-            }
-         else
-            {
-                $ketqua="nhập U ";
-                return view('vatly.dientro',compact('ketqua'));
-            }
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'hiệu điện thế bắt buộc phải nhập',
+            'a.numeric'=>'hiệu điện thế buộc phải là số',
+            'a.min'=>'hiệu điện thế phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'cường độ dòng điện bắt buộc phải nhập',
+            'b.numeric'=>'cường độ dòng điện buộc phải là số',
+            'b.min'=>'cường độ dòng điện phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        //tính kết quả
+        (float)$ketqua=$a/$b;
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('vatly.dientro',compact('ketqua','a','b'));
+        }
+        else{
+            return view('vatly.dientro',compact('ketqua','a','b'));
+        }
     }
 
 
