@@ -423,18 +423,29 @@ class VatlyController extends Controller
         return view('vatly.congsuat');
     }
     public function tinhcongsuat(Request $request){
-         if(isset($_POST['='])&&($_POST['='])){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'công của lực tác dụng vào vật bắt buộc phải nhập',
+            'a.numeric'=>'công của lực tác dụng vào vật buộc phải là số',
+            'a.min'=>'công của lực tác dụng vào vật phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'thời gian tác dụng bắt buộc phải nhập',
+            'b.numeric'=>'thời gian tác dụng chuyển bắt buộc phải là số',
+            'b.min'=>'thời gian tác dụng phải lớn hơn 0.00000000000000000000001',
+        ]);
             $a=$_POST['a'];
             $b=$_POST['b'];
-            if($b==0){
-                $ketqua="nhập lại";
-                return view('vatly.congsuat',compact('ketqua'));
-            }
-            else if($b!=0){
             $ketqua=$a/$b;
+            //xét kết quả là số vô hạn
+            if(is_infinite($ketqua)){
+                $ketqua="kết quả vượt qua giới hạn tính";
+                return view('vatly.congsuat',compact('ketqua','a','b'));
+            }
+            else {
             return view('vatly.congsuat',compact('ketqua','a','b'));
             }
-        }
+        
     }
 
 
