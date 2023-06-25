@@ -87,7 +87,7 @@
                 <li><a href="<?php echo route('vatly.apsuat'); ?>">áp suất</a></li>
                 <li><a href="<?php echo route('vatly.congcohoc'); ?>">công cơ học</a></li>
                 <li><a href="<?php echo route('vatly.congsuat'); ?>">công suất</a></li>
-                <li><a href="<?php echo route('vatly.nhietluong'); ?>">nhiệt lượng</a></li>
+                <li><a href="<?php echo route('vatly.nhietluong'); ?>">nhiệt lượng trong quá trình truyền nhiệt ở vật</a></li>
                 <li><a href="<?php echo route('vatly.hieusuatdongconhiet'); ?>">hiệu suất động cơ nhiệt</a></li>
                 <li><a href="<?php echo route('vatly.cuongdodongdien'); ?>">cường độ dòng điện</a></li>
                 <li><a href="<?php echo route('vatly.hieudienthe'); ?>">hiệu điện thế</a></li>

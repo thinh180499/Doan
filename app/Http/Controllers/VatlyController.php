@@ -455,41 +455,35 @@ class VatlyController extends Controller
         return view('vatly.nhietluong');
     }
     public function tinhnhietluong(Request $request){
-         //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
-         if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
-             $a=$_POST['a'];
-              //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
-             if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0){
-                 $b=$_POST['b'];
-                 //xét biến $c có phải là một số lớn hơn 0 và hữu hạn
-                if(is_numeric($_POST['c']) && is_finite($_POST['c']) && $_POST['c']>0){
-                    $c=$_POST['c'];
-                    //tính kết quả
-                    $ketqua=$a*$b*$c;
-                     //xét kết quả là số vô hạn
-                    if(is_infinite($ketqua))
-                    {
-                        $ketqua="kết quả vượt qua giới hạn tính";
-                        return view('vatly.nhietluong',compact('ketqua','a','b','c'));
-                    }
-                    else{
-                        return view('vatly.nhietluong',compact('ketqua','a','b','c'));
-                    }
-                }
-                else{
-                    $ketqua="nhập &#916;t";
-                    return view('vatly.nhietluong',compact('ketqua','a','b'));
-                }
-             }
-             else{
-                 $ketqua="nhập c";
-                 return view('vatly.nhietluong',compact('ketqua','a'));
-             }
-         }
-         else{
-             $ketqua="nhập m";
-                return view('vatly.nhietluong',compact('ketqua'));
-         }
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+            'c'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'nhiệt lượng mà vật thu vào hoặc toả ra bắt buộc phải nhập',
+            'a.numeric'=>'nhiệt lượng mà vật thu vào hoặc toả ra buộc phải là số',
+            'a.min'=>'nhiệt lượng mà vật thu vào hoặc toả ra phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'nhiệt dung riêng của chất bắt buộc phải nhập',
+            'b.numeric'=>'nhiệt dung riêng của chất bắt buộc phải là số',
+            'b.min'=>'nhiệt dung riêng của chất phải lớn hơn 0.00000000000000000000001',
+            'c.required'=>'độ thay đổi nhiệt độ bắt buộc phải nhập',
+            'c.numeric'=>'độ thay đổi nhiệt độ bắt buộc phải là số',
+            'c.min'=>'độ thay đổi nhiệt độ phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        $c=$_POST['c'];
+        //tính kết quả
+        $ketqua=$a*$b*$c;
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('vatly.nhietluong',compact('ketqua','a','b','c'));
+        }
+        else{
+            return view('vatly.nhietluong',compact('ketqua','a','b','c'));
+        }
+                
     }
 
 
