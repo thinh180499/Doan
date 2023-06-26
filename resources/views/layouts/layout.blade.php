@@ -122,6 +122,7 @@
                 <li><a href="<?php echo route('toan.phuongtrinhbachai'); ?>">phương trình bậc 2</a></li>
                 <li><a href="<?php echo route('toan.canhtamgiac'); ?>">cạnh huyền của tam giác vuông</a></li>
                 <li><a href="<?php echo route('toan.chuvitamgiac'); ?>">chu vi tam giác</a></li>
+                <li><a href="<?php echo route('toan.dientichtamgiac'); ?>">diện tích tam giác</a></li>
                 <li><a href="<?php echo route('toan.duongcaotamgiac'); ?>">đường cao của một tam giác</a></li>
                 <li><a href="<?php echo route('toan.thetichhinhtru'); ?>">thể tích hình trụ</a></li>
                 <li><a href="<?php echo route('toan.thetichhinhnon'); ?>">thể tích hình nón</a></li>

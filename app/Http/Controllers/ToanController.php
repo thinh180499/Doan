@@ -322,13 +322,45 @@ public function tinhluythuacuamotluythua(Request $request){
         $b=$_POST['b'];
         $c=$_POST['c'];
         //tính kết quả
-        $ketqua = ($a + $b + $c);
+        $ketqua = $a + $b + $c;
         if(is_infinite($ketqua)){
             $ketqua="kết quả vượt qua giới hạn tính";
-            return view('toan.chuvitamgiac',compact('ketqua','a','b'));
+            return view('toan.chuvitamgiac',compact('ketqua','a','b','c'));
         }
         else{
         return view('toan.chuvitamgiac',compact('ketqua','a','b','c'));
+        }
+        
+    }
+
+
+    //chu vi tam giác
+    public function dientichtamgiac(){
+        return view('toan.dientichtamgiac');
+    }
+    public function tinhdientichtamgiac(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+            
+        ],[
+            'a.required'=>'h bắt buộc phải nhập',
+            'a.numeric'=>'h điện buộc phải là số',
+            'a.min'=>'h phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'b bắt buộc phải nhập',
+            'b.numeric'=>'b bắt buộc phải là số',
+            'b.min'=>'b phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        //tính kết quả
+        $ketqua =0.5* $a * $b;
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('toan.dientichtamgiac',compact('ketqua','a','b'));
+        }
+        else{
+        return view('toan.dientichtamgiac',compact('ketqua','a','b'));
         }
         
     }
@@ -339,37 +371,36 @@ public function tinhluythuacuamotluythua(Request $request){
         return view('toan.duongcaotamgiac');
     }
     public function tinhduongcaotamgiac(Request $request){
-        //xét biến $a có phải là một số hữu hạn và lớn hơn 0
-        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']> 0){
-            $a=$_POST['a'];
-             //xét biến $b có phải là một số hữu hạn và lớn hơn 0
-            if(is_numeric($_POST['b'])&& is_finite($_POST['b']) && $_POST['b']>0){
-                $b=$_POST['b'];
-                //xét biến $c có phải là một số hữu hạn và lớn hơn 0
-                if(is_numeric($_POST['c']) && is_finite($_POST['c'])&& $_POST['c']>0){
-                    $c=$_POST['c'];
-                    //tính kết quả
-                    $p = ($a + $b + $c)/2;
-                    $ketqua=2*(sqrt($p*($p-$a)*($p-$b)*($p-$c))/$a);
-                    $ketqua="đường cao h của tam giác=". $ketqua;
-                    return view('toan.duongcaotamgiac',compact('ketqua','a','b','c'));
-                }
-                else{
-                    $ketqua="nhập c";
-                    return view('toan.duongcaotamgiac',compact('ketqua','a','b'));
-                }
-            }
-            else{
-                $ketqua="nhập b ";
-                return view('toan.duongcaotamgiac',compact('ketqua','a'));
-            }
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+            'c'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'a bắt buộc phải nhập',
+            'a.numeric'=>'a điện buộc phải là số',
+            'a.min'=>'a phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'b bắt buộc phải nhập',
+            'b.numeric'=>'b bắt buộc phải là số',
+            'b.min'=>'b phải lớn hơn 0.00000000000000000000001',
+            'c.required'=>'c bắt buộc phải nhập',
+            'c.numeric'=>'c bắt buộc phải là số',
+            'c.min'=>'c phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        $c=$_POST['c'];
+        //tính kết quả
+        $p = ($a + $b + $c)/2;
+        $ketqua=2*(sqrt($p*($p-$a)*($p-$b)*($p-$c))/$a);
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('toan.chuvitamgiac',compact('ketqua','a','b'));
         }
         else{
-            $ketqua="nhập a";
-            return view('toan.duongcaotamgiac',compact('ketqua'));
+            return view('toan.duongcaotamgiac',compact('ketqua','a','b','c'));
         }
     }
-
+         
 
 
     //Tính thể tích hình trụ
