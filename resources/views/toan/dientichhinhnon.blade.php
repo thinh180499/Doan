@@ -39,7 +39,7 @@
                                 <label class="lb" for="somolchattan"> cạnh l</label>
                                 <input type="number" id="somolchattan" name="b" placeholder="Nhập cạnh l"
                                     class="input" step="any" value="{{ isset($b)&&is_numeric($b) ? $b:old('b')}}" />
-                                    @error('a')
+                                    @error('b')
                                         <span style="color: red;">{{$message}}</span>
                                     @enderror
                             </div>
