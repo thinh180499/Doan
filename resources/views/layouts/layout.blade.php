@@ -155,6 +155,7 @@
                 <li><a href="<?php echo route('toan.dientichhinhtron'); ?>">diện tích hình tròn</a></li>
 
                 {{-- Hỉnh khối --}}
+                <li><a href="<?php echo route('toan.dientichxungquanghinhhopchunhat'); ?>">diện tích xung quanh hình hộp chữ nhật</a></li>
                 <li><a href="<?php echo route('toan.thetichhinhtru'); ?>">thể tích hình trụ</a></li>
                 <li><a href="<?php echo route('toan.thetichhinhnon'); ?>">thể tích hình nón</a></li>
                 <li><a href="<?php echo route('toan.thetichhinhcau'); ?>">thể tích hình cầu</a></li>

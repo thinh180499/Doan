@@ -336,7 +336,7 @@ public function tinhluythuacuamotluythua(Request $request){
     }
 
 
-    //chu vi tam giác
+    //diện tích tam giác
     public function dientichtamgiac(){
         return view('toan.dientichtamgiac');
     }
@@ -379,7 +379,7 @@ public function tinhluythuacuamotluythua(Request $request){
             'c'=>'required|numeric|min:0.00000000000000000000001',
         ],[
             'a.required'=>'a bắt buộc phải nhập',
-            'a.numeric'=>'a điện buộc phải là số',
+            'a.numeric'=>'a buộc phải là số',
             'a.min'=>'a phải lớn hơn 0.00000000000000000000001',
             'b.required'=>'b bắt buộc phải nhập',
             'b.numeric'=>'b bắt buộc phải là số',
@@ -617,6 +617,42 @@ public function tinhdientichhinhtron(Request $request){
     }
     else{
     return view('toan.dientichhinhtron',compact('ketqua','a'));
+    }
+    
+}
+
+
+//diện tích xung quanh hình hộp chữ nhật
+public function dientichxungquanghinhhopchunhat(){
+    return view('toan.dientichxungquanghinhhopchunhat');
+}
+public function tinhdientichxungquanghinhhopchunhat(Request $request){
+    $request->validate([
+        'a'=>'required|numeric|min:0.00000000000000000000001',
+        'b'=>'required|numeric|min:0.00000000000000000000001',
+        'c'=>'required|numeric|min:0.00000000000000000000001',
+    ],[
+        'a.required'=>'a bắt buộc phải nhập',
+        'a.numeric'=>'a điện buộc phải là số',
+        'a.min'=>'a phải lớn hơn 0.00000000000000000000001',
+        'b.required'=>'b bắt buộc phải nhập',
+        'b.numeric'=>'b bắt buộc phải là số',
+        'b.min'=>'b phải lớn hơn 0.00000000000000000000001',
+        'c.required'=>'h bắt buộc phải nhập',
+        'c.numeric'=>'h bắt buộc phải là số',
+        'c.min'=>'h phải lớn hơn 0.00000000000000000000001',
+    ]);
+    $a=$_POST['a'];
+    $b=$_POST['b'];
+    $c=$_POST['c'];
+    //tính kết quả
+    $ketqua = 2*$a*$b*$c;
+    if(is_infinite($ketqua)){
+        $ketqua="kết quả vượt qua giới hạn tính";
+        return view('toan.dientichxungquanghinhhopchunhat',compact('ketqua','a','b','c'));
+    }
+    else{
+    return view('toan.dientichxungquanghinhhopchunhat',compact('ketqua','a','b','c'));
     }
     
 }
