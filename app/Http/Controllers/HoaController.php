@@ -318,12 +318,19 @@ public function tinhmoltheothetich(Request $request){
         return view('hoa.khoiluongchat');
     }
     public function tinhkhoiluongchat(Request $request){
-         //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
-        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
-            $a=$_POST['a'];
-             //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
-            if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0){
-                $b=$_POST['b'];
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+                'a.required'=>'số mol buộc phải nhập',
+                'a.numeric'=>'số mol bắt buộc phải là số',
+                'a.min'=>'số mol phải lớn hơn 0.00000000000000000000001',
+                'b.required'=>'khối lượng mol bắt buộc phải nhập',
+                'b.numeric'=>'khối lượng mol bắt buộc phải là số',
+                'b.min'=>'khối lượng mol phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
                 //tính kết quả
                 $ketqua=$a*$b;
                 //xét kết quả là số vô hạn
@@ -335,16 +342,7 @@ public function tinhmoltheothetich(Request $request){
                 else{
                     return view('hoa.khoiluongchat',compact('ketqua','a','b'));
                 }
-            }
-            else{
-                $ketqua="nhập V<sub>dd</sub>";
-                return view('hoa.khoiluongchat',compact('ketqua','a'));
-            }
-        }
-        else{
-            $ketqua="nhập C<sub>M</sub>";
-               return view('hoa.khoiluongchat',compact('ketqua'));
-        }
+           
     }
 
 
