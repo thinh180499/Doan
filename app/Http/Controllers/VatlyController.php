@@ -9,22 +9,24 @@ class VatlyController extends Controller
     public function dodai(){
         return view('vatly.dodai');
     }
-    public function doidodai(){
-        if(isset($_POST['='])&&($_POST['='])){
-            $a=$_POST['a'];
+    public function doidodai(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'m bắt buộc phải nhập',
+            'a.numeric'=>'m điện buộc phải là số',
+            'a.min'=>'m phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
             $i=$_POST['i'];
             $j=$_POST['j'];
             $x=$i;
             $y=$j;
-            if($a==null){
-                $thongbao="nhập độ dài";
-                return view('vatly.dodai',compact('thongbao','x','y'));
-            }
-            else if($i==$j){
+            if($i==$j){
                 $ketqua=$a;
                 return view('vatly.dodai',compact('ketqua','a','x','y'));
             }
-            else if($i>$j){
+            if($i>$j){
                 $ketqua=$a;
 
                 for ($i; $i>$j; $i--) {
@@ -32,7 +34,7 @@ class VatlyController extends Controller
                   }
                 return view('vatly.dodai',compact('ketqua','a','x','y'));
             }
-            else if($i<$j){
+            if($i<$j){
                 $ketqua=$a;
                 for ($i; $i<$j; $i++) {
                     $ketqua=$ketqua*10;
@@ -40,7 +42,7 @@ class VatlyController extends Controller
                 return view('vatly.dodai',compact('ketqua','a','x','y'));
             }
 
-        }
+        
 
     }
 
@@ -48,9 +50,15 @@ class VatlyController extends Controller
     public function thetich(){
         return view('vatly.thetich');
     }
-    public function doithetich(){
-        if(isset($_POST['='])&&($_POST['='])){
-            $a=$_POST['a'];
+    public function doithetich(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'m bắt buộc phải nhập',
+            'a.numeric'=>'m điện buộc phải là số',
+            'a.min'=>'m phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
             $i=$_POST['i'];
             $j=$_POST['j'];
             if($a==null){
@@ -125,7 +133,7 @@ class VatlyController extends Controller
             }
 
 
-        }
+        
 
     }
 
@@ -133,9 +141,15 @@ class VatlyController extends Controller
     public function khoiluong(){
         return view('vatly.khoiluong');
     }
-    public function doikhoiluong(){
-        if(isset($_POST['='])&&($_POST['='])){
-            $a=$_POST['a'];
+    public function doikhoiluong(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'m bắt buộc phải nhập',
+            'a.numeric'=>'m điện buộc phải là số',
+            'a.min'=>'m phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
             $i=$_POST['i'];
             $j=$_POST['j'];
             $x=$i;
@@ -164,7 +178,7 @@ class VatlyController extends Controller
                 return view('vatly.khoiluong',compact('ketqua','a','x','y'));
             }
 
-        }
+        
 
     }
 
