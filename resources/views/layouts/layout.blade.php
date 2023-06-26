@@ -190,6 +190,7 @@
                 <li><a href="<?php echo route('hoa.moltheothetich'); ?>">tính số mol theo thể tích</a></li>
                 <li><a href="<?php echo route('hoa.moltheonongdomolvathetichdungdich'); ?>">tính số mol theo nồng độ mol và thể tích dung dịch</a></li>
                 <li><a href="<?php echo route('hoa.moltheonongdophantramvakhoiluongdungdich'); ?>">tính số mol theo nông độ phần trăm và khối lượng dung dịch</a></li>
+                <li><a href="<?php echo route('hoa.moltheonongdophantramvathetichdungdich'); ?>">tính số mol theo nông độ phần trăm và thể tích dung dịch</a></li>
 
 
                 {{-- Tính nồng độ phần trăm theo ... --}}

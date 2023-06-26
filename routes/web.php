@@ -236,6 +236,9 @@ Route::prefix('/hoa')->group(function () {
     Route::get('moltheonongdophantramvakhoiluongdungdich', [HoaController::class, 'moltheonongdophantramvakhoiluongdungdich'])->name('hoa.moltheonongdophantramvakhoiluongdungdich');
     Route::post('moltheonongdophantramvakhoiluongdungdich', [HoaController::class, 'tinhmoltheonongdophantramvakhoiluongdungdich']);
 
+    Route::get('moltheonongdophantramvathetichdungdich', [HoaController::class, 'moltheonongdophantramvathetichdungdich'])->name('hoa.moltheonongdophantramvathetichdungdich');
+    Route::post('moltheonongdophantramvathetichdungdich', [HoaController::class, 'tinhmoltheonongdophantramvathetichdungdich']);
+
 
     // Tính nồng độ phần trăm theo ...
     Route::get('nongdophantramtheokhoiluongchattan', [HoaController::class, 'nongdophantramtheokhoiluongchattan'])->name('hoa.nongdophantramtheokhoiluongchattan');

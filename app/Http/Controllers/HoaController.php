@@ -108,9 +108,9 @@ public function tinhmoltheothetich(Request $request){
             'a.required'=>'nồng độ phần trăm bắt buộc phải nhập',
             'a.numeric'=>'nồng độ phần trăm buộc phải là số',
             'a.min'=>'nồng độ phần trăm phải lớn hơn 0.00000000000000000000001',
-            'b.required'=>'thể tích dung dịch bắt buộc phải nhập',
-            'b.numeric'=>'thể tích dung dịch điện buộc phải là số',
-            'b.min'=>'thể tích dung dịch phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'khối lượng dung dịch bắt buộc phải nhập',
+            'b.numeric'=>'khối lượng dung dịch điện buộc phải là số',
+            'b.min'=>'khối lượng dung dịch phải lớn hơn 0.00000000000000000000001',
             'c.required'=>'khối lượng mol bắt buộc phải nhập',
             'c.numeric'=>'khối lượng mol buộc phải là số',
             'c.min'=>'khối lượng mol phải lớn hơn 0.00000000000000000000001',
@@ -129,6 +129,47 @@ public function tinhmoltheothetich(Request $request){
             return view('hoa.moltheonongdophantramvakhoiluongdungdich',compact('ketqua','a','b','c'));
         }
     }
+
+    //số mol theo nồng độ phần trăm thể tích dung dich
+    public function moltheonongdophantramvathetichdungdich(){
+        return view('hoa.moltheonongdophantramvathetichdungdich');
+    }
+    public function tinhmoltheonongdophantramvathetichdungdich(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+            'c'=>'required|numeric|min:0.00000000000000000000001',
+            'd'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'nồng độ phần trăm bắt buộc phải nhập',
+            'a.numeric'=>'nồng độ phần trăm buộc phải là số',
+            'a.min'=>'nồng độ phần trăm phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'thể tích dung dịch bắt buộc phải nhập',
+            'b.numeric'=>'thể tích dung dịch điện buộc phải là số',
+            'b.min'=>'thể tích dung dịch phải lớn hơn 0.00000000000000000000001',
+            'c.required'=>'khối lượng riêng bắt buộc phải nhập',
+            'c.numeric'=>'khối lượng riêng buộc phải là số',
+            'c.min'=>'khối lượng riêng phải lớn hơn 0.00000000000000000000001',
+            'd.required'=>'khối lượng mol bắt buộc phải nhập',
+            'd.numeric'=>'khối lượng mol buộc phải là số',
+            'd.min'=>'khối lượng mol phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        $c=$_POST['c'];
+        $d=$_POST['d'];
+        //tính kết quả
+        $ketqua=($a*$b*$c)/(100*$d);
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)) {
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('hoa.moltheonongdophantramvakhoiluongdungdich',compact('ketqua','a','b','c','d'));
+        }
+        else{
+            return view('hoa.moltheonongdophantramvakhoiluongdungdich',compact('ketqua','a','b','c','d'));
+        }
+    }
+
 
     //Tính khối lượng chất
     public function khoiluongchat(){
