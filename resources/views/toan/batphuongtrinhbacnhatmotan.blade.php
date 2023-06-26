@@ -17,7 +17,7 @@
                         <div class="row justify-content-center">
 
                             <div class="col-auto border rounded-lg p-3 d-flex align-items-center">
-                                <span class="mr-5">ax + b >= </span>
+                                <span class="mr-5">ax + b &gt; </span>
                                 <span>0</span>
                             </div>
 
@@ -43,27 +43,10 @@
                                     <label>Nhập dấu</label>
                                     <div class="select-position">
                                         <select name="i">
-                                            <option <?php if (isset($x) && $x == 1) {
-                                                echo 'selected ';
-                                            } ?>value="1">Ki-lô-mét (km)</option>
-                                            <option <?php if (isset($x) && $x == 2) {
-                                                echo 'selected ';
-                                            } ?>value="2">Héc-tô-mét (hm)</option>
-                                            <option <?php if (isset($x) && $x == 3) {
-                                                echo 'selected ';
-                                            } ?>value="3">Đề-ca-mét (dam)</option>
-                                            <option <?php if (isset($x) && $x == 4) {
-                                                echo 'selected ';
-                                            } ?>value="4">Mét (m)</option>
-                                            <option <?php if (isset($x) && $x == 5) {
-                                                echo 'selected ';
-                                            } ?>value="5">Đề-xi-mét (dm)</option>
-                                            <option <?php if (isset($x) && $x == 6) {
-                                                echo 'selected ';
-                                            } ?>value="6">Xen-ti-mét (cm)</option>
-                                            <option <?php if (isset($x) && $x == 7) {
-                                                echo 'selected ';
-                                            } ?>value="7">Mi-li-mét (mm)</option>
+                                            <option value="lonhon">&gt;</option>
+                                            <option value="behon">&lt;</option>
+                                            <option value="lonhonbang">&ge;</option>
+                                            <option value="behonbang">&le;</option>
                                         </select>
                                     </div>
                                 </div>
