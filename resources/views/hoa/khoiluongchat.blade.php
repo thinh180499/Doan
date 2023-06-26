@@ -4,7 +4,7 @@
     <div class="row mt-5">
         <div class="col">
             <div class="card-style cardform">
-                <h2>Tính khối lượng chất (C<sub>M</sub>)</h2>
+                <h2>Tính khối lượng chất </h2>
                 @if ($errors->any())
                 <h2 style="color: red;">
                     vui lòng kiểm tra lại dữ liệu

@@ -311,8 +311,6 @@ public function tinhmoltheothetich(Request $request){
     }
 
 
-
-
     //Tính khối lượng chất
     public function khoiluongchat(){
         return view('hoa.khoiluongchat');
@@ -344,6 +342,41 @@ public function tinhmoltheothetich(Request $request){
                 }
            
     }
+
+
+
+    //khối lượng chất tana
+    public function khoiluongchattan(){
+        return view('hoa.khoiluongchattan');
+    }
+    public function tinhkhoiluongchattan(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+                'a.required'=>'nồng độ phần trăm buộc phải nhập',
+                'a.numeric'=>'nồng độ phần trăm bắt buộc phải là số',
+                'a.min'=>'nồng độ phần trăm phải lớn hơn 0.00000000000000000000001',
+                'b.required'=>'thể tích dung dịch bắt buộc phải nhập',
+                'b.numeric'=>'thể tích dung dịch bắt buộc phải là số',
+                'b.min'=>'thể tích dung dịch phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+                   //tính kết quả
+                    $ketqua=$a*$b/100;
+                    //xét kết quả là số vô hạn
+                    if(is_infinite($ketqua))
+                    {
+                        $ketqua="kết quả vượt qua giới hạn tính";
+                        return view('hoa.khoiluongchattan',compact('ketqua','a','b'));
+                    }
+                    else{
+                        return view('hoa.khoiluongchattan',compact('ketqua','a','b'));
+                    }
+
+    }
+           
 
 
     //Tính thể tích dung dịch theo nồng dộ mol thetichdungdichtheonongdomol
@@ -471,46 +504,7 @@ public function tinhmoltheothetich(Request $request){
 
 
 
-    //khối lượng chất tana
-    public function khoiluongchattan(){
-        return view('hoa.khoiluongchattan');
-    }
-    public function tinhkhoiluongchattan(Request $request){
-        //xét biến $a có phải là một số hữu hạn
-        if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
-            $a=$_POST['a'];
-             //xét biến $b có phải là một số hữu hạn
-            if(is_numeric($_POST['b'])&& is_finite($_POST['b'])){
-                $b=$_POST['b'];
-                   //tính kết quả
-                    $ketqua=$a*$b/100;
-                    //xét kết quả là số vô hạn
-                    if(is_infinite($ketqua))
-                    {
-                        $ketqua="kết quả vượt qua giới hạn tính";
-                        return view('hoa.khoiluongchattan',compact('ketqua','a','b'));
-                    }
-                    else{
-                        return view('hoa.khoiluongchattan',compact('ketqua','a','b'));
-                    }
-
-            }
-            else{
-                $ketqua="nhập mhh với Vdd";
-                return view('hoa.khoiluongchattan',compact('ketqua','a'));
-            }
-        }
-        else{
-            $ketqua="nhập C&#37;";
-            return view('hoa.khoiluongchattan',compact('ketqua'));
-        }
-    }
-
-
-
-
     
-
 
    
 }
