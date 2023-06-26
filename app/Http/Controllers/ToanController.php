@@ -855,34 +855,28 @@ public function thetichhinhtru(){
     return view('toan.thetichhinhtru');
 }
 public function tinhthetichhinhtru(Request $request){
-    //xét biến $a có phải là một số hữu hạn và lơn hơn 0
-    if(is_numeric($_POST['a']) && is_finite($_POST['a'])&& $_POST['a']> 0){
-        $a=$_POST['a'];
-         //xét biến $b có phải là một số hữu hạn và lơn hơn 0
-        if(is_numeric($_POST['b'])&& is_finite($_POST['b'])&& $_POST['b']> 0){
-            $b=$_POST['b'];
-            
-                //tính kết quả
-                $ketqua=3.14*pow($a,2)*$b;
-                //xét kết quả là số vô hạn
-                if(is_infinite($ketqua))
-                {
-                    $ketqua="kết quả vượt qua giới hạn tính";
-                    return view('toan.thetichhinhtru',compact('ketqua','a','b'));
-                }
-                else{
-                    return view('toan.thetichhinhtru',compact('ketqua','a','b'));
-                }
-           
-        }
-        else{
-            $ketqua="nhập h";
-            return view('toan.thetichhinhtru',compact('ketqua','a'));
-        }
+    $request->validate([
+        'a'=>'required|numeric|min:0.00000000000000000000001',
+        'b'=>'required|numeric|min:0.00000000000000000000001',
+    ],[
+        'a.required'=>'r bắt buộc phải nhập',
+        'a.numeric'=>'r điện buộc phải là số',
+        'a.min'=>'r phải lớn hơn 0.00000000000000000000001',
+        'b.required'=>'h bắt buộc phải nhập',
+        'b.numeric'=>'h bắt buộc phải là số',
+        'b.min'=>'h phải lớn hơn 0.00000000000000000000001',
+    ]);
+    $a=$_POST['a'];
+    $b=$_POST['b'];
+    //tính kết quả
+    $ketqua=3.14*pow($a,2)*$b;
+    //xét kết quả là số vô hạn
+    if(is_infinite($ketqua)){
+        $ketqua="kết quả vượt qua giới hạn tính";
+        return view('toan.thetichhinhtru',compact('ketqua','a','b'));
     }
     else{
-        $ketqua="nhập r";
-        return view('toan.thetichhinhtru',compact('ketqua'));
+        return view('toan.thetichhinhtru',compact('ketqua','a','b'));
     }
 }
 
