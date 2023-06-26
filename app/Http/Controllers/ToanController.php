@@ -477,6 +477,33 @@ public function tinhchuvihinhchunhat(Request $request){
        
 }
 
+     //chu vi tu giác
+     public function chuvihinhvuong(){
+        return view('toan.chuvihinhvuong');
+    }
+    public function tinhchuvihinhvuong(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+           
+        ],[
+            'a.required'=>'a bắt buộc phải nhập',
+            'a.numeric'=>'a điện buộc phải là số',
+            'a.min'=>'a phải lớn hơn 0.00000000000000000000001',
+            
+        ]);
+        $a=$_POST['a'];
+       
+        //tính kết quả
+        $ketqua = 4*$a;
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('toan.chuvihinhvuong',compact('ketqua','a'));
+        }
+        else{
+        return view('toan.chuvihinhvuong',compact('ketqua','a'));
+        }
+        
+    }
 
     //Tính thể tích hình trụ
 public function thetichhinhtru(){

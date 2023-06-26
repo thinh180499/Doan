@@ -146,7 +146,7 @@ Route::prefix('/toan')->group(function () {
     // Tam giác
     Route::get('canhtamgiac', [ToanController::class, 'canhtamgiac'])->name('toan.canhtamgiac');
     Route::post('canhtamgiac', [ToanController::class, 'tinhcanhtamgiac']);
-    
+
     Route::get('chuvitamgiac', [ToanController::class, 'chuvitamgiac'])->name('toan.chuvitamgiac');
     Route::post('chuvitamgiac', [ToanController::class, 'tinhchuvitamgiac']);
 
@@ -162,6 +162,9 @@ Route::prefix('/toan')->group(function () {
 
     Route::get('chuvihinhchunhat', [ToanController::class, 'chuvihinhchunhat'])->name('toan.chuvihinhchunhat');
     Route::post('chuvihinhchunhat', [ToanController::class, 'tinhchuvihinhchunhat']);
+
+    Route::get('chuvihinhvuong', [ToanController::class, 'chuvihinhvuong'])->name('toan.chuvihinhvuong');
+    Route::post('chuvihinhvuong', [ToanController::class, 'tinhchuvihinhvuong']);
 
     // Hình khối
     Route::get('thetichhinhtru', [ToanController::class, 'thetichhinhtru'])->name('toan.thetichhinhtru');
