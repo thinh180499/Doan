@@ -41,7 +41,7 @@
 
                             <div class="col mb-4">
                                 <label class="lb" for="ptbac2-b">Hệ số bậc 1, b</label>
-                                <input type="number" id="ptbac2-b" name="b" placeholder="Nhập n"
+                                <input type="number" id="ptbac2-b" name="b" placeholder="Nhập b"
                                     class="input" step="any" value="{{ isset($b)&&is_numeric($b) ? $b:old('b') }}" />
                                 @error('b')
                                     <span style="color: red;">{{$message}}</span>
@@ -51,7 +51,7 @@
 
                             <div class="col mb-4">
                                 <label class="lb" for="ptbac2-c">Hệ số tự do, c</label>
-                                <input type="number" id="ptbac2-c" name="c" placeholder="Nhập m"
+                                <input type="number" id="ptbac2-c" name="c" placeholder="Nhập c"
                                     class="input" step="any" value="{{ isset($c)&&is_numeric($c) ? $c:old('c') }}" />
                                 @error('c')
                                     <span style="color: red;">{{$message}}</span>

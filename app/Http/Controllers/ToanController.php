@@ -72,6 +72,40 @@ class ToanController extends Controller
                 
     }
 
+    //lũy thừa một tích
+    public function luythuacuamottich(){
+        return view('toan.luythuacuamottich');
+    }
+    public function tinhluythuacuamottich(Request $request){
+        $request->validate([
+            'a'=>'required|numeric',
+            'b'=>'required|numeric',
+            'c'=>'required|numeric',
+            ],[
+            'a.required'=>'a bắt buộc phải nhập',
+            'a.numeric'=>'a buộc phải là số',
+            'b.required'=>'b bắt buộc phải nhập',
+            'b.numeric'=>'b bắt buộc phải là số',
+            'c.required'=>'n bắt buộc phải nhập',
+            'c.numeric'=>'n bắt buộc phải là số',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        $c=$_POST['c'];
+        //tính kết quả
+        $ketqua=pow(($a*$b),$c);
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('toan.luythuacuamottich',compact('ketqua','a','b','c'));
+        }
+        else{
+            return view('toan.luythuacuamottich',compact('ketqua','a','b','c'));
+        }
+               
+    }
+
+
     //Tính tích của hai lũy thừa với cùng một cơ số:a^n*a^m
     public function tichcuahailuythuacungcoso(){
         return view('toan.tichcuahailuythuacungcoso');
@@ -145,39 +179,7 @@ class ToanController extends Controller
 
 
 
-    //lũy thừa một tích
-    public function luythuacuamottich(){
-        return view('toan.luythuacuamottich');
-    }
-    public function tinhluythuacuamottich(Request $request){
-        $request->validate([
-            'a'=>'required|numeric',
-            'b'=>'required|numeric',
-            'c'=>'required|numeric',
-            ],[
-            'a.required'=>'a bắt buộc phải nhập',
-            'a.numeric'=>'a buộc phải là số',
-            'b.required'=>'n bắt buộc phải nhập',
-            'b.numeric'=>'n bắt buộc phải là số',
-            'c.required'=>'m bắt buộc phải nhập',
-            'c.numeric'=>'m bắt buộc phải là số',
-        ]);
-        $a=$_POST['a'];
-        $b=$_POST['b'];
-        $c=$_POST['c'];
-        //tính kết quả
-        $ketqua=pow(($a*$b),$c);
-        //xét kết quả là số vô hạn
-        if(is_infinite($ketqua)){
-            $ketqua="kết quả vượt qua giới hạn tính";
-            return view('toan.luythuacuamottich',compact('ketqua','a','b','c'));
-        }
-        else{
-            return view('toan.luythuacuamottich',compact('ketqua','a','b','c'));
-        }
-               
-    }
-
+    
 
 //lũy thừa cua một lũy thừa
 public function luythuacuamotluythua(){

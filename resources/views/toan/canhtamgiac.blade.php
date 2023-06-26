@@ -18,7 +18,7 @@
                         <div class="row justify-content-center">
                             <div class="col-auto border rounded-lg p-3 d-flex align-items-center">
                                 <div class="mr-5">
-                                    <span>a2=b2+c2</span>
+                                    <span>a<sup>2</sup>=b<sup>2</sup>+c<sup>2</sup></span>
                                 </div>
                                 
                             </div>
@@ -49,7 +49,7 @@
                             <div class="col d-flex align-items-center mb-4">
                                 <button class="btn btn-primary me-5 py-0 px-4 calculate" type="submit">=</button>
                                 <span>
-                                {!! isset($ketqua)?$ketqua:false !!}
+                                {!! isset($ketqua)?"a=".$ketqua:false !!}
                                 </span>
                             </div>
                         </div>

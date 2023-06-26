@@ -48,8 +48,8 @@
                             </div>
 
                             <div class="col mb-4">
-                                <label class="lb" for="thetichdungdich">n</label>
-                                <input type="number" id="thetichdungdich" name="b" placeholder="Nhập n"
+                                <label class="lb" for="thetichdungdich">b</label>
+                                <input type="number" id="thetichdungdich" name="b" placeholder="Nhập b"
                                     class="input" step="any" value="{{ isset($b)&&is_numeric($b) ? $b:old('b') }}" />
                                 @error('b')
                                     <span style="color: red;">{{$message}}</span>
@@ -58,8 +58,8 @@
                             </div>
 
                             <div class="col mb-4">
-                                <label class="lb" for="thetichdungdich">m</label>
-                                <input type="number" id="thetichdungdich" name="c" placeholder="Nhập m"
+                                <label class="lb" for="thetichdungdich">n</label>
+                                <input type="number" id="thetichdungdich" name="c" placeholder="Nhập n"
                                     class="input" step="any" value="{{ isset($c)&&is_numeric($c) ? $c:old('c') }}" />
                                 @error('c')
                                     <span style="color: red;">{{$message}}</span>
