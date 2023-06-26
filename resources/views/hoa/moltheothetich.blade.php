@@ -5,14 +5,14 @@
     <div class="row mt-5">
         <div class="col">
             <div class="card-style cardform">
-                <h2>tính số mol theo khối lượng:</h2>
+                <h2>tính số mol theo thể tích:</h2>
                 @if ($errors->any())
                 <h2 style="color: red;">
                     vui lòng kiểm tra lại dữ liệu
                 </h2>
                  @endif
         
-                <form action="moltheokhoiluong" method="post">
+                <form action="moltheothetich" method="post">
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
                     <div class="container-fluid mt-4 mb-4">
@@ -22,9 +22,9 @@
                                     <span>n = </span>
                                 </div>
                                 <div>
-                                    <span>m</span>
+                                    <span>V</span>
                                     <hr>
-                                    <span>M</span>
+                                    <span>22,4</span>
                                 </div>
                             </div>
                         </div>

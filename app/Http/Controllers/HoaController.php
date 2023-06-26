@@ -15,12 +15,12 @@ class HoaController extends Controller
             'a'=>'required|numeric|min:0.00000000000000000000001',
             'b'=>'required|numeric|min:0.00000000000000000000001',
         ],[
-            'a.required'=>'a bắt buộc phải nhập',
-            'a.numeric'=>'a điện buộc phải là số',
-            'a.min'=>'a phải lớn hơn 0.00000000000000000000001',
-            'b.required'=>'b bắt buộc phải nhập',
-            'b.numeric'=>'b bắt buộc phải là số',
-            'b.min'=>'b phải lớn hơn 0.00000000000000000000001',
+            'a.required'=>'m bắt buộc phải nhập',
+            'a.numeric'=>'m điện buộc phải là số',
+            'a.min'=>'m phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'M bắt buộc phải nhập',
+            'b.numeric'=>'M bắt buộc phải là số',
+            'b.min'=>'M phải lớn hơn 0.00000000000000000000001',
         ]);
         $a=$_POST['a'];
         $b=$_POST['b'];
@@ -37,37 +37,58 @@ class HoaController extends Controller
     }
 
 
+//Tính số mol theo khối lượng
+public function moltheothetich(){
+    return view('hoa.moltheothetich');
+}
+public function tinhmoltheothetich(Request $request){
+    $request->validate([
+        'a'=>'required|numeric|min:0.00000000000000000000001',
+    ],[
+        'a.required'=>'m bắt buộc phải nhập',
+        'a.numeric'=>'m điện buộc phải là số',
+        'a.min'=>'m phải lớn hơn 0.00000000000000000000001',
+    ]);
+    $a=$_POST['a'];
+   
+    (float)$ketqua=$a/22.4;
+    //xét kết quả là số vô hạn
+    if(is_infinite($ketqua)){
+        $ketqua="kết quả vượt qua giới hạn tính";
+        return view('hoa.moltheothetich',compact('ketqua','a'));
+    }
+    else{
+        return view('hoa.moltheothetich',compact('ketqua','a'));
+    }
+}
+
+
+
     //Tính số mol theo nồng độ mol và thể tích dung dịch
     public function moltheonongdomolvathetichdungdich(){
         return view('hoa.moltheonongdomolvathetichdungdich');
     }
-    public function tinhmoltheonongdomolvathetichdungdich(){
-         //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
-        if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
-            $a=$_POST['a'];
-             //xét biến $b có phải là một số lớn hơn 0 và hữu hạn
-            if($_POST['b'] && is_finite($_POST['b']) && $_POST['b']>0){
-                $b=$_POST['b'];
-                //tính kết quả
-                $ketqua=$a*$b;
-                //xét kết quả là số vô hạn
-                if(is_infinite($ketqua))
-                {
-                    $ketqua="kết quả vượt qua giới hạn tính";
-                    return view('hoa.moltheonongdomolvathetichdungdich',compact('ketqua','a','b'));
-                }
-                else{
-                    return view('hoa.moltheonongdomolvathetichdungdich',compact('ketqua','a','b'));
-                }
-            }
-            else{
-                $ketqua="nhập V<sub>dd</sub>";
-                return view('hoa.moltheonongdomolvathetichdungdich',compact('ketqua','a'));
-            }
+    public function tinhmoltheonongdomolvathetichdungdich(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'V bắt buộc phải nhập',
+            'a.numeric'=>'V điện buộc phải là số',
+            'a.min'=>'V phải lớn hơn 0.00000000000000000000001',
+
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        //tính kết quả
+        $ketqua=$a*$b;
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('hoa.moltheonongdomolvathetichdungdich',compact('ketqua','a','b'));
         }
         else{
-            $ketqua="nhập C<sub>M</sub>";
-               return view('hoa.moltheonongdomolvathetichdungdich',compact('ketqua'));
+            return view('hoa.moltheonongdomolvathetichdungdich',compact('ketqua','a','b'));
         }
     }
 
@@ -76,7 +97,7 @@ class HoaController extends Controller
     public function khoiluongchat(){
         return view('hoa.khoiluongchat');
     }
-    public function tinhkhoiluongchat(){
+    public function tinhkhoiluongchat(Request $request){
          //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
         if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
             $a=$_POST['a'];
@@ -111,7 +132,7 @@ class HoaController extends Controller
     public function thetichdungdichtheonongdomol(){
         return view('hoa.thetichdungdichtheonongdomol');
     }
-    public function tinhthetichdungdichtheonongdomol(){
+    public function tinhthetichdungdichtheonongdomol(Request $request){
             //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
         if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
             $a=$_POST['a'];
@@ -155,7 +176,7 @@ class HoaController extends Controller
     public function thetichdungdichtheokhoiluongdungdich(){
         return view('hoa.thetichdungdichtheokhoiluongdungdich');
     }
-    public function tinhthetichdungdichtheokhoiluongdungdich(){
+    public function tinhthetichdungdichtheokhoiluongdungdich(Request $request){
             //xét biến $a có phải là một số lớn hơn 0 và hữu hạn
         if(is_numeric($_POST['a']) && is_finite($_POST['a']) && $_POST['a']>0){
             $a=$_POST['a'];
@@ -199,7 +220,7 @@ class HoaController extends Controller
      public function phantramkhoiluongchata(){
         return view('hoa.phantramkhoiluongchata');
     }
-    public function tinhphantramkhoiluongchata(){
+    public function tinhphantramkhoiluongchata(Request $request){
         //xét biến $a có phải là một số hữu hạn
         if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
             $a=$_POST['a'];
@@ -236,7 +257,7 @@ class HoaController extends Controller
     public function khoiluongchattan(){
         return view('hoa.khoiluongchattan');
     }
-    public function tinhkhoiluongchattan(){
+    public function tinhkhoiluongchattan(Request $request){
         //xét biến $a có phải là một số hữu hạn
         if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
             $a=$_POST['a'];
@@ -273,7 +294,7 @@ class HoaController extends Controller
      public function nongdophantramtheokhoiluongchattan(){
         return view('hoa.nongdophantramtheokhoiluongchattan');
     }
-    public function tinhnongdophantramtheokhoiluongchattan(){
+    public function tinhnongdophantramtheokhoiluongchattan(Request $request){
         //xét biến $a có phải là một số hữu hạn
         if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
             $a=$_POST['a'];
@@ -308,7 +329,7 @@ class HoaController extends Controller
       public function moltheonongdophantramvakhoiluongdungdich(){
         return view('hoa.moltheonongdophantramvakhoiluongdungdich');
     }
-    public function tinhmoltheonongdophantramvakhoiluongdungdich(){
+    public function tinhmoltheonongdophantramvakhoiluongdungdich(Request $request){
         //xét biến $a có phải là một số hữu hạn
         if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
             $a=$_POST['a'];
@@ -384,7 +405,7 @@ class HoaController extends Controller
     public function nongdomolmoltheonongdophantram(){
         return view('hoa.nongdomolmoltheonongdophantram');
     }
-    public function tinhnongdomolmoltheonongdophantram(){
+    public function tinhnongdomolmoltheonongdophantram(Request $request){
         //xét biến $a có phải là một số hữu hạn
         if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
             $a=$_POST['a'];
@@ -427,7 +448,7 @@ class HoaController extends Controller
     public function nongdophantramtheonongdomol(){
         return view('hoa.nongdophantramtheonongdomol');
     }
-    public function tinhnongdophantramtheonongdomol(){
+    public function tinhnongdophantramtheonongdomol(Request $request){
         //xét biến $a có phải là một số hữu hạn
         if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
             $a=$_POST['a'];
