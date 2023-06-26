@@ -163,6 +163,7 @@
                 <li><a href="<?php echo route('toan.thetichhinhlapphuong'); ?>">thể tích hình lập phương</a></li>
                 <li><a href="<?php echo route('toan.dientichxungquanghinhtru'); ?>">diện tích xung quanh hình trụ</a></li>
                 <li><a href="<?php echo route('toan.thetichhinhtru'); ?>">thể tích hình trụ</a></li>
+                <li><a href="<?php echo route('toan.dientichhinhnon'); ?>">diện tích xung quanh hình nón</a></li>
                 <li><a href="<?php echo route('toan.thetichhinhnon'); ?>">thể tích hình nón</a></li>
                 <li><a href="<?php echo route('toan.thetichhinhcau'); ?>">thể tích hình cầu</a></li>
                 <li><a href="<?php echo route('toan.dientichmatcau'); ?>">diện tích mặt cầu cầu</a></li>
