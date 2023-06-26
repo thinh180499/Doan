@@ -124,11 +124,12 @@
                 <li><a href="<?php echo route('toan.chuvitamgiac'); ?>">chu vi tam giác</a></li>
                 <li><a href="<?php echo route('toan.dientichtamgiac'); ?>">diện tích tam giác</a></li>
                 <li><a href="<?php echo route('toan.duongcaotamgiac'); ?>">đường cao của một tam giác</a></li>
+                <li><a href="<?php echo route('toan.chuvitugiac'); ?>">chu vi tứ giác</a></li>
+                <li><a href="<?php echo route('toan.chuvihinhchunhat'); ?>">chu vi hình chữ nhật</a></li>
                 <li><a href="<?php echo route('toan.thetichhinhtru'); ?>">thể tích hình trụ</a></li>
                 <li><a href="<?php echo route('toan.thetichhinhnon'); ?>">thể tích hình nón</a></li>
                 <li><a href="<?php echo route('toan.thetichhinhcau'); ?>">thể tích hình cầu</a></li>
                 <li><a href="<?php echo route('toan.dientichmatcau'); ?>">diện tích mặt cầu cầu</a></li>
-                <li><a href="<?php echo route('toan.chuvihinhchunhat'); ?>">chu vi hình chữ nhật</a></li>
             </ul>
           </li>
 
