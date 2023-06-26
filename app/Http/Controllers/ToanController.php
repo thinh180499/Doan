@@ -477,7 +477,7 @@ public function tinhchuvihinhchunhat(Request $request){
        
 }
 
-     //chu vi tu giác
+     //chu vi hinh vuông
      public function chuvihinhvuong(){
         return view('toan.chuvihinhvuong');
     }
@@ -504,6 +504,39 @@ public function tinhchuvihinhchunhat(Request $request){
         }
         
     }
+
+//diện tích hình chữ nhật
+public function dientichhinhchunhat(){
+    return view('toan.dientichhinhchunhat');
+}
+public function tinhcdientichhinhchunhat(Request $request){
+    $request->validate([
+        'a'=>'required|numeric|min:0.00000000000000000000001',
+        'b'=>'required|numeric|min:0.00000000000000000000001',
+        
+    ],[
+        'a.required'=>'a bắt buộc phải nhập',
+        'a.numeric'=>'a điện buộc phải là số',
+        'a.min'=>'a phải lớn hơn 0.00000000000000000000001',
+        'b.required'=>'b bắt buộc phải nhập',
+        'b.numeric'=>'b bắt buộc phải là số',
+        'b.min'=>'b phải lớn hơn 0.00000000000000000000001',
+    ]);
+    $a=$_POST['a'];
+    $b=$_POST['b'];
+    //tính kết quả
+    $ketqua=2*($a+$b);
+    //xét kết quả là số vô hạn
+    if(is_infinite($ketqua)){
+        $ketqua="kết quả vượt qua giới hạn tính";
+        return view('toan.dientichhinhchunhat',compact('ketqua','a','b'));
+    }
+    else{
+        return view('toan.dientichhinhchunhat',compact('ketqua','a','b'));
+    }
+       
+}
+
 
     //Tính thể tích hình trụ
 public function thetichhinhtru(){
