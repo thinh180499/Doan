@@ -331,6 +331,29 @@
   <script src="{{ asset('assets/js/world-merc.js') }}"></script>
   <script src="{{ asset('assets/js/polyfill.js') }}"></script>
   <script src="{{ asset('assets/js/main.js') }}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var currentPath = window.location.pathname;
+        var anchors = document.querySelectorAll('.collapse.dropdown-nav li > a');
+
+        // Iterate over each anchor and compare the route with the current URL path
+        anchors.forEach(function(anchor) {
+            var href = anchor.getAttribute('href');
+            var route = href.split('/').pop();
+            var currentRoute = currentPath.split('/').pop();
+            if (currentRoute === route) {
+                anchor.classList.add('active');
+                var parentUl = anchor.parentNode.parentNode;
+                parentUl.classList.add('show');
+                var outermostAnchor = parentUl.parentNode.querySelector('a[data-bs-toggle="collapse"]');
+                if (outermostAnchor) {
+                    outermostAnchor.setAttribute('aria-expanded', 'true');
+                    outermostAnchor.classList.remove('collapsed');
+                }
+            }
+        });
+    });
+  </script>
 </body>
 
 </html>
