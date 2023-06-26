@@ -148,6 +148,7 @@
                 <li><a href="<?php echo route('toan.luythuacuamotluythua'); ?>">lũy thừa của một lũy thừa</a></li>
 
                 {{-- Phương trình --}}
+                <li><a href="<?php echo route('toan.phuongtrinhbacnhat'); ?>">phương trình bậc 1</a></li>
                 <li><a href="<?php echo route('toan.batphuongtrinhbacnhatmotan'); ?>">bất phương trình bậc nhất 1 ẩn</a></li>
                 <li><a href="<?php echo route('toan.phuongtrinhbachai'); ?>">phương trình bậc 2</a></li>
 

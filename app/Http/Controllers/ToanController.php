@@ -214,6 +214,10 @@ public function tinhluythuacuamotluythua(Request $request){
 }
 
     //phương trình bậc 1
+    public function phuongtrinhbacnhat(){
+        return view('toan.phuongtrinhbacnhat');
+    }
+    //bất phương trình bậc 1 một ẩn
     public function batphuongtrinhbacnhatmotan(){
         return view('toan.batphuongtrinhbacnhatmotan');
     }
