@@ -537,7 +537,7 @@ public function tinhcdientichhinhchunhat(Request $request){
        
 }
 
- //dientich hinh vuông
+ //diện tích hình vuông
  public function dientichhinhvuong(){
     return view('toan.dientichhinhvuong');
 }
@@ -561,6 +561,62 @@ public function tinhdientichhinhvuong(Request $request){
     }
     else{
     return view('toan.dientichhinhvuong',compact('ketqua','a'));
+    }
+    
+}
+
+ //chu vi hình tròn
+ public function chuvihinhtron(){
+    return view('toan.chuvihinhtron');
+}
+public function tinhchuvihinhtron(Request $request){
+    $request->validate([
+        'a'=>'required|numeric|min:0.00000000000000000000001',
+       
+    ],[
+        'a.required'=>'bán kính R bắt buộc phải nhập',
+        'a.numeric'=>'bán kính R điện buộc phải là số',
+        'a.min'=>'bán kính R phải lớn hơn 0.00000000000000000000001',
+        
+    ]);
+    $a=$_POST['a'];
+   
+    //tính kết quả
+    $ketqua = 2*$a*3.14;
+    if(is_infinite($ketqua)){
+        $ketqua="kết quả vượt qua giới hạn tính";
+        return view('toan.chuvihinhtron',compact('ketqua','a'));
+    }
+    else{
+    return view('toan.chuvihinhtron',compact('ketqua','a'));
+    }
+    
+}
+
+//diện tích hình tròn
+public function dientichhinhtron(){
+    return view('toan.dientichhinhtron');
+}
+public function tinhdientichhinhtron(Request $request){
+    $request->validate([
+        'a'=>'required|numeric|min:0.00000000000000000000001',
+       
+    ],[
+        'a.required'=>'bán kính R bắt buộc phải nhập',
+        'a.numeric'=>'bán kính R điện buộc phải là số',
+        'a.min'=>'bán kính R phải lớn hơn 0.00000000000000000000001',
+        
+    ]);
+    $a=$_POST['a'];
+   
+    //tính kết quả
+    $ketqua = pow($a,2)*3.14;
+    if(is_infinite($ketqua)){
+        $ketqua="kết quả vượt qua giới hạn tính";
+        return view('toan.dientichhinhtron',compact('ketqua','a'));
+    }
+    else{
+    return view('toan.dientichhinhtron',compact('ketqua','a'));
     }
     
 }

@@ -150,6 +150,9 @@
                 <li><a href="<?php echo route('toan.dientichhinhchunhat'); ?>">diện tích hình chữ nhật</a></li>
                 <li><a href="<?php echo route('toan.dientichhinhvuong'); ?>">diện tích hình vuông</a></li>
 
+                {{--hình tròn--}}
+                <li><a href="<?php echo route('toan.chuvihinhtron'); ?>">chu vi hình tròn</a></li>
+
                 {{-- Hỉnh khối --}}
                 <li><a href="<?php echo route('toan.thetichhinhtru'); ?>">thể tích hình trụ</a></li>
                 <li><a href="<?php echo route('toan.thetichhinhnon'); ?>">thể tích hình nón</a></li>

@@ -172,6 +172,11 @@ Route::prefix('/toan')->group(function () {
     Route::get('dientichhinhvuong', [ToanController::class, 'dientichhinhvuong'])->name('toan.dientichhinhvuong');
     Route::post('dientichhinhvuong', [ToanController::class, 'tinhdientichhinhvuong']);
 
+    // Hình tròn
+    Route::get('chuvihinhtron', [ToanController::class, 'chuvihinhtron'])->name('toan.chuvihinhtron');
+    Route::post('chuvihinhtron', [ToanController::class, 'tinhchuvihinhtron']);
+
+
     // Hình khối
     Route::get('thetichhinhtru', [ToanController::class, 'thetichhinhtru'])->name('toan.thetichhinhtru');
     Route::post('thetichhinhtru', [ToanController::class, 'tinhthetichhinhtru']);
