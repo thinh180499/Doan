@@ -920,63 +920,33 @@ public function thetichhinhnon(){
     return view('toan.thetichhinhnon');
 }
 public function tinhthetichhinhnon(Request $request){
-    //xét biến $a có phải là một số hữu hạn và lơn hơn 0
-    if(is_numeric($_POST['a']) && is_finite($_POST['a'])&& $_POST['a']> 0){
-        $a=$_POST['a'];
-         //xét biến $b có phải là một số hữu hạn và lơn hơn 0
-        if(is_numeric($_POST['b'])&& is_finite($_POST['b'])&& $_POST['b']> 0){
-            $b=$_POST['b'];
+    $request->validate([
+        'a'=>'required|numeric|min:0.00000000000000000000001',
+        'b'=>'required|numeric|min:0.00000000000000000000001',
+    ],[
+        'a.required'=>'r bắt buộc phải nhập',
+        'a.numeric'=>'r điện buộc phải là số',
+        'a.min'=>'r phải lớn hơn 0.00000000000000000000001',
+        'b.required'=>'h bắt buộc phải nhập',
+        'b.numeric'=>'h bắt buộc phải là số',
+        'b.min'=>'h phải lớn hơn 0.00000000000000000000001',
+    ]);
+    $a=$_POST['a'];
+    $b=$_POST['b'];
             
-                //tính kết quả
-                $ketqua=(1/3)*3.14*pow($a,2)*$b;
-                //xét kết quả là số vô hạn
-                if(is_infinite($ketqua))
-                {
-                    $ketqua="kết quả vượt qua giới hạn tính";
-                    return view('toan.thetichhinhnon',compact('ketqua','a','b'));
-                }
-                else{
-                    return view('toan.thetichhinhnon',compact('ketqua','a','b'));
-                }
+    //tính kết quả
+    $ketqua=(1/3)*3.14*pow($a,2)*$b;
+    //xét kết quả là số vô hạn
+    if(is_infinite($ketqua))
+    {
+        $ketqua="kết quả vượt qua giới hạn tính";
+        return view('toan.thetichhinhnon',compact('ketqua','a','b'));
+    }
+    else{
+        return view('toan.thetichhinhnon',compact('ketqua','a','b'));
+    }
            
-        }
-        else{
-            $ketqua="nhập h";
-            return view('toan.thetichhinhnon',compact('ketqua','a'));
-        }
-    }
-    else{
-        $ketqua="nhập r";
-        return view('toan.thetichhinhnon',compact('ketqua'));
-    }
-}
-
-
-//Tính thể tích hình cầu
-public function thetichhinhcau(){
-    return view('toan.thetichhinhcau');
-}
-public function tinhthetichhinhcau(Request $request){
-    //xét biến $a có phải là một số hữu hạn và lơn hơn 0
-    if(is_numeric($_POST['a']) && is_finite($_POST['a'])&& $_POST['a']> 0){
-        $a=$_POST['a'];
         
-                //tính kết quả
-                $ketqua=(4/3)*3.14*pow($a,3);
-                //xét kết quả là số vô hạn
-                if(is_infinite($ketqua))
-                {
-                    $ketqua="kết quả vượt qua giới hạn tính";
-                    return view('toan.thetichhinhcau',compact('ketqua','a'));
-                }
-                else{
-                    return view('toan.thetichhinhcau',compact('ketqua','a'));
-                }
-            }
-    else{
-        $ketqua="nhập R";
-        return view('toan.thetichhinhcau',compact('ketqua'));
-    }
 }
 
 
@@ -986,30 +956,58 @@ public function dientichmatcau(){
     return view('toan.dientichmatcau');
 }
 public function tinhdientichmatcau(Request $request){
-    //xét biến $a có phải là một số hữu hạn và lơn hơn 0
-    if(is_numeric($_POST['a']) && is_finite($_POST['a'])&& $_POST['a']> 0){
-        $a=$_POST['a'];
+    $request->validate([
+        'a'=>'required|numeric|min:0.00000000000000000000001',
+       
+    ],[
+        'a.required'=>'bán kính R bắt buộc phải nhập',
+        'a.numeric'=>'bán kính R điện buộc phải là số',
+        'a.min'=>'bán kính R phải lớn hơn 0.00000000000000000000001',
         
-                //tính kết quả
-                $ketqua=(4)*3.14*pow($a,2);
-                //xét kết quả là số vô hạn
-                if(is_infinite($ketqua))
-                {
-                    $ketqua="kết quả vượt qua giới hạn tính";
-                    return view('toan.dientichmatcau',compact('ketqua','a'));
-                }
-                else{
-                    return view('toan.dientichmatcau',compact('ketqua','a'));
-                }
-            }
-    else{
-        $ketqua="nhập R";
-        return view('toan.dientichmatcau',compact('ketqua'));
+    ]);
+    $a=$_POST['a'];
+        
+    //tính kết quả
+    $ketqua=(4)*3.14*pow($a,2);
+    //xét kết quả là số vô hạn
+    if(is_infinite($ketqua)){
+        $ketqua="kết quả vượt qua giới hạn tính";
+        return view('toan.dientichmatcau',compact('ketqua','a'));
     }
+    else{
+        return view('toan.dientichmatcau',compact('ketqua','a'));
+    }
+           
 }
 
 
 
+//Tính thể tích hình cầu
+public function thetichhinhcau(){
+    return view('toan.thetichhinhcau');
+}
+public function tinhthetichhinhcau(Request $request){
+    $request->validate([
+        'a'=>'required|numeric|min:0.00000000000000000000001',
+       
+    ],[
+        'a.required'=>'bán kính R bắt buộc phải nhập',
+        'a.numeric'=>'bán kính R điện buộc phải là số',
+        'a.min'=>'bán kính R phải lớn hơn 0.00000000000000000000001',
+        
+    ]);
+    $a=$_POST['a'];
+    //tính kết quả
+    $ketqua=(4/3)*3.14*pow($a,3);
+    //xét kết quả là số vô hạn
+    if(is_infinite($ketqua)){
+        $ketqua="kết quả vượt qua giới hạn tính";
+        return view('toan.thetichhinhcau',compact('ketqua','a'));
+    }
+    else{
+        return view('toan.thetichhinhcau',compact('ketqua','a'));
+    }
+}
 
 }
 

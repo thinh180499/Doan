@@ -210,11 +210,13 @@ Route::prefix('/toan')->group(function () {
     Route::get('thetichhinhnon', [ToanController::class, 'thetichhinhnon'])->name('toan.thetichhinhnon');
     Route::post('thetichhinhnon', [ToanController::class, 'tinhthetichhinhnon']);
 
+    Route::get('dientichmatcau', [ToanController::class, 'dientichmatcau'])->name('toan.dientichmatcau');
+    Route::post('dientichmatcau', [ToanController::class, 'tinhdientichmatcau']);
+
     Route::get('thetichhinhcau', [ToanController::class, 'thetichhinhcau'])->name('toan.thetichhinhcau');
     Route::post('thetichhinhcau', [ToanController::class, 'tinhthetichhinhcau']);
 
-    Route::get('dientichmatcau', [ToanController::class, 'dientichmatcau'])->name('toan.dientichmatcau');
-    Route::post('dientichmatcau', [ToanController::class, 'tinhdientichmatcau']);
+   
 });
 
 
@@ -225,11 +227,17 @@ Route::prefix('/hoa')->group(function () {
     Route::get('moltheokhoiluong', [HoaController::class, 'moltheokhoiluong'])->name('hoa.moltheokhoiluong');
     Route::post('moltheokhoiluong', [HoaController::class, 'tinhmoltheokhoiluong']);
 
+    Route::get('moltheothetich', [HoaController::class, 'moltheothetich'])->name('hoa.moltheothetich');
+    Route::post('moltheothetich', [HoaController::class, 'tinhmoltheothetich']);
+
     Route::get('moltheonongdomolvathetichdungdich', [HoaController::class, 'moltheonongdomolvathetichdungdich'])->name('hoa.moltheonongdomolvathetichdungdich');
     Route::post('moltheonongdomolvathetichdungdich', [HoaController::class, 'tinhmoltheonongdomolvathetichdungdich']);
 
     Route::get('moltheonongdophantramvakhoiluongdungdich', [HoaController::class, 'moltheonongdophantramvakhoiluongdungdich'])->name('hoa.moltheonongdophantramvakhoiluongdungdich');
     Route::post('moltheonongdophantramvakhoiluongdungdich', [HoaController::class, 'tinhmoltheonongdophantramvakhoiluongdungdich']);
+
+    Route::get('moltheonongdophantramvathetichdungdich', [HoaController::class, 'moltheonongdophantramvathetichdungdich'])->name('hoa.moltheonongdophantramvathetichdungdich');
+    Route::post('moltheonongdophantramvathetichdungdich', [HoaController::class, 'tinhmoltheonongdophantramvathetichdungdich']);
 
 
     // Tính nồng độ phần trăm theo ...

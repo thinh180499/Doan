@@ -4,8 +4,12 @@
     <div class="row mt-5">
         <div class="col">
             <div class="card-style cardform">
-                <h2>Tính khối lượng chất (C<sub>M</sub>)</h2>
-
+                <h2>Tính khối lượng chất </h2>
+                @if ($errors->any())
+                <h2 style="color: red;">
+                    vui lòng kiểm tra lại dữ liệu
+                </h2>
+                 @endif
                 <form action="khoiluongchat" method="post">
 
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
@@ -25,43 +29,27 @@
                             <div class="col mb-4">
                                 <label class="lb" for="somol">n</label>
                                 <input type="number" id="somol" name="a" placeholder="Nhập số mol"
-                                    class="input" step="any" value="<?php
-                                    if (isset($a)) {
-                                        if (is_numeric($a)) {
-                                            echo $a;
-                                        } else {
-                                            false;
-                                        }
-                                    } else {
-                                        false;
-                                    } ?>" />
+                                    class="input" step="any" value="{{ isset($a)&&is_numeric($a) ? $a:old('a')}}" />
+                                    @error('a')
+                                        <span style="color: red;">{{$message}}</span>
+                                    @enderror
                             </div>
 
                             <div class="col mb-4">
                                 <label class="lb" for="khoiluongmol">M</label>
                                 <input type="number" id="khoiluongmol" name="b"
                                     placeholder="Nhập khối lượng mol" class="input" step="any"
-                                    value="<?php
-                                    if (isset($b)) {
-                                        if (is_numeric($b)) {
-                                            echo $b;
-                                        } else {
-                                            false;
-                                        }
-                                    } else {
-                                        false;
-                                    } ?>" />
+                                    value="{{ isset($b)&&is_numeric($b) ? $b:old('b')}}" />
+                                    @error('b')
+                                        <span style="color: red;">{{$message}}</span>
+                                    @enderror
                             </div>
                         </div>
 
                             <div class="col d-flex align-items-center mb-4">
                                 <button class="btn btn-primary me-5 py-0 px-4 calculate" type="submit">=</button>
                             <span>
-                                <?php if (isset($ketqua)) {
-                                    echo $ketqua;
-                                } else {
-                                    false;
-                                } ?>
+                            {!! isset($ketqua)?$ketqua:false !!}
                             </span>
                         </div>
                     </div>
