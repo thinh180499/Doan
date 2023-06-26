@@ -10,18 +10,29 @@ class HoaController extends Controller
     public function moltheokhoiluong(){
         return view('hoa.moltheokhoiluong');
     }
-    public function tinhmoltheokhoiluong(){
-        if(isset($_POST['='])&&($_POST['='])){
-            $a=$_POST['a'];
-            $b=$_POST['b'];
-            if($b==0){
-                $ketqua="nhập lại";
-                return view('hoa.moltheokhoiluong',compact('ketqua'));
-            }
-            else if($b!=0){
-                $ketqua=$a/$b;
-                return view('hoa.moltheokhoiluong',compact('ketqua','a','b'));
-            }
+    public function tinhmoltheokhoiluong(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'a bắt buộc phải nhập',
+            'a.numeric'=>'a điện buộc phải là số',
+            'a.min'=>'a phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'b bắt buộc phải nhập',
+            'b.numeric'=>'b bắt buộc phải là số',
+            'b.min'=>'b phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+       
+        (float)$ketqua=$a/$b;
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('hoa.moltheokhoiluong',compact('ketqua','a','b'));
+        }
+        else{
+            return view('hoa.moltheokhoiluong',compact('ketqua','a','b'));
         }
     }
 
