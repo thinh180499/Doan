@@ -73,10 +73,12 @@ public function tinhmoltheothetich(Request $request){
             'a'=>'required|numeric|min:0.00000000000000000000001',
             'b'=>'required|numeric|min:0.00000000000000000000001',
         ],[
-            'a.required'=>'V bắt buộc phải nhập',
-            'a.numeric'=>'V điện buộc phải là số',
-            'a.min'=>'V phải lớn hơn 0.00000000000000000000001',
-
+            'a.required'=>'nồng độ mol bắt buộc phải nhập',
+            'a.numeric'=>'nồng độ mol buộc phải là số',
+            'a.min'=>'nồng độ mol phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'thể tích dung dịch bắt buộc phải nhập',
+            'b.numeric'=>'thể tích dung dịch điện buộc phải là số',
+            'b.min'=>'thể tích dung dịch phải lớn hơn 0.00000000000000000000001',
         ]);
         $a=$_POST['a'];
         $b=$_POST['b'];
