@@ -6,6 +6,11 @@
             <div class="card-style cardform">
             
                 <h2>Chuyển đổi đơn vị độ dài</h2>
+                @if ($errors->any())
+                <h2 style="color: red;">
+                    vui lòng kiểm tra lại dữ liệu
+                </h2>
+                 @endif
                 <form action="dodai" method="post">
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                     <div class="container mt-5">
@@ -88,9 +93,9 @@
                                 <span>
                                     {{ !empty($ketqua) ? $ketqua : false }}
                                 </span>
-                                <span>
-                                    {{ !empty($thongbao) ? $thongbao : false }}
-                                </span>
+                                @error('a')
+                                        <span style="color: red;">{{$message}}</span>
+                                @enderror
                             </div>
                         </div>
 

@@ -13,9 +13,9 @@ class VatlyController extends Controller
         $request->validate([
             'a'=>'required|numeric|min:0.00000000000000000000001',
         ],[
-            'a.required'=>'m bắt buộc phải nhập',
-            'a.numeric'=>'m điện buộc phải là số',
-            'a.min'=>'m phải lớn hơn 0.00000000000000000000001',
+            'a.required'=>'độ dài bắt buộc phải nhập',
+            'a.numeric'=>'độ dài điện buộc phải là số',
+            'a.min'=>'độ dài phải lớn hơn 0.00000000000000000000001',
         ]);
         $a=$_POST['a'];
             $i=$_POST['i'];
