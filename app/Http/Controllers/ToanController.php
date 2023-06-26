@@ -657,6 +657,41 @@ public function tinhdientichxungquanghinhhopchunhat(Request $request){
     
 }
 
+//diện tích toand phan hình hộp chữ nhật
+public function dientichtoanphanhinhhopchunhat(){
+    return view('toan.dientichtoanphanhinhhopchunhat');
+}
+public function tinhdientichtoanphanhinhhopchunhat(Request $request){
+    $request->validate([
+        'a'=>'required|numeric|min:0.00000000000000000000001',
+        'b'=>'required|numeric|min:0.00000000000000000000001',
+        'c'=>'required|numeric|min:0.00000000000000000000001',
+    ],[
+        'a.required'=>'Sxq bắt buộc phải nhập',
+        'a.numeric'=>'Sxq điện buộc phải là số',
+        'a.min'=>'Sxq phải lớn hơn 0.00000000000000000000001',
+        'b.required'=>'a bắt buộc phải nhập',
+        'b.numeric'=>'a bắt buộc phải là số',
+        'b.min'=>'a phải lớn hơn 0.00000000000000000000001',
+        'c.required'=>'b bắt buộc phải nhập',
+        'c.numeric'=>'b bắt buộc phải là số',
+        'c.min'=>'b phải lớn hơn 0.00000000000000000000001',
+    ]);
+    $a=$_POST['a'];
+    $b=$_POST['b'];
+    $c=$_POST['c'];
+    //tính kết quả
+    $ketqua = $a+2*($b*$c);
+    if(is_infinite($ketqua)){
+        $ketqua="kết quả vượt qua giới hạn tính";
+        return view('toan.dientichtoanphanhinhhopchunhat',compact('ketqua','a','b','c'));
+    }
+    else{
+    return view('toan.dientichtoanphanhinhhopchunhat',compact('ketqua','a','b','c'));
+    }
+    
+}
+
     //Tính thể tích hình trụ
 public function thetichhinhtru(){
     return view('toan.thetichhinhtru');
