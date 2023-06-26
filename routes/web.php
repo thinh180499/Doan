@@ -186,8 +186,17 @@ Route::prefix('/toan')->group(function () {
     Route::get('dientichtoanphanhinhhopchunhat', [ToanController::class, 'dientichtoanphanhinhhopchunhat'])->name('toan.dientichtoanphanhinhhopchunhat');
     Route::post('dientichtoanphanhinhhopchunhat', [ToanController::class, 'tinhdientichtoanphanhinhhopchunhat']);
 
-    Route::get('thetichhinhhopchunhat', [ToanController::class, 'thetichhinhhopchunhat'])->name('toan.dientichtoanphanhinhhopchunhat');
+    Route::get('thetichhinhhopchunhat', [ToanController::class, 'thetichhinhhopchunhat'])->name('toan.thetichhinhhopchunhat');
     Route::post('thetichhinhhopchunhat', [ToanController::class, 'tinhthetichhinhhopchunhat']);
+
+    Route::get('dientichxungquanghinhlapphuong', [ToanController::class, 'dientichxungquanghinhlapphuong'])->name('toan.dientichxungquanghinhlapphuong');
+    Route::post('dientichxungquanghinhlapphuong', [ToanController::class, 'tinhdientichxungquanghinhlapphuong']);
+
+    Route::get('dientichtoanphanhinhlapphuong', [ToanController::class, 'dientichtoanphanhinhlapphuong'])->name('toan.dientichtoanphanhinhlapphuong');
+    Route::post('dientichtoanphanhinhlapphuong', [ToanController::class, 'tinhdientichtoanphanhinhlapphuong']);
+
+    Route::get('thetichhinhlapphuong', [ToanController::class, 'thetichhinhlapphuong'])->name('toan.thetichhinhlapphuong');
+    Route::post('thetichhinhlapphuong', [ToanController::class, 'tinhthetichhinhlapphuong']);
 
     Route::get('thetichhinhtru', [ToanController::class, 'thetichhinhtru'])->name('toan.thetichhinhtru');
     Route::post('thetichhinhtru', [ToanController::class, 'tinhthetichhinhtru']);

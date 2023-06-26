@@ -727,6 +727,92 @@ public function tinhthetichhinhhopchunhat(Request $request){
     
 }
 
+
+
+//diện tích xung quanh hình lập phương
+public function dientichxungquanghinhlapphuong(){
+    return view('toan.dientichxungquanghinhlapphuong');
+}
+public function tinhdientichxungquanghinhlapphuong(Request $request){
+    $request->validate([
+        'a'=>'required|numeric|min:0.00000000000000000000001',
+       
+    ],[
+        'a.required'=>'a bắt buộc phải nhập',
+        'a.numeric'=>'a điện buộc phải là số',
+        'a.min'=>'a phải lớn hơn 0.00000000000000000000001',
+        
+    ]);
+    $a=$_POST['a'];
+    
+    //tính kết quả
+    $ketqua = 4*$a*$a;
+    if(is_infinite($ketqua)){
+        $ketqua="kết quả vượt qua giới hạn tính";
+        return view('toan.dientichxungquanghinhlapphuong',compact('ketqua','a'));
+    }
+    else{
+    return view('toan.dientichxungquanghinhlapphuong',compact('ketqua','a'));
+    }
+    
+}
+
+//diện tích toàn phần hình lập phương
+public function dientichtoanphanhinhlapphuong(){
+    return view('toan.dientichtoanphanhinhlapphuong');
+}
+public function tinhdientichtoanphanhinhlapphuong(Request $request){
+    $request->validate([
+        'a'=>'required|numeric|min:0.00000000000000000000001',
+        
+    ],[
+        'a.required'=>'Sxq bắt buộc phải nhập',
+        'a.numeric'=>'Sxq điện buộc phải là số',
+        'a.min'=>'Sxq phải lớn hơn 0.00000000000000000000001',
+       
+    ]);
+    $a=$_POST['a'];
+   
+    //tính kết quả
+    $ketqua = 6*$a*$a;
+    if(is_infinite($ketqua)){
+        $ketqua="kết quả vượt qua giới hạn tính";
+        return view('toan.dientichtoanphanhinhlapphuong',compact('ketqua','a'));
+    }
+    else{
+    return view('toan.dientichtoanphanhinhlapphuong',compact('ketqua','a'));
+    }
+    
+}
+
+//thể tích hình lập phương
+public function thetichhinhlapphuong(){
+    return view('toan.thetichhinhlapphuong');
+}
+public function tinhthetichhinhlapphuong(Request $request){
+    $request->validate([
+        'a'=>'required|numeric|min:0.00000000000000000000001',
+       
+    ],[
+        'a.required'=>'a bắt buộc phải nhập',
+        'a.numeric'=>'a điện buộc phải là số',
+        'a.min'=>'a phải lớn hơn 0.00000000000000000000001',
+        
+    ]);
+    $a=$_POST['a'];
+    
+    //tính kết quả
+    $ketqua = $a*$a*$a;
+    if(is_infinite($ketqua)){
+        $ketqua="kết quả vượt qua giới hạn tính";
+        return view('toan.thetichhinhlapphuong',compact('ketqua','a'));
+    }
+    else{
+    return view('toan.thetichhinhlapphuong',compact('ketqua','a'));
+    }
+    
+}
+
     //Tính thể tích hình trụ
 public function thetichhinhtru(){
     return view('toan.thetichhinhtru');
