@@ -376,6 +376,40 @@ public function tinhmoltheothetich(Request $request){
                     }
 
     }
+
+
+
+    //khối lượng chất tana
+    public function khoiluongdungdichtheokhoiluongdungmoi(){
+        return view('hoa.khoiluongdungdichtheokhoiluongdungmoi');
+    }
+    public function tinhkhoiluongdungdichtheokhoiluongdungmoi(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+                'a.required'=>'khối lượng chất tan buộc phải nhập',
+                'a.numeric'=>'khối lượng chất tan bắt buộc phải là số',
+                'a.min'=>'khối lượng chất tan phải lớn hơn 0.00000000000000000000001',
+                'b.required'=>'khối lượng dung môi bắt buộc phải nhập',
+                'b.numeric'=>'khối lượng dung môi bắt buộc phải là số',
+                'b.min'=>'khối lượng dung môi phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+                   //tính kết quả
+                    $ketqua=$a+$b;
+                    //xét kết quả là số vô hạn
+                    if(is_infinite($ketqua))
+                    {
+                        $ketqua="kết quả vượt qua giới hạn tính";
+                        return view('hoa.khoiluongdungdichtheokhoiluongdungmoi',compact('ketqua','a','b'));
+                    }
+                    else{
+                        return view('hoa.khoiluongdungdichtheokhoiluongdungmoi',compact('ketqua','a','b'));
+                    }
+
+    }
            
 
 

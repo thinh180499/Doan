@@ -264,6 +264,11 @@ Route::prefix('/hoa')->group(function () {
     Route::post('khoiluongchattan', [HoaController::class, 'tinhkhoiluongchattan']);
 
 
+    // Tính khối lượng dung dịch
+    Route::get('khoiluongdungdichtheokhoiluongdungmoi', [HoaController::class, 'khoiluongdungdichtheokhoiluongdungmoi'])->name('hoa.khoiluongdungdichtheokhoiluongdungmoi');
+    Route::post('khoiluongdungdichtheokhoiluongdungmoi', [HoaController::class, 'tinhkhoiluongdungdichtheokhoiluongdungmoi']);
+
+
     // Tính thể tích dung dịch theo ...
     Route::get('thetichdungdichtheonongdomol', [HoaController::class, 'thetichdungdichtheonongdomol'])->name('hoa.thetichdungdichtheonongdomol');
     Route::post('thetichdungdichtheonongdomol', [HoaController::class, 'tinhthetichdungdichtheonongdomol']);

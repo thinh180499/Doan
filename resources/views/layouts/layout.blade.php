@@ -207,6 +207,9 @@
                 <li><a href="<?php echo route('hoa.khoiluongchat'); ?>">tính khối lượng chất</a></li>
                 <li><a href="<?php echo route('hoa.khoiluongchattan'); ?>">khối lượng chất tan</a></li>
 
+                {{-- Tính khối dung dịch --}}
+                <li><a href="<?php echo route('hoa.khoiluongdungdichtheokhoiluongdungmoi'); ?>">tính khối dung dịch theo khối lượng chất tan và khối lượng dung môi</a></li>
+
 
                 {{-- Tính thể tích dung dịch theo ...  --}}
                 <li><a href="<?php echo route('hoa.thetichdungdichtheonongdomol'); ?>">tính thể tích dung dich theo nồng độ mol</a></li>
