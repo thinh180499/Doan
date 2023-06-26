@@ -146,6 +146,7 @@
                 {{-- Tứ giác --}}
                 <li><a href="<?php echo route('toan.chuvitugiac'); ?>">chu vi tứ giác</a></li>
                 <li><a href="<?php echo route('toan.chuvihinhchunhat'); ?>">chu vi hình chữ nhật</a></li>
+                <li><a href="<?php echo route('toan.chuvihinhvuong'); ?>">chu vi hình vuông</a></li>
 
                 {{-- Hỉnh khối --}}
                 <li><a href="<?php echo route('toan.thetichhinhtru'); ?>">thể tích hình trụ</a></li>
