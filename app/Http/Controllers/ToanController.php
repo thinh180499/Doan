@@ -525,7 +525,7 @@ public function tinhcdientichhinhchunhat(Request $request){
     $a=$_POST['a'];
     $b=$_POST['b'];
     //tính kết quả
-    $ketqua=2*($a+$b);
+    $ketqua=$a*$b;
     //xét kết quả là số vô hạn
     if(is_infinite($ketqua)){
         $ketqua="kết quả vượt qua giới hạn tính";
@@ -537,6 +537,33 @@ public function tinhcdientichhinhchunhat(Request $request){
        
 }
 
+ //dientich hinh vuông
+ public function dientichhinhvuong(){
+    return view('toan.dientichhinhvuong');
+}
+public function tinhdientichhinhvuong(Request $request){
+    $request->validate([
+        'a'=>'required|numeric|min:0.00000000000000000000001',
+       
+    ],[
+        'a.required'=>'a bắt buộc phải nhập',
+        'a.numeric'=>'a điện buộc phải là số',
+        'a.min'=>'a phải lớn hơn 0.00000000000000000000001',
+        
+    ]);
+    $a=$_POST['a'];
+   
+    //tính kết quả
+    $ketqua = $a*$a;
+    if(is_infinite($ketqua)){
+        $ketqua="kết quả vượt qua giới hạn tính";
+        return view('toan.dientichhinhvuong',compact('ketqua','a'));
+    }
+    else{
+    return view('toan.dientichhinhvuong',compact('ketqua','a'));
+    }
+    
+}
 
     //Tính thể tích hình trụ
 public function thetichhinhtru(){
