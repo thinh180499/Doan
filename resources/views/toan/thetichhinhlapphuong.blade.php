@@ -17,7 +17,7 @@
                         <div class="row justify-content-center">
                             <div class="col-auto border rounded-lg p-3 d-flex align-items-center">
                                 <div class="mr-5">
-                                    <span>S=a*a*a </span>
+                                    <span>V=a*a*a </span>
                                 </div>
                                
                             </div>

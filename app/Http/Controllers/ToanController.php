@@ -565,6 +565,8 @@ public function tinhdientichhinhvuong(Request $request){
     
 }
 
+
+
  //chu vi hình tròn
  public function chuvihinhtron(){
     return view('toan.chuvihinhtron');
@@ -620,6 +622,8 @@ public function tinhdientichhinhtron(Request $request){
     }
     
 }
+
+
 
 
 //diện tích xung quanh hình hộp chữ nhật
@@ -813,6 +817,39 @@ public function tinhthetichhinhlapphuong(Request $request){
     
 }
 
+
+
+//diện tích xung quanh hình trụ
+public function dientichxungquanghinhtru(){
+    return view('toan.dientichxungquanghinhtru');
+}
+public function tinhdientichxungquanghinhtru(Request $request){
+    $request->validate([
+        'a'=>'required|numeric|min:0.00000000000000000000001',
+        'b'=>'required|numeric|min:0.00000000000000000000001',
+    ],[
+        'a.required'=>'r bắt buộc phải nhập',
+        'a.numeric'=>'r điện buộc phải là số',
+        'a.min'=>'r phải lớn hơn 0.00000000000000000000001',
+        'b.required'=>'h bắt buộc phải nhập',
+        'b.numeric'=>'h bắt buộc phải là số',
+        'b.min'=>'h phải lớn hơn 0.00000000000000000000001',
+    ]);
+    $a=$_POST['a'];
+    $b=$_POST['b'];
+
+    //tính kết quả
+    $ketqua = 2*$a*$b*3.14;
+    if(is_infinite($ketqua)){
+        $ketqua="kết quả vượt qua giới hạn tính";
+        return view('toan.dientichxungquanghinhtru',compact('ketqua','a','b'));
+    }
+    else{
+    return view('toan.dientichxungquanghinhtru',compact('ketqua','a','b'));
+    }
+    
+}
+
     //Tính thể tích hình trụ
 public function thetichhinhtru(){
     return view('toan.thetichhinhtru');
@@ -886,7 +923,6 @@ public function tinhthetichhinhnon(Request $request){
         return view('toan.thetichhinhnon',compact('ketqua'));
     }
 }
-
 
 
 //Tính thể tích hình cầu

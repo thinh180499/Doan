@@ -4,20 +4,20 @@
     <div class="row mt-5">
         <div class="col">
             <div class="card-style cardform">
-                <h2>Tính diện tích xung quanh hình lập phương</h2>
+                <h2>Tính diện tích xung quanh hình trụ</h2>
                 @if ($errors->any())
                 <h2 style="color: red;">
                     vui lòng kiểm tra lại dữ liệu
                 </h2>
                  @endif
-                <form action="dientichxungquanghinhlapphuong" method="post">
+                <form action="dientichxungquanghinhtru" method="post">
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
                     <div class="container-fluid mt-4 mb-4">
                         <div class="row justify-content-center">
                             <div class="col-auto border rounded-lg p-3 d-flex align-items-center">
                                 <div class="mr-5">
-                                    <span>S<sub>xq</sub>=4*a*a </span>
+                                    <span>S<sub>xq</sub>=2*&pi;*r*h </span>
                                 </div>
                                
                             </div>
@@ -28,9 +28,17 @@
                     <div class="container">
                         <div class="row d-flex flex-column">
                             <div class="col mb-4">
-                                <label class="lb" for="somolchattan"> cạnh a</label>
-                                <input type="number" id="somolchattan" name="a" placeholder="Nhập cạnh a"
+                                <label class="lb" for="somolchattan"> cạnh r</label>
+                                <input type="number" id="somolchattan" name="a" placeholder="Nhập cạnh r"
                                     class="input" step="any" value="{{ isset($a)&&is_numeric($a) ? $a:old('a')}}" />
+                                    @error('a')
+                                        <span style="color: red;">{{$message}}</span>
+                                    @enderror
+                            </div>
+                            <div class="col mb-4">
+                                <label class="lb" for="somolchattan"> cạnh h</label>
+                                <input type="number" id="somolchattan" name="b" placeholder="Nhập cạnh h"
+                                    class="input" step="any" value="{{ isset($b)&&is_numeric($b) ? $b:old('b')}}" />
                                     @error('a')
                                         <span style="color: red;">{{$message}}</span>
                                     @enderror
