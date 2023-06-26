@@ -17,7 +17,7 @@
                         <div class="row justify-content-center">
                             <div class="col-auto border rounded-lg p-3 d-flex align-items-center">
                                 <div class="mr-5">
-                                    <span>S<sub>xq</sub>=2*&pi;*r*l </span>
+                                    <span>S<sub>xq</sub>=&pi;*r*l </span>
                                 </div>
                                
                             </div>

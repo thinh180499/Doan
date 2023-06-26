@@ -903,7 +903,7 @@ public function tinhdientichhinhnon(Request $request){
     $b=$_POST['b'];
 
     //tính kết quả
-    $ketqua = 2*$a*$b*3.14;
+    $ketqua = $a*$b*3.14;
     if(is_infinite($ketqua)){
         $ketqua="kết quả vượt qua giới hạn tính";
         return view('toan.dientichhinhnon',compact('ketqua','a','b'));
