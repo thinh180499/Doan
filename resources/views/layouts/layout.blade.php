@@ -152,6 +152,7 @@
 
                 {{--hình tròn--}}
                 <li><a href="<?php echo route('toan.chuvihinhtron'); ?>">chu vi hình tròn</a></li>
+                <li><a href="<?php echo route('toan.dientichhinhtron'); ?>">diện tích hình tròn</a></li>
 
                 {{-- Hỉnh khối --}}
                 <li><a href="<?php echo route('toan.thetichhinhtru'); ?>">thể tích hình trụ</a></li>
