@@ -95,6 +95,41 @@ public function tinhmoltheothetich(Request $request){
     }
 
 
+    //số mol theo nồng độ phần trăm khối lượng dung dịch
+      public function moltheonongdophantramvakhoiluongdungdich(){
+        return view('hoa.moltheonongdophantramvakhoiluongdungdich');
+    }
+    public function tinhmoltheonongdophantramvakhoiluongdungdich(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+            'c'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'nồng độ phần trăm bắt buộc phải nhập',
+            'a.numeric'=>'nồng độ phần trăm buộc phải là số',
+            'a.min'=>'nồng độ phần trăm phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'thể tích dung dịch bắt buộc phải nhập',
+            'b.numeric'=>'thể tích dung dịch điện buộc phải là số',
+            'b.min'=>'thể tích dung dịch phải lớn hơn 0.00000000000000000000001',
+            'c.required'=>'khối lượng mol bắt buộc phải nhập',
+            'c.numeric'=>'khối lượng mol buộc phải là số',
+            'c.min'=>'khối lượng mol phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        $c=$_POST['c'];
+        //tính kết quả
+        $ketqua=($a*$b)/(100*$c);
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)) {
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('hoa.moltheonongdophantramvakhoiluongdungdich',compact('ketqua','a','b','c'));
+        }
+        else{
+            return view('hoa.moltheonongdophantramvakhoiluongdungdich',compact('ketqua','a','b','c'));
+        }
+    }
+
     //Tính khối lượng chất
     public function khoiluongchat(){
         return view('hoa.khoiluongchat');
@@ -327,47 +362,7 @@ public function tinhmoltheothetich(Request $request){
         }
     }
 
-      //số mol theo nồng độ phần trăm khối lượng dung dịch
-      public function moltheonongdophantramvakhoiluongdungdich(){
-        return view('hoa.moltheonongdophantramvakhoiluongdungdich');
-    }
-    public function tinhmoltheonongdophantramvakhoiluongdungdich(Request $request){
-        //xét biến $a có phải là một số hữu hạn
-        if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
-            $a=$_POST['a'];
-             //xét biến $b có phải là một số hữu hạn
-            if(is_numeric($_POST['b'])&& is_finite($_POST['b'])){
-                $b=$_POST['b'];
-                 //xét biến $c có phải là một số hữu hạn
-                if(is_numeric($_POST['c'])&& is_finite($_POST['c'])){
-                    $c=$_POST['c'];
-                   //tính kết quả
-                    $ketqua=($a*$b)/(100*$c);
-                    //xét kết quả là số vô hạn
-                    if(is_infinite($ketqua))
-                    {
-                        $ketqua="kết quả vượt qua giới hạn tính";
-                        return view('hoa.moltheonongdophantramvakhoiluongdungdich',compact('ketqua','a','b','c'));
-                    }
-                    else{
-                        return view('hoa.moltheonongdophantramvakhoiluongdungdich',compact('ketqua','a','b','c'));
-                    }
-                }
-                else{
-                    $ketqua="nhập M";
-                    return view('hoa.moltheonongdophantramvakhoiluongdungdich',compact('ketqua','a','b','c'));
-                }
-            }
-            else{
-                $ketqua="nhập mdd";
-                return view('hoa.moltheonongdophantramvakhoiluongdungdich',compact('ketqua','a','b'));
-            }
-        }
-        else{
-            $ketqua="nhập C&#37";
-            return view('hoa.moltheonongdophantramvakhoiluongdungdich',compact('ketqua'));
-        }
-    }
+      
 
 
      // Tính nồng độ mol theo số mol
