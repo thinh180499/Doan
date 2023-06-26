@@ -171,6 +171,39 @@ public function tinhmoltheothetich(Request $request){
     }
 
 
+      //nồng độ phần trăm theo khối lượng chất tan
+      public function nongdophantramtheokhoiluongchattan(){
+        return view('hoa.nongdophantramtheokhoiluongchattan');
+    }
+    public function tinhnongdophantramtheokhoiluongchattan(Request $request){
+        $request->validate([
+            'a'=>'required|numeric|min:0.00000000000000000000001',
+            'b'=>'required|numeric|min:0.00000000000000000000001',
+        ],[
+            'a.required'=>'khối lượng chất tan bắt buộc phải nhập',
+            'a.numeric'=>'khối lượng chất tan buộc phải là số',
+            'a.min'=>'khối lượng chất tan phải lớn hơn 0.00000000000000000000001',
+            'b.required'=>'khối lượng dung dịch bắt buộc phải nhập',
+            'b.numeric'=>'khối lượng dung dịch điện buộc phải là số',
+            'b.min'=>'khối lượng dung dịch phải lớn hơn 0.00000000000000000000001',
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+                   //tính kết quả
+                    $ketqua=$a*100/$b;
+                    //xét kết quả là số vô hạn
+                    if(is_infinite($ketqua))
+                    {
+                        $ketqua="kết quả vượt qua giới hạn tính";
+                        return view('hoa.nongdophantramtheokhoiluongchattan',compact('ketqua','a','b'));
+                    }
+                    else{
+                        return view('hoa.nongdophantramtheokhoiluongchattan',compact('ketqua','a','b'));
+                    }
+
+    }
+
+
     //Tính khối lượng chất
     public function khoiluongchat(){
         return view('hoa.khoiluongchat');
@@ -368,40 +401,7 @@ public function tinhmoltheothetich(Request $request){
 
 
 
-     //nồng độ phần trăm theo khối lượng chất tan
-     public function nongdophantramtheokhoiluongchattan(){
-        return view('hoa.nongdophantramtheokhoiluongchattan');
-    }
-    public function tinhnongdophantramtheokhoiluongchattan(Request $request){
-        //xét biến $a có phải là một số hữu hạn
-        if(is_numeric($_POST['a']) && is_finite($_POST['a'])){
-            $a=$_POST['a'];
-             //xét biến $b có phải là một số hữu hạn và lớn hơn 0
-            if(is_numeric($_POST['b'])&& is_finite($_POST['b'])&& $_POST['b']>0){
-                $b=$_POST['b'];
-                   //tính kết quả
-                    $ketqua=$a*100/$b;
-                    //xét kết quả là số vô hạn
-                    if(is_infinite($ketqua))
-                    {
-                        $ketqua="kết quả vượt qua giới hạn tính";
-                        return view('hoa.nongdophantramtheokhoiluongchattan',compact('ketqua','a','b'));
-                    }
-                    else{
-                        return view('hoa.nongdophantramtheokhoiluongchattan',compact('ketqua','a','b'));
-                    }
-
-            }
-            else{
-                $ketqua="nhập mhh với mhh > 0";
-                return view('hoa.nongdophantramtheokhoiluongchattan',compact('ketqua','a'));
-            }
-        }
-        else{
-            $ketqua="nhập mct";
-            return view('hoa.nongdomoltheokhoiluongchattan',compact('ketqua'));
-        }
-    }
+   
 
       
 
