@@ -4,6 +4,7 @@
     <div class="row mt-5">
         <div class="col">
             <div class="card-style cardform">
+
                 <h2>giải phương trình bậc 2:</h2>
                 @if ($errors->any())
                 <h2 style="color: red;">
@@ -12,21 +13,17 @@
                  @endif
         
                 <form action="phuongtrinhbachai" method="post">
+
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
                     <div class="container-fluid mt-4 mb-4">
                         <div class="row justify-content-center">
-                             
-                            
-                            
+
                             <div class="col-auto border rounded-lg p-3 d-flex align-items-center">
-                            
-                                <div class="mr-5">
-                                        <span>a*x2+b*x+c=0</span>
-                                </div>
-                                
+                                <span class="mr-5">ax<sup>2</sup> + bx + c = </span>
+                                <span>0</span>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -34,22 +31,17 @@
                     <div class="container">
                         <div class="row d-flex flex-column">
                             <div class="col mb-4">
-                                <label class="lb" for="somolchattan">Hệ số bậc 2, a</label>
-                                <input type="number" id="somolchattan" name="a" placeholder="Nhập a"
+                                <label class="lb" for="ptbac2-a">Hệ số bậc 2, a</label>
+                                <input type="number" id="ptbac2-a" name="a" placeholder="Nhập a"
                                     class="input" step="any" value="{{ isset($a)&&is_numeric($a) ? $a:old('a')}}" />
                                     @error('a')
                                         <span style="color: red;">{{$message}}</span>
                                     @enderror
-                                    @if (isset($err))
-                                    <h2 style="color: red;">
-                                        {{$err}}
-                                    </h2>
-                                    @endif
                             </div>
 
                             <div class="col mb-4">
-                                <label class="lb" for="thetichdungdich">Hệ số bậc 1, b</label>
-                                <input type="number" id="thetichdungdich" name="b" placeholder="Nhập n"
+                                <label class="lb" for="ptbac2-b">Hệ số bậc 1, b</label>
+                                <input type="number" id="ptbac2-b" name="b" placeholder="Nhập n"
                                     class="input" step="any" value="{{ isset($b)&&is_numeric($b) ? $b:old('b') }}" />
                                 @error('b')
                                     <span style="color: red;">{{$message}}</span>
@@ -58,8 +50,8 @@
                             </div>
 
                             <div class="col mb-4">
-                                <label class="lb" for="thetichdungdich">Hệ số tự do, c</label>
-                                <input type="number" id="thetichdungdich" name="c" placeholder="Nhập m"
+                                <label class="lb" for="ptbac2-c">Hệ số tự do, c</label>
+                                <input type="number" id="ptbac2-c" name="c" placeholder="Nhập m"
                                     class="input" step="any" value="{{ isset($c)&&is_numeric($c) ? $c:old('c') }}" />
                                 @error('c')
                                     <span style="color: red;">{{$message}}</span>
@@ -76,6 +68,7 @@
                         </div>
                     </div>
 
+
                 </form>
             </div>
         </div>
@@ -85,13 +78,8 @@
 @section('css')
     <style>
         .container {
-            max-width: 500px;
-        }
 
-        hr {
-            border: none;
-            height: 2px;
-            background: rgb(137, 137, 137);
+            max-width: 650px;
         }
     </style>
 @endsection
