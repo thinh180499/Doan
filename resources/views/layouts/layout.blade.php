@@ -32,8 +32,14 @@
         border: 2px solid #ccc;
     }
 
-    .lb {
-        font-size: 25px
+    .lb,
+    .input-style-1 label,
+    .select-style-1 label {
+        font-size: 18px;
+        font-weight: 500;
+        color: #262d3f;
+        display: block;
+        margin-bottom: 10px;
     }
 
     .cardform span {
@@ -42,6 +48,14 @@
 
     button.calculate{
         font-size: 35px;
+    }
+
+    .input-style-1 input,
+    .input-style-1 textarea,
+    .select-style-1 .select-position select {
+        background: #fff;
+        border: 2px solid #e1e1e1;
+        border-radius: 10px;
     }
   </style>
   @yield('css')
@@ -134,6 +148,7 @@
                 <li><a href="<?php echo route('toan.luythuacuamotluythua'); ?>">lũy thừa của một lũy thừa</a></li>
 
                 {{-- Phương trình --}}
+                <li><a href="<?php echo route('toan.batphuongtrinhbacnhatmotan'); ?>">bất phương trình bậc nhất 1 ẩn</a></li>
                 <li><a href="<?php echo route('toan.phuongtrinhbachai'); ?>">phương trình bậc 2</a></li>
 
                 {{-- Hình học --}}

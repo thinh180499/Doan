@@ -5,26 +5,42 @@
         <div class="col">
             <div class="card-style cardform">
 
-                <h2>Chuyển đổi đơn vị độ dài</h2>
+                <h2>Bất phương trình bậc nhất 1 ẩn</h2>
                 @if ($errors->any())
                 <h2 style="color: red;">
                     vui lòng kiểm tra lại dữ liệu
                 </h2>
                  @endif
-                <form action="dodai" method="post">
-                <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                <form action="batphuongtrinhbacnhatmotan" method="post">
+                    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                    <div class="container-fluid mt-4 mb-4">
+                        <div class="row justify-content-center">
+
+                            <div class="col-auto border rounded-lg p-3 d-flex align-items-center">
+                                <span class="mr-5">ax + b >= </span>
+                                <span>0</span>
+                            </div>
+
+                        </div>
+                    </div>
                     <div class="container mt-5">
                         <div class="row nhap d-flex justify-content-between">
                             <div class="col mb-4">
                                 <div class="input-style-1">
-                                    <label>Nhập số muốn chuyển đổi</label>
+                                    <label>Nhập a</label>
+                                    <input type="number" name="a" value="{{ !empty($a) ? $a : false }}">
+                                </div>
+                            </div>
+                            <div class="col mb-4">
+                                <div class="input-style-1">
+                                    <label>Nhập b</label>
                                     <input type="number" name="a" value="{{ !empty($a) ? $a : false }}">
                                 </div>
                             </div>
 
                             <div class="col mb-4">
                                 <div class="select-style-1">
-                                    <label>Chuyển đổi từ</label>
+                                    <label>Nhập dấu</label>
                                     <div class="select-position">
                                         <select name="i">
                                             <option <?php if (isset($x) && $x == 1) {
@@ -53,36 +69,7 @@
                                 </div>
                             </div>
 
-                            <div class="col mb-4">
-                                <div class="select-style-1">
-                                    <label>Chuyển đổi sang</label>
-                                    <div class="select-position">
-                                        <select name="j">
-                                            <option <?php if (isset($y) && $y == 1) {
-                                                echo 'selected ';
-                                            } ?>value="1">Ki-lô-mét (km)</option>
-                                            <option <?php if (isset($y) && $y == 2) {
-                                                echo 'selected ';
-                                            } ?>value="2">Héc-tô-mét (hm)</option>
-                                            <option <?php if (isset($y) && $y == 3) {
-                                                echo 'selected ';
-                                            } ?>value="3">Đề-ca-mét (dam)</option>
-                                            <option <?php if (isset($y) && $y == 4) {
-                                                echo 'selected ';
-                                            } ?>value="4">Mét (m)</option>
-                                            <option <?php if (isset($y) && $y == 5) {
-                                                echo 'selected ';
-                                            } ?>value="5">Đề-xi-mét (dm)</option>
-                                            <option <?php if (isset($y) && $y == 6) {
-                                                echo 'selected ';
-                                            } ?>value="6">Xen-ti-mét (cm)</option>
-                                            <option <?php if (isset($y) && $y == 7) {
-                                                echo 'selected ';
-                                            } ?>value="7">Mi-li-mét (mm)</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
 
                         <div class="row d-flex align-items-center mb-4">

@@ -138,6 +138,12 @@ Route::prefix('/toan')->group(function () {
     Route::post('luythuacuamotluythua', [ToanController::class, 'tinhluythuacuamotluythua']);
 
     // Phương trình
+    Route::get('phuongtrinhbacnhat', [ToanController::class, 'phuongtrinhbacnhat'])->name('toan.phuongtrinhbacnhat');
+    Route::post('phuongtrinhbacnhat', [ToanController::class, 'tinhphuongtrinhbacnhat']);
+
+    Route::get('batphuongtrinhbacnhatmotan', [ToanController::class, 'batphuongtrinhbacnhatmotan'])->name('toan.batphuongtrinhbacnhatmotan');
+    Route::post('batphuongtrinhbacnhatmotan', [ToanController::class, 'tinhbatphuongtrinhbacnhatmotan']);
+
     Route::get('phuongtrinhbachai', [ToanController::class, 'phuongtrinhbachai'])->name('toan.phuongtrinhbachai');
     Route::post('phuongtrinhbachai', [ToanController::class, 'tinhphuongtrinhbachai']);
 
@@ -216,7 +222,7 @@ Route::prefix('/toan')->group(function () {
     Route::get('thetichhinhcau', [ToanController::class, 'thetichhinhcau'])->name('toan.thetichhinhcau');
     Route::post('thetichhinhcau', [ToanController::class, 'tinhthetichhinhcau']);
 
-   
+
 });
 
 

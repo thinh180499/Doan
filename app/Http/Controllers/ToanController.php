@@ -68,8 +68,8 @@ class ToanController extends Controller
         }
         else{
              return view('toan.luythuacuamotphanso',compact('ketqua','a','b','c'));
-        }            
-                
+        }
+
     }
 
     //lũy thừa một tích
@@ -102,7 +102,7 @@ class ToanController extends Controller
         else{
             return view('toan.luythuacuamottich',compact('ketqua','a','b','c'));
         }
-               
+
     }
 
 
@@ -174,12 +174,12 @@ class ToanController extends Controller
         else{
             return view('toan.thuongcuahailuythuacungcoso',compact('ketqua','a','b','c'));
         }
-            
+
     }
 
 
 
-    
+
 
 //lũy thừa cua một lũy thừa
 public function luythuacuamotluythua(){
@@ -210,9 +210,13 @@ public function tinhluythuacuamotluythua(Request $request){
     }
     else{
         return view('toan.luythuacuamotluythua',compact('ketqua','a','b','c'));
-    } 
+    }
 }
 
+    //phương trình bậc 1
+    public function batphuongtrinhbacnhatmotan(){
+        return view('toan.batphuongtrinhbacnhatmotan');
+    }
 
     //phương trình bậc 2
     public function phuongtrinhbachai(){
@@ -264,7 +268,7 @@ public function tinhluythuacuamotluythua(Request $request){
             $ketqua= ("Phương trình vô nghiệm!");
         }
         return view('toan.phuongtrinhbachai',compact('ketqua','a','b','c'));
-               
+
     }
 
 
@@ -332,7 +336,7 @@ public function tinhluythuacuamotluythua(Request $request){
         else{
         return view('toan.chuvitamgiac',compact('ketqua','a','b','c'));
         }
-        
+
     }
 
 
@@ -344,7 +348,7 @@ public function tinhluythuacuamotluythua(Request $request){
         $request->validate([
             'a'=>'required|numeric|min:0.00000000000000000000001',
             'b'=>'required|numeric|min:0.00000000000000000000001',
-            
+
         ],[
             'a.required'=>'h bắt buộc phải nhập',
             'a.numeric'=>'h điện buộc phải là số',
@@ -364,7 +368,7 @@ public function tinhluythuacuamotluythua(Request $request){
         else{
         return view('toan.dientichtamgiac',compact('ketqua','a','b'));
         }
-        
+
     }
 
 
@@ -402,7 +406,7 @@ public function tinhluythuacuamotluythua(Request $request){
             return view('toan.duongcaotamgiac',compact('ketqua','a','b','c'));
         }
     }
-         
+
 
        //chu vi tu giác
        public function chuvitugiac(){
@@ -441,7 +445,7 @@ public function tinhluythuacuamotluythua(Request $request){
         else{
         return view('toan.chuvitugiac',compact('ketqua','a','b','c','d'));
         }
-        
+
     }
 
 
@@ -453,7 +457,7 @@ public function tinhchuvihinhchunhat(Request $request){
     $request->validate([
         'a'=>'required|numeric|min:0.00000000000000000000001',
         'b'=>'required|numeric|min:0.00000000000000000000001',
-        
+
     ],[
         'a.required'=>'a bắt buộc phải nhập',
         'a.numeric'=>'a điện buộc phải là số',
@@ -474,7 +478,7 @@ public function tinhchuvihinhchunhat(Request $request){
     else{
         return view('toan.chuvihinhchunhat',compact('ketqua','a','b'));
     }
-       
+
 }
 
      //chu vi hinh vuông
@@ -484,15 +488,15 @@ public function tinhchuvihinhchunhat(Request $request){
     public function tinhchuvihinhvuong(Request $request){
         $request->validate([
             'a'=>'required|numeric|min:0.00000000000000000000001',
-           
+
         ],[
             'a.required'=>'a bắt buộc phải nhập',
             'a.numeric'=>'a điện buộc phải là số',
             'a.min'=>'a phải lớn hơn 0.00000000000000000000001',
-            
+
         ]);
         $a=$_POST['a'];
-       
+
         //tính kết quả
         $ketqua = 4*$a;
         if(is_infinite($ketqua)){
@@ -502,7 +506,7 @@ public function tinhchuvihinhchunhat(Request $request){
         else{
         return view('toan.chuvihinhvuong',compact('ketqua','a'));
         }
-        
+
     }
 
 //diện tích hình chữ nhật
@@ -513,7 +517,7 @@ public function tinhcdientichhinhchunhat(Request $request){
     $request->validate([
         'a'=>'required|numeric|min:0.00000000000000000000001',
         'b'=>'required|numeric|min:0.00000000000000000000001',
-        
+
     ],[
         'a.required'=>'a bắt buộc phải nhập',
         'a.numeric'=>'a điện buộc phải là số',
@@ -534,7 +538,7 @@ public function tinhcdientichhinhchunhat(Request $request){
     else{
         return view('toan.dientichhinhchunhat',compact('ketqua','a','b'));
     }
-       
+
 }
 
  //diện tích hình vuông
@@ -544,15 +548,15 @@ public function tinhcdientichhinhchunhat(Request $request){
 public function tinhdientichhinhvuong(Request $request){
     $request->validate([
         'a'=>'required|numeric|min:0.00000000000000000000001',
-       
+
     ],[
         'a.required'=>'a bắt buộc phải nhập',
         'a.numeric'=>'a điện buộc phải là số',
         'a.min'=>'a phải lớn hơn 0.00000000000000000000001',
-        
+
     ]);
     $a=$_POST['a'];
-   
+
     //tính kết quả
     $ketqua = $a*$a;
     if(is_infinite($ketqua)){
@@ -562,7 +566,7 @@ public function tinhdientichhinhvuong(Request $request){
     else{
     return view('toan.dientichhinhvuong',compact('ketqua','a'));
     }
-    
+
 }
 
 
@@ -574,15 +578,15 @@ public function tinhdientichhinhvuong(Request $request){
 public function tinhchuvihinhtron(Request $request){
     $request->validate([
         'a'=>'required|numeric|min:0.00000000000000000000001',
-       
+
     ],[
         'a.required'=>'bán kính R bắt buộc phải nhập',
         'a.numeric'=>'bán kính R điện buộc phải là số',
         'a.min'=>'bán kính R phải lớn hơn 0.00000000000000000000001',
-        
+
     ]);
     $a=$_POST['a'];
-   
+
     //tính kết quả
     $ketqua = 2*$a*3.14;
     if(is_infinite($ketqua)){
@@ -592,7 +596,7 @@ public function tinhchuvihinhtron(Request $request){
     else{
     return view('toan.chuvihinhtron',compact('ketqua','a'));
     }
-    
+
 }
 
 //diện tích hình tròn
@@ -602,15 +606,15 @@ public function dientichhinhtron(){
 public function tinhdientichhinhtron(Request $request){
     $request->validate([
         'a'=>'required|numeric|min:0.00000000000000000000001',
-       
+
     ],[
         'a.required'=>'bán kính R bắt buộc phải nhập',
         'a.numeric'=>'bán kính R điện buộc phải là số',
         'a.min'=>'bán kính R phải lớn hơn 0.00000000000000000000001',
-        
+
     ]);
     $a=$_POST['a'];
-   
+
     //tính kết quả
     $ketqua = pow($a,2)*3.14;
     if(is_infinite($ketqua)){
@@ -620,7 +624,7 @@ public function tinhdientichhinhtron(Request $request){
     else{
     return view('toan.dientichhinhtron',compact('ketqua','a'));
     }
-    
+
 }
 
 
@@ -658,7 +662,7 @@ public function tinhdientichxungquanghinhhopchunhat(Request $request){
     else{
     return view('toan.dientichxungquanghinhhopchunhat',compact('ketqua','a','b','c'));
     }
-    
+
 }
 
 //diện tích toàn phần hình hộp chữ nhật
@@ -693,7 +697,7 @@ public function tinhdientichtoanphanhinhhopchunhat(Request $request){
     else{
     return view('toan.dientichtoanphanhinhhopchunhat',compact('ketqua','a','b','c'));
     }
-    
+
 }
 
 //thể tích hình hộp chữ nhật
@@ -728,7 +732,7 @@ public function tinhthetichhinhhopchunhat(Request $request){
     else{
     return view('toan.thetichhinhhopchunhat',compact('ketqua','a','b','c'));
     }
-    
+
 }
 
 
@@ -740,15 +744,15 @@ public function dientichxungquanghinhlapphuong(){
 public function tinhdientichxungquanghinhlapphuong(Request $request){
     $request->validate([
         'a'=>'required|numeric|min:0.00000000000000000000001',
-       
+
     ],[
         'a.required'=>'a bắt buộc phải nhập',
         'a.numeric'=>'a điện buộc phải là số',
         'a.min'=>'a phải lớn hơn 0.00000000000000000000001',
-        
+
     ]);
     $a=$_POST['a'];
-    
+
     //tính kết quả
     $ketqua = 4*$a*$a;
     if(is_infinite($ketqua)){
@@ -758,7 +762,7 @@ public function tinhdientichxungquanghinhlapphuong(Request $request){
     else{
     return view('toan.dientichxungquanghinhlapphuong',compact('ketqua','a'));
     }
-    
+
 }
 
 //diện tích toàn phần hình lập phương
@@ -768,15 +772,15 @@ public function dientichtoanphanhinhlapphuong(){
 public function tinhdientichtoanphanhinhlapphuong(Request $request){
     $request->validate([
         'a'=>'required|numeric|min:0.00000000000000000000001',
-        
+
     ],[
         'a.required'=>'Sxq bắt buộc phải nhập',
         'a.numeric'=>'Sxq điện buộc phải là số',
         'a.min'=>'Sxq phải lớn hơn 0.00000000000000000000001',
-       
+
     ]);
     $a=$_POST['a'];
-   
+
     //tính kết quả
     $ketqua = 6*$a*$a;
     if(is_infinite($ketqua)){
@@ -786,7 +790,7 @@ public function tinhdientichtoanphanhinhlapphuong(Request $request){
     else{
     return view('toan.dientichtoanphanhinhlapphuong',compact('ketqua','a'));
     }
-    
+
 }
 
 //thể tích hình lập phương
@@ -796,15 +800,15 @@ public function thetichhinhlapphuong(){
 public function tinhthetichhinhlapphuong(Request $request){
     $request->validate([
         'a'=>'required|numeric|min:0.00000000000000000000001',
-       
+
     ],[
         'a.required'=>'a bắt buộc phải nhập',
         'a.numeric'=>'a điện buộc phải là số',
         'a.min'=>'a phải lớn hơn 0.00000000000000000000001',
-        
+
     ]);
     $a=$_POST['a'];
-    
+
     //tính kết quả
     $ketqua = $a*$a*$a;
     if(is_infinite($ketqua)){
@@ -814,7 +818,7 @@ public function tinhthetichhinhlapphuong(Request $request){
     else{
     return view('toan.thetichhinhlapphuong',compact('ketqua','a'));
     }
-    
+
 }
 
 
@@ -847,7 +851,7 @@ public function tinhdientichxungquanghinhtru(Request $request){
     else{
     return view('toan.dientichxungquanghinhtru',compact('ketqua','a','b'));
     }
-    
+
 }
 
 
@@ -911,7 +915,7 @@ public function tinhdientichhinhnon(Request $request){
     else{
     return view('toan.dientichhinhnon',compact('ketqua','a','b'));
     }
-    
+
 }
 
 
@@ -933,7 +937,7 @@ public function tinhthetichhinhnon(Request $request){
     ]);
     $a=$_POST['a'];
     $b=$_POST['b'];
-            
+
     //tính kết quả
     $ketqua=(1/3)*3.14*pow($a,2)*$b;
     //xét kết quả là số vô hạn
@@ -945,8 +949,8 @@ public function tinhthetichhinhnon(Request $request){
     else{
         return view('toan.thetichhinhnon',compact('ketqua','a','b'));
     }
-           
-        
+
+
 }
 
 
@@ -958,15 +962,15 @@ public function dientichmatcau(){
 public function tinhdientichmatcau(Request $request){
     $request->validate([
         'a'=>'required|numeric|min:0.00000000000000000000001',
-       
+
     ],[
         'a.required'=>'bán kính R bắt buộc phải nhập',
         'a.numeric'=>'bán kính R điện buộc phải là số',
         'a.min'=>'bán kính R phải lớn hơn 0.00000000000000000000001',
-        
+
     ]);
     $a=$_POST['a'];
-        
+
     //tính kết quả
     $ketqua=(4)*3.14*pow($a,2);
     //xét kết quả là số vô hạn
@@ -977,7 +981,7 @@ public function tinhdientichmatcau(Request $request){
     else{
         return view('toan.dientichmatcau',compact('ketqua','a'));
     }
-           
+
 }
 
 
@@ -989,12 +993,12 @@ public function thetichhinhcau(){
 public function tinhthetichhinhcau(Request $request){
     $request->validate([
         'a'=>'required|numeric|min:0.00000000000000000000001',
-       
+
     ],[
         'a.required'=>'bán kính R bắt buộc phải nhập',
         'a.numeric'=>'bán kính R điện buộc phải là số',
         'a.min'=>'bán kính R phải lớn hơn 0.00000000000000000000001',
-        
+
     ]);
     $a=$_POST['a'];
     //tính kết quả
