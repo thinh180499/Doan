@@ -16,12 +16,11 @@ class CheckLoginAdim
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!$this->isLogin()){
-            return redirect(route('login'));
+        if(!$this->isLogin($request)){
+            return redirect()->route('login');
         }
-        return $next($request);
     }
-    public function isLogin(){
-        return true;
+    public function isLogin($request){
+            return true;
     }
 }

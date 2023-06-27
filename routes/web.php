@@ -36,7 +36,9 @@ use App\Http\Controllers\Admin\UserController;
 // });
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
+//đăng nhập
+Route::get('/login', [HomeController::class, 'login'])->name('login');
+Route::post('/login', [HomeController::class, 'checklogin']);
 
 // Vật lý
 Route::get('/vatly', [HomeController::class, 'vatly'])->name('vatly');
@@ -289,13 +291,9 @@ Route::prefix('/hoa')->group(function () {
 });
 
 
-//đăng nhập
-Route::get('/login', function () {
-     echo "đăng nhập";
-    })->name('login');
 
-//Route::middleware('auth.admin')->prefix('/admin')->group(function () {
-    Route::prefix('/admin')->name('admin.')->group(function () {
+
+Route::middleware('auth.admin')->prefix('/admin')->name('admin.')->group(function () {
 
     //danh sách lý thuyết
     Route::get('/', [LythuyetController::class, 'index'])->name('danhsachlythuyet');

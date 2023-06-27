@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Admin;
 use App\Models\Lythuyet;
 
 
@@ -12,6 +12,7 @@ class LythuyetController extends Controller
 {
     private $lythuyet;
     public function __construct(){
+        
         $this->lythuyet=new Lythuyet();
     }
     
