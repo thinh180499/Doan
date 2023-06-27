@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
+use DB;
+
 class LythuyetController extends Controller
 {
     /**
@@ -14,8 +17,8 @@ class LythuyetController extends Controller
      */
     public function index()
     {
-        //
-        echo " ly thuyet";
+        $lythuyet=DB::select('SELECT * FROM lythuyet');
+        return view('admin.danhsachlythuyet',compact('lythuyet'));
     }
 
     /**
