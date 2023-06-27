@@ -71,10 +71,13 @@
                           
                         </td>
                         <td>
+
                           <div class="action">
-                            
-                            <a onclick="return confirm('bạn có chắc muốn xóa')" href="{{route('admin.lythuyet.destroy',['lythuyet'=>$lythuyet->id])}}"><i class="lni lni-trash-can"></i></a>
-                            
+                            <form action="{{route('admin.lythuyet.destroy',['lythuyet'=>$lythuyet->id])}}" method="post">
+                                @method('DELETE')
+                            @csrf
+                            <button type="submit"> <i class="lni lni-trash-can"></i></button>               
+                        </form>
                            
                           </div>
                         </td>

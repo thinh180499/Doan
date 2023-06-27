@@ -1,7 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-<form action=" {{ route('admin.lythuyet.update' )}}" method="post">
+<form action="{{route('admin.lythuyet.update',['lythuyet'=>$lythuyet->id])}}" method="post">
+  @method('PUT')
 @csrf
+
     <!-- ========== tables-wrapper start ========== -->
     <div class="tables-wrapper mt-4">
           <div class="row">
@@ -10,6 +12,9 @@
                 <h6 class="mb-10">
                   @if(!empty($title))
                       {{$title}}
+                  @endif
+                  @if(!empty($msr))
+                      {{$msr}}
                   @endif
                 </h6>
                 <h1>thêm lý thuyết</h1>
@@ -22,28 +27,28 @@
             <div class="col-md-9">
               <div class="col-md-3">
                 <label>tên lý thuyết</label>
-                <input type="text" name="tenlythuyet" placeholder="nhập tên lý thuyết" value="{{old('tenlythuyet')?? $chitietlythuyet->tenlythuyet}}">
+                <input type="text" name="tenlythuyet" placeholder="nhập tên lý thuyết" value="{{old('tenlythuyet')?? $lythuyet->tenlythuyet}}">
                  @error('tenlythuyet')
                     <span style="color: red;">{{$message}}</span>
                 @enderror 
                 </div>
                 <div class="col-md-3">
                 <label>nội dung</label>
-                <input type="text" name="noidung" placeholder="nhập nội dung" value="{{old('noidung')?? $chitietlythuyet->noidung}}">
+                <input type="text" name="noidung" placeholder="nhập nội dung" value="{{old('noidung')?? $lythuyet->noidung}}">
                  @error('noidung')
                 <span style="color: red;">{{$message}}</span>
                 @enderror 
                 </div>
                 <div class="col-md-3">
                 <label>công thức</label>
-                <input type="text" name="congthuc" placeholder="nhập công thức" value="{{old('congthuc') ?? $chitietlythuyet->congthuc}}">
+                <input type="text" name="congthuc" placeholder="nhập công thức" value="{{old('congthuc') ?? $lythuyet->congthuc}}">
                   @error('congthuc')
                   <span style="color: red;">{{$message}}</span>
                   @enderror
                   </div>
                   <div class="col-md-3">
                     <label>môn</label>
-                    <input type="text" name="mon" placeholder="nhập môn" value="{{old('mon')?? $chitietlythuyet->mon}}">
+                    <input type="text" name="mon" placeholder="nhập môn" value="{{old('mon')?? $lythuyet->mon}}">
                     @error('mon')
                     <span style="color: red;">{{$message}}</span>
                     @enderror

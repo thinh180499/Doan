@@ -94,9 +94,11 @@ class LythuyetController extends Controller
      */
     public function edit($id)
     {
-        // $chitietlythuyet = $this->lythuyet->themlythuyet($id);
-        // $title="sửa lý thuyết";
-        // return view('admin.lythuyet.edit',compact('chitietlythuyet','title'));
+
+        $lythuyet = $this->lythuyet->chitietlythuyet($id);
+        $title="sửa lý thuyết";
+        $lythuyet=$lythuyet[0];   
+        return view('admin.lythuyet.edit',compact('lythuyet','title'));
     }
 
     /**
@@ -108,7 +110,28 @@ class LythuyetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'tenlythuyet'=>'required|min:5|unique:lythuyet,tenlythuyet,'.$id,
+            'noidung'=>'required',
+            'congthuc'=>'required',
+            'mon'=>'required',
+        ],[
+            'tenlythuyet.required'=>'tên lý thuyết bắt buộc phải nhập',
+            'tenlythuyet.min'=>'tên lý thuyết phải hơn 5 ký tự',
+            'tenlythuyet.unique'=>'tên lý thuyết đã tồn tại',
+            'noidung.required'=>'nội dung bắt buộc phải nhập',
+            'congthuc.required'=>'công thức bắt buộc phải nhập',
+            'mon.required'=>'môn bắt buộc phải nhập',
+        ]);
+        $data=[
+            $request->tenlythuyet,
+            $request->noidung,
+            $request->congthuc,
+            $request->mon,
+        ];
+        $this->lythuyet->sualythuyet($data,$id);
+
+        return back()->with('msr','sửa thành công');
     }
 
     /**
@@ -119,6 +142,8 @@ class LythuyetController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->lythuyet->xoalythuyet($id);
+        $title="danh sách lý thuyết";  
+        return view('admin.lythuyet',compact('title'));
     }
 }
