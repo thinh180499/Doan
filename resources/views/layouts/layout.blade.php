@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon" />
-  <title>Tool toán lý hóa</title>
+  <title>Tool - @yield('title')</title>
 
   <!-- ========== All CSS files linkup ========= -->
   <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
@@ -19,7 +19,7 @@
         margin: auto;
     }
 
-    h2 {
+    h2, h3, .lythuyet ul {
         text-align: center;
     }
 
@@ -56,6 +56,17 @@
         background: #fff;
         border: 2px solid #e1e1e1;
         border-radius: 10px;
+        padding: 12px;
+        font-size: 20px;
+        color: #454b5c;
+    }
+
+    .lythuyet ul li {
+        margin-bottom: 10px;
+    }
+
+    p, .lythuyet ul li {
+        font-size: 18px;
     }
   </style>
   @yield('css')
@@ -251,13 +262,13 @@
             <div class="col-lg-5 col-md-5 col-6">
               <div class="header-left d-flex align-items-center">
                 <div class="menu-toggle-btn mr-20">
-                  <button id="menu-toggle" class="main-btn primary-btn btn-hover">
+                  <button id="menu-toggle" class="main-btn light-btn-outline rounded-md btn-hover">
                     <i class="lni lni-chevron-left me-2"></i> Menu
                   </button>
                 </div>
                 <div class="header-search d-none d-md-flex">
                   <form action="#">
-                    <input type="text" placeholder="Search..." />
+                    <input type="text" placeholder="Tìm kiếm" />
                     <button><i class="lni lni-search-alt"></i></button>
                   </form>
                 </div>
