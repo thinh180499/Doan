@@ -217,10 +217,44 @@ public function tinhluythuacuamotluythua(Request $request){
     public function phuongtrinhbacnhat(){
         return view('toan.phuongtrinhbacnhat');
     }
+    public function tinhphuongtrinhbacnhat(Request $request){
+        $request->validate([
+            'a'=>'required|numeric',
+            'b'=>'required|numeric',
+            ],[
+            'a.required'=>'a bắt buộc phải nhập',
+            'a.numeric'=>'a buộc phải là số',
+            'b.required'=>'b bắt buộc phải nhập',
+            'b.numeric'=>'b bắt buộc phải là số',
+            
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        if($a==0){
+            $err="a phải khác 0";
+            return view('toan.phuongtrinhbacnhat',compact('err','b'));
+        }
+        //tính kết quả
+        $ketqua=-$b/$a;
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('toan.phuongtrinhbacnhat',compact('ketqua','a','b'));
+        }
+        else{
+            $ketqua="x=".$ketqua;
+            return view('toan.phuongtrinhbacnhat',compact('ketqua','a','b'));
+        }
+       
+    }
+
+
+
     //bất phương trình bậc 1 một ẩn
     public function batphuongtrinhbacnhatmotan(){
         return view('toan.batphuongtrinhbacnhatmotan');
     }
+    
 
     //phương trình bậc 2
     public function phuongtrinhbachai(){
