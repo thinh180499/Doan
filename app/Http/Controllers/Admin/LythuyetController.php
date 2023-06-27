@@ -28,12 +28,13 @@ class LythuyetController extends Controller
     
     public function postadd(Request $request){
         $request->validate([
-            'tenlythuyet'=>'required',
+            'tenlythuyet'=>'required|unique:lythuyet',
             'noidung'=>'required',
             'congthuc'=>'required',
             'mon'=>'required',
         ],[
             'tenlythuyet.required'=>'tên lý thuyết bắt buộc phải nhập',
+            'tenlythuyet.unique'=>'tên lý thuyết đã tồn tại',
             'noidung.required'=>'nội dung bắt buộc phải nhập',
             'congthuc.required'=>'công thức bắt buộc phải nhập',
             'mon.required'=>'môn bắt buộc phải nhập',
