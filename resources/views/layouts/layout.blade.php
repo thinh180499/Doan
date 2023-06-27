@@ -32,7 +32,6 @@
         border: 2px solid #ccc;
     }
 
-    .lb,
     .input-style-1 label,
     .select-style-1 label {
         font-size: 18px;

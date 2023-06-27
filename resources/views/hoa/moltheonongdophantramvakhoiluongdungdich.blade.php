@@ -36,7 +36,7 @@
                         <div class="row d-flex flex-column">
                             <div class="col">
                                 <div class="input-style-1">
-                                    <label class="lb" for="somolchattan">C&#37;</label>
+                                    <label for="somolchattan">C&#37;</label>
                                     <input type="number" id="somolchattan" name="a"
                                         placeholder="Nhập nồng độ phần trăm" class="input" step="any"
                                         value="{{ isset($a) && is_numeric($a) ? $a : old('a') }}" />
@@ -48,7 +48,7 @@
 
                             <div class="col">
                                 <div class="input-style-1">
-                                    <label class="lb" for="thetichdungdich">m<sub>dd</sub></label>
+                                    <label for="thetichdungdich">m<sub>dd</sub></label>
                                     <input type="number" id="thetichdungdich" name="b"
                                         placeholder="Nhập khối lượng dung dịch" class="input" step="any"
                                         value="{{ isset($b) && is_numeric($b) ? $b : old('b') }}" />
@@ -60,7 +60,7 @@
 
                             <div class="col mb-4">
                                 <div class="input-style-1">
-                                    <label class="lb" for="thetichdungdich">M</label>
+                                    <label for="thetichdungdich">M</label>
                                     <input type="number" id="thetichdungdich" name="c" placeholder="Nhập khối lượng mol"
                                         class="input" step="any"
                                         value="{{ isset($b) && is_numeric($b) ? $b : old('b') }}" />

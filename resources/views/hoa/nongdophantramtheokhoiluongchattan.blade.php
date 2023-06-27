@@ -8,10 +8,10 @@
             <div class="card-style cardform h-100">
                 <h2>Tính nồng độ phần trăm theo khối lượng chất tan và khối lượng dung dịch</h2>
                 @if ($errors->any())
-                <h2 style="color: red;">
-                    vui lòng kiểm tra lại dữ liệu
-                </h2>
-                 @endif
+                    <h2 style="color: red;">
+                        vui lòng kiểm tra lại dữ liệu
+                    </h2>
+                @endif
 
                 <form action="nongdophantramtheokhoiluongchattan" method="post">
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
@@ -25,7 +25,7 @@
                                 <div>
                                     <span>m<sub>ct</sub> * 100&#37;</span>
                                     <hr>
-                                    <span>&nbsp; &nbsp;	m<sub>dd</sub></span>
+                                    <span>&nbsp; &nbsp; m<sub>dd</sub></span>
                                 </div>
                             </div>
                         </div>
@@ -36,23 +36,25 @@
                         <div class="row d-flex flex-column">
                             <div class="col">
                                 <div class="input-style-1">
-                                <label for="somolchattan">m<sub>ct</sub></label>
-                                <input type="number" id="somolchattan" name="a" placeholder="Nhập khối lượng chất tan"
-                                    class="input" step="any" value="{{ isset($a)&&is_numeric($a) ? $a:old('a')}}" />
+                                    <label for="somolchattan">m<sub>ct</sub></label>
+                                    <input type="number" id="somolchattan" name="a"
+                                        placeholder="Nhập khối lượng chất tan" class="input" step="any"
+                                        value="{{ isset($a) && is_numeric($a) ? $a : old('a') }}" />
                                     @error('a')
-                                        <span style="color: red;">{{$message}}</span>
+                                        <span style="color: red;">{{ $message }}</span>
                                     @enderror
-                                    </div>
+                                </div>
                             </div>
 
                             <div class="col mb-4">
                                 <div class="input-style-1">
-                                <label for="thetichdungdich">m<sub>dd</sub></label>
-                                <input type="number" id="thetichdungdich" name="b" placeholder="Nhập khối lượng dung dịch"
-                                    class="input" step="any" value="{{ isset($b)&&is_numeric($b) ? $b:old('b')}}" />
-                                @error('b')
-                                    <span style="color: red;">{{$message}}</span>
-                                @enderror
+                                    <label for="thetichdungdich">m<sub>dd</sub></label>
+                                    <input type="number" id="thetichdungdich" name="b"
+                                        placeholder="Nhập khối lượng dung dịch" class="input" step="any"
+                                        value="{{ isset($b) && is_numeric($b) ? $b : old('b') }}" />
+                                    @error('b')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -80,7 +82,9 @@
                 </div>
                 <div class="mb-30">
                     <h2 class="mb-30">Lý thuyết</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In ratione vel, eveniet sunt inventore nemo debitis deleniti quisquam aliquid tenetur, earum maxime vitae id molestiae expedita quasi dolorum! Consequatur, provident?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In ratione vel, eveniet sunt inventore nemo
+                        debitis deleniti quisquam aliquid tenetur, earum maxime vitae id molestiae expedita quasi dolorum!
+                        Consequatur, provident?</p>
                 </div>
             </div>
         </div>

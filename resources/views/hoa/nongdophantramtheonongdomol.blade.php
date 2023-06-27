@@ -8,10 +8,10 @@
             <div class="card-style cardform h-100">
                 <h2>Tính nồng độ phần trăm theo nồng độ mol và khối lượng mol</h2>
                 @if ($errors->any())
-                <h2 style="color: red;">
-                    vui lòng kiểm tra lại dữ liệu
-                </h2>
-                 @endif
+                    <h2 style="color: red;">
+                        vui lòng kiểm tra lại dữ liệu
+                    </h2>
+                @endif
 
                 <form action="nongdophantramtheonongdomol" method="post">
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
@@ -36,34 +36,37 @@
                         <div class="row d-flex flex-column">
                             <div class="col">
                                 <div class="input-style-1">
-                                <label for="somolchattan">C<sub>M</sub></label>
-                                <input type="number" id="somolchattan" name="a" placeholder="Nhập nồng độ mol"
-                                    class="input" step="any" value="{{ isset($a)&&is_numeric($a) ? $a:old('a')}}" />
+                                    <label for="somolchattan">C<sub>M</sub></label>
+                                    <input type="number" id="somolchattan" name="a" placeholder="Nhập nồng độ mol"
+                                        class="input" step="any"
+                                        value="{{ isset($a) && is_numeric($a) ? $a : old('a') }}" />
                                     @error('a')
-                                        <span style="color: red;">{{$message}}</span>
+                                        <span style="color: red;">{{ $message }}</span>
                                     @enderror
-                                    </div>
+                                </div>
                             </div>
 
                             <div class="col">
                                 <div class="input-style-1">
-                                <label for="thetichdungdich">M</label>
-                                <input type="number" id="thetichdungdich" name="b" placeholder="Nhập khối lượng mol"
-                                    class="input" step="any" value="{{ isset($b)&&is_numeric($b) ? $b:old('b')}}" />
-                                @error('b')
-                                    <span style="color: red;">{{$message}}</span>
-                                @enderror
+                                    <label for="thetichdungdich">M</label>
+                                    <input type="number" id="thetichdungdich" name="b"
+                                        placeholder="Nhập khối lượng mol" class="input" step="any"
+                                        value="{{ isset($b) && is_numeric($b) ? $b : old('b') }}" />
+                                    @error('b')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="col mb-4">
                                 <div class="input-style-1">
-                                <label class="lb" for="thetichdungdich">D</label>
-                                <input type="number" id="thetichdungdich" name="c" placeholder="Nhập khối lượng riêng"
-                                    class="input" step="any" value="{{ isset($c)&&is_numeric($c) ? $c:old('c')}}" />
-                                @error('c')
-                                    <span style="color: red;">{{$message}}</span>
-                                @enderror
+                                    <label for="thetichdungdich">D</label>
+                                    <input type="number" id="thetichdungdich" name="c"
+                                        placeholder="Nhập khối lượng riêng" class="input" step="any"
+                                        value="{{ isset($c) && is_numeric($c) ? $c : old('c') }}" />
+                                    @error('c')
+                                        <span style="color: red;">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
