@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Lythuyet;
 
-use DB;
 
 class LythuyetController extends Controller
 {
@@ -17,8 +17,9 @@ class LythuyetController extends Controller
      */
     public function index()
     {
-        $lythuyet=DB::select('SELECT * FROM lythuyet');
-        return view('admin.danhsachlythuyet',compact('lythuyet'));
+        $lythuyet=new Lythuyet();
+        $dslythuyet=$lythuyet->danhsachlythuyet();
+        return view('admin.danhsachlythuyet',compact('dslythuyet'));
     }
 
     /**

@@ -10,8 +10,8 @@
         </tr>
     </thead>
     <tbody>
-        @if(!empty($lythuyet))
-            @foreach ($lythuyet as $key => $item)
+        @if(!empty($dslythuyet))
+            @foreach ($dslythuyet as $key => $item)
         <tr>
             <td>{{$key +1}}</td>
             <td>{{$item->tenlythuyet}}</td>
