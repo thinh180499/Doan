@@ -37,7 +37,7 @@
                             <div class="col">
                                 <div class="input-style-1">
                                     <label for="somolchattan"> m</label>
-                                    <input type="number" id="somolchattan" name="a" placeholder="Nhập m"
+                                    <input type="number" id="somolchattan" name="a" placeholder="Nhập khối lượng chất"
                                         class="input" step="any"
                                         value="{{ isset($a) && is_numeric($a) ? $a : old('a') }}" />
                                     @error('a')
@@ -49,7 +49,7 @@
                             <div class="col mb-4">
                                 <div class="input-style-1">
                                     <label for="thetichdungdich">M</label>
-                                    <input type="number" id="thetichdungdich" name="b" placeholder="Nhập M"
+                                    <input type="number" id="thetichdungdich" name="b" placeholder="Nhập khối lượng mol"
                                         class="input" step="any"
                                         value="{{ isset($b) && is_numeric($b) ? $b : old('b') }}" />
                                     @error('b')
