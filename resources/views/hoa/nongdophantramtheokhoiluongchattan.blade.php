@@ -7,11 +7,6 @@
         <div class="col-lg-7 tinhtoan">
             <div class="card-style cardform h-100">
                 <h2>Tính nồng độ phần trăm theo khối lượng chất tan và khối lượng dung dịch</h2>
-                @if ($errors->any())
-                    <h2 style="color: red;">
-                        vui lòng kiểm tra lại dữ liệu
-                    </h2>
-                @endif
 
                 <form action="nongdophantramtheokhoiluongchattan" method="post">
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
@@ -40,9 +35,6 @@
                                     <input type="number" id="somolchattan" name="a"
                                         placeholder="Nhập khối lượng chất tan" class="input" step="any"
                                         value="{{ isset($a) && is_numeric($a) ? $a : old('a') }}" />
-                                    @error('a')
-                                        <span style="color: red;">{{ $message }}</span>
-                                    @enderror
                                 </div>
                             </div>
 
@@ -52,9 +44,6 @@
                                     <input type="number" id="thetichdungdich" name="b"
                                         placeholder="Nhập khối lượng dung dịch" class="input" step="any"
                                         value="{{ isset($b) && is_numeric($b) ? $b : old('b') }}" />
-                                    @error('b')
-                                        <span style="color: red;">{{ $message }}</span>
-                                    @enderror
                                 </div>
                             </div>
 
@@ -63,6 +52,22 @@
                                 <span>
                                     {!! isset($ketqua) ? $ketqua . ' (%)' : false !!}
                                 </span>
+                                @if ($errors->any())
+                                    <div class="alert-box danger-alert m-0 w-100">
+                                        <div class="alert">
+                                            <h4 class="alert-heading">
+                                                Vui lòng kiểm tra lại dữ liệu
+                                            </h4>
+
+                                            @error('a')
+                                                <p class="text-medium">{{ $message }}</p>
+                                            @enderror
+                                            @error('b')
+                                                <p class="text-medium">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>

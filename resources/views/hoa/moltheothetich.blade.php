@@ -7,11 +7,6 @@
         <div class="col-lg-7 tinhtoan">
             <div class="card-style cardform">
                 <h2>Tính số mol theo thể tích:</h2>
-                @if ($errors->any())
-                    <h2 style="color: red;">
-                        vui lòng kiểm tra lại dữ liệu
-                    </h2>
-                @endif
 
                 <form action="moltheothetich" method="post">
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
@@ -40,9 +35,6 @@
                                     <input type="number" id="somolchattan" name="a" placeholder="Nhập thể tích"
                                         class="input" step="any"
                                         value="{{ isset($a) && is_numeric($a) ? $a : old('a') }}" />
-                                    @error('a')
-                                        <span style="color: red;">{{ $message }}</span>
-                                    @enderror
                                 </div>
                             </div>
 
@@ -51,6 +43,19 @@
                                 <span>
                                     {!! isset($ketqua) ? $ketqua . ' (mol)' : false !!}
                                 </span>
+                                @if ($errors->any())
+                                    <div class="alert-box danger-alert m-0 w-100">
+                                        <div class="alert">
+                                            <h4 class="alert-heading">
+                                                Vui lòng kiểm tra lại dữ liệu
+                                            </h4>
+
+                                            @error('a')
+                                                <p class="text-medium">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
