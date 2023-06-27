@@ -1,5 +1,7 @@
 <h1>Danh sách lý thuyết</h1>
+
 <table >
+<a href="<?php echo route('admin.themlythuyet'); ?>">thêm lý thuyết</a>
     <thead>
         <tr>
             <th>id lý thuyết</th>

@@ -298,8 +298,12 @@ Route::get('/login', function () {
     Route::prefix('/admin')->group(function () {
 
     //danh sách lý thuyết
-    Route::get('/', [LythuyetController::class, 'index'])->name('admin.danhsachluthuyet');
-    Route::get('danhsachluthuyet', [LythuyetController::class, 'index']);
+    Route::get('/', [LythuyetController::class, 'index'])->name('admin.danhsachlythuyet');
+    Route::get('danhsachlythuyet', [LythuyetController::class, 'index']);
+
+//thêm lý thuyết
+    Route::get('themlythuyet', [LythuyetController::class, 'add'])->name('admin.themlythuyet');
+    Route::post('themlythuyet', [LythuyetController::class, 'postadd']);
     
 
 });
