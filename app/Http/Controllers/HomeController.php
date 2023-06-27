@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-use App\Models\Admin;
+
 
 class HomeController extends Controller
 {
@@ -21,7 +21,7 @@ class HomeController extends Controller
         return view('hoa');
     }
     public function login(){
-        return view('login');
+        return view('admin.danhsachlythuyet');
     }
     public function checklogin(Request $request){
         $request->validate([
@@ -37,8 +37,8 @@ class HomeController extends Controller
              $request->adminname,
              $request->password,
         ];
-        $kiemtralogin=$this->admin->kiemtralogin($data);
-        if(!empty($kiemtralogin[0])){
+        
+        if(Auth::attempt(['adminname'=>$request->adminname,'password'=>$request->password])){
             
             return redirect()->route('admin.danhsachlythuyet','kiemtralogin');
         }else{

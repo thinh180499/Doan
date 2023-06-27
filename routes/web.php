@@ -8,6 +8,7 @@ use App\Http\Controllers\HoaController;
 use App\Http\Controllers\Admin\LythuyetController;
 use App\Http\Controllers\Admin\HinhController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -293,20 +294,22 @@ Route::prefix('/hoa')->group(function () {
 
 
 
-Route::middleware('auth.admin')->prefix('/admin')->name('admin.')->group(function () {
+Route::prefix('/admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('home');
+    Route::resource('lythuyet', LythuyetController::class);
+    Route::resource('hinh', HinhController::class);
+//     //danh sách lý thuyết
+//     Route::get('/', [LythuyetController::class, 'index'])->name('danhsachlythuyet');
+//     Route::get('danhsachlythuyet', [LythuyetController::class, 'index']);
 
-    //danh sách lý thuyết
-    Route::get('/', [LythuyetController::class, 'index'])->name('danhsachlythuyet');
-    Route::get('danhsachlythuyet', [LythuyetController::class, 'index']);
-
-//thêm lý thuyết
-    Route::get('themlythuyet', [LythuyetController::class, 'add'])->name('themlythuyet');
-    Route::post('themlythuyet', [LythuyetController::class, 'postadd']);
+// //thêm lý thuyết
+//     Route::get('themlythuyet', [LythuyetController::class, 'add'])->name('themlythuyet');
+//     Route::post('themlythuyet', [LythuyetController::class, 'postadd']);
     
-//sửa lý thuyết
-    Route::get('sualythuyet/{id}', [LythuyetController::class, 'edit'])->name('sualythuyet');
-    Route::post('sualythuyet/{id}', [LythuyetController::class, 'postedit'])->name('postsualythuyet');
+// //sửa lý thuyết
+//     Route::get('sualythuyet/{id}', [LythuyetController::class, 'edit'])->name('sualythuyet');
+//     Route::post('sualythuyet/{id}', [LythuyetController::class, 'postedit'])->name('postsualythuyet');
 
-//xóa
-    Route::get('xoalythuyet/{id}', [LythuyetController::class, 'dele'])->name('xoalythuyet');
+// //xóa
+//     Route::get('xoalythuyet/{id}', [LythuyetController::class, 'dele'])->name('xoalythuyet');
 });

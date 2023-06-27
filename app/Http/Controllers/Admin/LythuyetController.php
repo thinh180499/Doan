@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Admin;
 use App\Models\Lythuyet;
 
 
@@ -15,28 +14,52 @@ class LythuyetController extends Controller
         
         $this->lythuyet=new Lythuyet();
     }
-    
-    public function index(){
+    // private $lythuyet;
+    // public function __construct(){
         
-        $dslythuyet=$this->lythuyet->danhsachlythuyet();
-        return view('admin.danhsachlythuyet',compact('dslythuyet'));
+    //     $this->lythuyet=new Lythuyet();
+    // }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $list_lythuyet=Lythuyet::get();
+        //$dslythuyet=$this->lythuyet->danhsachlythuyet();
+        $title="danh sách lý thuyết";
+        return view('admin.lythuyet.index',compact('list_lythuyet','title'));
     }
 
-    public function add(){
-
-        return view('admin.themlythuyet');
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $title="thêm lý thuyết";
+        return view('admin.lythuyet.create',compact('title'));
     }
-    
-    public function postadd(Request $request){
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         $request->validate([
-            'tenlythuyet'=>'required|min:5|unique:lythuyet',
+            'tenlythuyet'=>'required|min:5',
             'noidung'=>'required',
             'congthuc'=>'required',
             'mon'=>'required',
         ],[
             'tenlythuyet.required'=>'tên lý thuyết bắt buộc phải nhập',
             'tenlythuyet.min'=>'tên lý thuyết phải hơn 5 ký tự',
-            'tenlythuyet.unique'=>'tên lý thuyết đã tồn tại',
+            //'tenlythuyet.unique'=>'tên lý thuyết đã tồn tại',
             'noidung.required'=>'nội dung bắt buộc phải nhập',
             'congthuc.required'=>'công thức bắt buộc phải nhập',
             'mon.required'=>'môn bắt buộc phải nhập',
@@ -47,59 +70,55 @@ class LythuyetController extends Controller
             $request->congthuc,
             $request->mon,
         ];
+        
         $this->lythuyet->themlythuyet($data);
-        return redirect()->route('admin.danhsachlythuyet');
+        return redirect()->route('admin.lythuyet.index');
     }
-    public function edit($id=0){
-        if(!empty($id)){
-            $chitietlythuyet=$this->lythuyet->laylythuyet($id);
-           if(!empty($chitietlythuyet[0])){
-            $chitietlythuyet=$chitietlythuyet[0];
-           }else{
-            return redirect()->route('admin.danhsachlythuyet');
-           }
-        }else{
-            return redirect()->route('admin.danhsachlythuyet');
-        }
-        
 
-        return view('admin.sualythuyet',compact('chitietlythuyet'));
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
-    public function postedit(Request $request,$id=0){
-        $request->validate([
-            'tenlythuyet'=>'required|min:5|unique:lythuyet,tenlythuyet,'.$id,
-            'noidung'=>'required',
-            'congthuc'=>'required',
-            'mon'=>'required',
-        ],[
-            'tenlythuyet.required'=>'tên lý thuyết bắt buộc phải nhập',
-            'tenlythuyet.min'=>'tên lý thuyết phải hơn 5 ký tự',
-            'tenlythuyet.unique'=>'tên lý thuyết đã tồn tại',
-            'noidung.required'=>'nội dung bắt buộc phải nhập',
-            'congthuc.required'=>'công thức bắt buộc phải nhập',
-            'mon.required'=>'môn bắt buộc phải nhập',
-        ]);
-        $data=[
-            $request->tenlythuyet,
-            $request->noidung,
-            $request->congthuc,
-            $request->mon,
-        ];
-        $this->lythuyet->sualythuyet($data,$id);
 
-        return back();
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        // $chitietlythuyet = $this->lythuyet->themlythuyet($id);
+        // $title="sửa lý thuyết";
+        // return view('admin.lythuyet.edit',compact('chitietlythuyet','title'));
     }
-    public function dele($id){
-        if(!empty($id)){
-            $chitietlythuyet=$this->lythuyet->laylythuyet($id);
-           if(!empty($chitietlythuyet[0])){
-            $xoalythuyet=$this->lythuyet->xoalythuyet($id);
-           }else{
-            return redirect()->route('admin.danhsachlythuyet');
-           }
-        }else{
-            return redirect()->route('admin.danhsachlythuyet');
-        }
-        return redirect()->route('admin.danhsachlythuyet');
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }
