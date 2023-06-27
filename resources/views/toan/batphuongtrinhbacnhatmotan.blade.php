@@ -29,12 +29,19 @@
                                 <div class="input-style-1">
                                     <label>Nhập a</label>
                                     <input type="number" name="a" value="{{ !empty($a) ? $a : false }}">
+                                    @error('a')
+                                        <span style="color: red;">{{$message}}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col mb-4">
                                 <div class="input-style-1">
                                     <label>Nhập b</label>
-                                    <input type="number" name="a" value="{{ !empty($a) ? $a : false }}">
+                                    <input type="number" name="b" value="{{ !empty($b) ? $b : false }}">
+                                    @error('b')
+                                        <span style="color: red;">{{$message}}</span>
+                                    @enderror
+                                    
                                 </div>
                             </div>
 
@@ -43,10 +50,18 @@
                                     <label>Nhập dấu</label>
                                     <div class="select-position">
                                         <select name="i">
-                                            <option value="lonhon">&gt;</option>
-                                            <option value="behon">&lt;</option>
-                                            <option value="lonhonbang">&ge;</option>
-                                            <option value="behonbang">&le;</option>
+                                            <option <?php if (isset($i) && $i == "lonhon") {
+                                                echo 'selected ';
+                                            } ?> value="lonhon">&gt;</option>
+                                            <option <?php if (isset($i) && $i == "behon") {
+                                                echo 'selected ';
+                                            } ?> value="behon">&lt;</option>
+                                            <option <?php if (isset($i) && $i == "lonhonbang") {
+                                                echo 'selected ';
+                                            } ?> value="lonhonbang">&ge;</option>
+                                            <option <?php if (isset($i) && $i == "behonbang") {
+                                                echo 'selected ';
+                                            } ?> value="behonbang">&le;</option>
                                         </select>
                                     </div>
                                 </div>
@@ -63,9 +78,6 @@
                                 <span>
                                     {{ !empty($ketqua) ? $ketqua : false }}
                                 </span>
-                                @error('a')
-                                        <span style="color: red;">{{$message}}</span>
-                                @enderror
                             </div>
                         </div>
 

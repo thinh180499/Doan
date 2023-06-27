@@ -37,8 +37,6 @@
                                     @error('a')
                                         <span style="color: red;">{{$message}}</span>
                                     @enderror
-                                    <span style="color: red;">
-                                    {!! isset($err)?$err:false !!}
                                 </span>
                             </div>
 

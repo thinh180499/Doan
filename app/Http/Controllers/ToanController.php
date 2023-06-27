@@ -231,8 +231,8 @@ public function tinhluythuacuamotluythua(Request $request){
         $a=$_POST['a'];
         $b=$_POST['b'];
         if($a==0){
-            $err="a phải khác 0";
-            return view('toan.phuongtrinhbacnhat',compact('err','b'));
+            $ketqua="phương trình vô nghiệm";
+            return view('toan.phuongtrinhbacnhat',compact('ketqua','a','b'));
         }
         //tính kết quả
         $ketqua=-$b/$a;
@@ -254,7 +254,80 @@ public function tinhluythuacuamotluythua(Request $request){
     public function batphuongtrinhbacnhatmotan(){
         return view('toan.batphuongtrinhbacnhatmotan');
     }
-    
+    public function tinhbatphuongtrinhbacnhatmotan(Request $request){
+        $request->validate([
+            'a'=>'required|numeric',
+            'b'=>'required|numeric',
+            ],[
+            'a.required'=>'a bắt buộc phải nhập',
+            'a.numeric'=>'a buộc phải là số',
+            'b.required'=>'b bắt buộc phải nhập',
+            'b.numeric'=>'b bắt buộc phải là số',
+            
+        ]);
+        $a=$_POST['a'];
+        $b=$_POST['b'];
+        $i=$_POST['i'];
+        
+        if($a==0){
+            $ketqua="phương trình vô nghiệm";
+            return view('toan.batphuongtrinhbacnhatmotan',compact('ketqua','a','b','i'));
+        }
+        //tính kết quả
+        $ketqua=-$b/$a;
+        //xét kết quả là số vô hạn
+        if(is_infinite($ketqua)){
+            $ketqua="kết quả vượt qua giới hạn tính";
+            return view('toan.batphuongtrinhbacnhatmotan',compact('ketqua','a','b','i'));
+        }
+        else{
+            if($a>0)
+            {
+                switch($i)
+                {
+                    case "lonhon":
+                        $j=">";
+                        break; 
+                    case "behon":
+                        $j="<";
+                        break; 
+                    case "lonhonbang":
+                        $j=">=";
+                        break; 
+                    case "behonbang":
+                        $j="<=";
+                        break; 
+             
+                }
+                $ketqua="x".$j.$ketqua;
+                return view('toan.batphuongtrinhbacnhatmotan',compact('ketqua','a','b','i'));
+            }
+            if($a<0)
+            {
+                switch($i)
+                {
+                    case "lonhon":
+                        $j="<";
+                        break; 
+                    case "behon":
+                        $j=">";
+                        break; 
+                    case "lonhonbang":
+                        $j="<=";
+                        break;  
+                    case "behonbang":
+                        $j=">=";
+                        break;  
+             
+                }
+                $ketqua="x".$j.$ketqua;
+                return view('toan.batphuongtrinhbacnhatmotan',compact('ketqua','a','b','i'));
+            }
+           
+        }
+       
+       
+    }
 
     //phương trình bậc 2
     public function phuongtrinhbachai(){

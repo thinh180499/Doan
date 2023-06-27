@@ -294,12 +294,16 @@ Route::get('/login', function () {
      echo "đăng nhập";
     })->name('login');
 
-Route::middleware('auth.admin')->prefix('/admin')->group(function () {
+//Route::middleware('auth.admin')->prefix('/admin')->group(function () {
+    Route::prefix('/admin')->group(function () {
 
+    //danh sách lý thuyết
+    Route::get('/', [LythuyetController::class, 'index'])->name('admin.danhsachlythuyet');
+    Route::get('danhsachlythuyet', [LythuyetController::class, 'index']);
 
-    Route::resource('lythuyet',LythuyetController::class);
+//thêm lý thuyết
+    Route::get('themlythuyet', [LythuyetController::class, 'add'])->name('admin.themlythuyet');
+    Route::post('themlythuyet', [LythuyetController::class, 'postadd']);
+    
 
-    Route::resource('hinh',LythuyetController::class);
-
-    Route::resource('user',LythuyetController::class);
 });
