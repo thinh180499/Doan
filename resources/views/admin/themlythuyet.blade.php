@@ -1,5 +1,5 @@
 <h1>thêm lý thuyết</h1>
-@if(@errors->any())
+@if($errors->any())
     <div style="color: red;">Dữ liệu nhập vào không hợp lệ</div>
 @endif
 <form action="themlythuyet" method="post">
