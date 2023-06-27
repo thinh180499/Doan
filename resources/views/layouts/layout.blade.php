@@ -19,7 +19,7 @@
         margin: auto;
     }
 
-    h2, h3, .lythuyet ul {
+    h2, h3 {
         text-align: center;
     }
 
@@ -59,6 +59,10 @@
         padding: 12px;
         font-size: 20px;
         color: #454b5c;
+    }
+
+    .lythuyet ul{
+        padding-left: 130px;
     }
 
     .lythuyet ul li {

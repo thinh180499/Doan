@@ -34,7 +34,7 @@
 
                     <div class="container">
                         <div class="row d-flex flex-column">
-                            <div class="col mb-4">
+                            <div class="col">
                                 <div class="input-style-1">
                                     <label for="somolchattan"> m</label>
                                     <input type="number" id="somolchattan" name="a" placeholder="Nhập m"
@@ -61,7 +61,7 @@
                             <div class="col d-flex align-items-center mb-4">
                                 <button class="btn btn-primary me-5 py-0 px-4 calculate" type="submit">=</button>
                                 <span>
-                                    {!! isset($ketqua) ? $ketqua : false !!}
+                                    {!! isset($ketqua) ? $ketqua . ' (mol)' : false !!}
                                 </span>
                             </div>
                         </div>
@@ -75,17 +75,15 @@
                 <div class="mb-50">
                     <h3 class="mb-20">Trong đó</h3>
                     <ul>
+                        <li>n: số mol (mol)</li>
                         <li>m: khối lượng chất (gam)</li>
                         <li>M: khối lượng Mol (gam/mol)</li>
                     </ul>
                 </div>
                 <div class="mb-30">
                     <h2 class="mb-30">Lý thuyết</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In ratione vel, eveniet sunt inventore nemo
-                        debitis deleniti quisquam aliquid tenetur, earum maxime vitae id molestiae expedita quasi dolorum!
-                        Consequatur, provident?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In ratione vel, eveniet sunt inventore nemo debitis deleniti quisquam aliquid tenetur, earum maxime vitae id molestiae expedita quasi dolorum! Consequatur, provident?</p>
                 </div>
-
             </div>
         </div>
     </div>

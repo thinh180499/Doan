@@ -3,8 +3,8 @@
 @section('title', 'Tính số mol theo thể tích')
 
 @section('content')
-    <div class="row mt-5">
-        <div class="col">
+    <div class="row mt-4">
+        <div class="col-lg-7 tinhtoan">
             <div class="card-style cardform">
                 <h2>Tính số mol theo thể tích:</h2>
                 @if ($errors->any())
@@ -49,13 +49,28 @@
                             <div class="col d-flex align-items-center mb-4">
                                 <button class="btn btn-primary me-5 py-0 px-4 calculate" type="submit">=</button>
                                 <span>
-                                    {!! isset($ketqua) ? $ketqua : false !!}
+                                    {!! isset($ketqua) ? $ketqua . ' (mol)' : false !!}
                                 </span>
                             </div>
                         </div>
                     </div>
 
                 </form>
+            </div>
+        </div>
+        <div class="col-lg-5 lythuyet">
+            <div class="card-style cardform h-100">
+                <div class="mb-50">
+                    <h3 class="mb-20">Trong đó</h3>
+                    <ul>
+                        <li>n: số mol (mol)</li>
+                        <li>V: thể tích (lít)</li>
+                    </ul>
+                </div>
+                <div class="mb-30">
+                    <h2 class="mb-30">Lý thuyết</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In ratione vel, eveniet sunt inventore nemo debitis deleniti quisquam aliquid tenetur, earum maxime vitae id molestiae expedita quasi dolorum! Consequatur, provident?</p>
+                </div>
             </div>
         </div>
     </div>
