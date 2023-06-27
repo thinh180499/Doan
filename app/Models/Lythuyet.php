@@ -20,4 +20,15 @@ class Lythuyet extends Model
     public function themlythuyet($data){
        DB::insert('INSERT INTO lythuyet(tenlythuyet,noidung,congthuc,mon)value(?,?,?,?)',$data);
     }
+    public function laylythuyet($id){
+        return DB::select('SELECT * FROM '.$this->table.' WHERE id=?',[$id]);
+    }
+    public function sualythuyet($data,$id){
+        $data[]=$id;
+        return DB::update('UPDATE '.$this->table.' SET tenlythuyet=?,noidung=?,congthuc=?,mon=? WHERE id=?',$data);
+    }
+    public function xoalythuyet($id){
+        return DB::delete("DELETE FROM $this->table WHERE id=?",[$id]);
+    
+    }
 }

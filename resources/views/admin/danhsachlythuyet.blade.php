@@ -9,6 +9,8 @@
             <th>nội dung</th>
             <th>công thức</th>
             <th>môn</th>
+            <th>sửa</th>
+            <th>xóa</th>
         </tr>
     </thead>
     <tbody>
@@ -20,6 +22,12 @@
             <td>{{$item->noidung}}</td>
             <td>{{$item->congthuc}}</td>
             <td>{{$item->mon}}</td>
+            <td>
+            <a href="{{route('admin.sualythuyet',['id'=>$item->id]) }}">sửa</a>
+            </td>
+            <td>
+            <a onclick="return confirm('bạn có chắc muốn xóa')" href="{{ route('admin.xoalythuyet',['id'=>$item->id]) }}">xóa</a>
+            </td>
         </tr>
             @endforeach
         @else

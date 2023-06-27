@@ -295,15 +295,20 @@ Route::get('/login', function () {
     })->name('login');
 
 //Route::middleware('auth.admin')->prefix('/admin')->group(function () {
-    Route::prefix('/admin')->group(function () {
+    Route::prefix('/admin')->name('admin.')->group(function () {
 
     //danh sách lý thuyết
-    Route::get('/', [LythuyetController::class, 'index'])->name('admin.danhsachlythuyet');
+    Route::get('/', [LythuyetController::class, 'index'])->name('danhsachlythuyet');
     Route::get('danhsachlythuyet', [LythuyetController::class, 'index']);
 
 //thêm lý thuyết
-    Route::get('themlythuyet', [LythuyetController::class, 'add'])->name('admin.themlythuyet');
+    Route::get('themlythuyet', [LythuyetController::class, 'add'])->name('themlythuyet');
     Route::post('themlythuyet', [LythuyetController::class, 'postadd']);
     
+//sửa lý thuyết
+    Route::get('sualythuyet/{id}', [LythuyetController::class, 'edit'])->name('sualythuyet');
+    Route::post('sualythuyet/{id}', [LythuyetController::class, 'postedit'])->name('postsualythuyet');
 
+//xóa
+    Route::get('xoalythuyet/{id}', [LythuyetController::class, 'dele'])->name('xoalythuyet');
 });
