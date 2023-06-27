@@ -38,6 +38,13 @@ class LythuyetController extends Controller
             'congthuc.required'=>'công thức bắt buộc phải nhập',
             'mon.required'=>'môn bắt buộc phải nhập',
         ]);
-        return view('admin.danhsachlythuyet');
+        $data=[
+            $request->tenlythuyet,
+            $request->noidung,
+            $request->congthuc,
+            $request->mon,
+        ];
+        $this->lythuyet->themlythuyet($data);
+        return redirect()->route('admin.danhsachlythuyet');
     }
 }
