@@ -24,7 +24,7 @@ class HoaController extends Controller
         ]);
         $a=$_POST['a'];
         $b=$_POST['b'];
-       
+
         (float)$ketqua=$a/$b;
         //xét kết quả là số vô hạn
         if(is_infinite($ketqua)){
@@ -50,7 +50,7 @@ public function tinhmoltheothetich(Request $request){
         'a.min'=>'m phải lớn hơn 0.00000000000000000000001',
     ]);
     $a=$_POST['a'];
-   
+
     (float)$ketqua=$a/22.4;
     //xét kết quả là số vô hạn
     if(is_infinite($ketqua)){
@@ -163,10 +163,10 @@ public function tinhmoltheothetich(Request $request){
         //xét kết quả là số vô hạn
         if(is_infinite($ketqua)) {
             $ketqua="kết quả vượt qua giới hạn tính";
-            return view('hoa.moltheonongdophantramvakhoiluongdungdich',compact('ketqua','a','b','c','d'));
+            return view('hoa.moltheonongdophantramvathetichdungdich',compact('ketqua','a','b','c','d'));
         }
         else{
-            return view('hoa.moltheonongdophantramvakhoiluongdungdich',compact('ketqua','a','b','c','d'));
+            return view('hoa.moltheonongdophantramvathetichdungdich',compact('ketqua','a','b','c','d'));
         }
     }
 
@@ -238,7 +238,7 @@ public function tinhmoltheothetich(Request $request){
                     else{
                         return view('hoa.nongdophantramtheonongdomol',compact('ketqua','a','b','c'));
                     }
-                
+
     }
 
 
@@ -307,7 +307,7 @@ public function tinhmoltheothetich(Request $request){
                     else{
                         return view('hoa.nongdomolmoltheonongdophantram',compact('ketqua','a','b','c'));
                     }
-                
+
     }
 
 
@@ -340,7 +340,7 @@ public function tinhmoltheothetich(Request $request){
                 else{
                     return view('hoa.khoiluongchat',compact('ketqua','a','b'));
                 }
-           
+
     }
 
 
@@ -410,7 +410,7 @@ public function tinhmoltheothetich(Request $request){
                     }
 
     }
-           
+
 
 
     //Tính thể tích dung dịch theo nồng dộ mol thetichdungdichtheonongdomol
@@ -538,7 +538,7 @@ public function tinhmoltheothetich(Request $request){
 
 
 
-    
 
-   
+
+
 }
