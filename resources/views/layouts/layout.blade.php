@@ -246,8 +246,6 @@
                 <li><a href="<?php echo route('hoa.thetichdungdichtheokhoiluongdungdich'); ?>">tính thể tích dung dịch theo khối lượng dung dịch</a></li>
 
 
-                {{-- Tính thành phần % về khối lượng các chất trong hỗn hợp --}}
-                <li><a href="<?php echo route('hoa.phantramkhoiluongchata'); ?>">phần trăm khối lượng chất</a></li>
             </ul>
           </li>
         </ul>

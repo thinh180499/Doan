@@ -11,7 +11,6 @@ class LythuyetController extends Controller
 {
     private $lythuyet;
     public function __construct(){
-        
         $this->lythuyet=new Lythuyet();
     }
     // private $lythuyet;
@@ -144,6 +143,6 @@ class LythuyetController extends Controller
     {
         $this->lythuyet->xoalythuyet($id);
         $title="danh sách lý thuyết";  
-        return view('admin.lythuyet',compact('title'));
+        return redirect()->route('admin.lythuyet.index',compact('title'));
     }
 }

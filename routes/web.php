@@ -37,9 +37,7 @@ use App\Http\Controllers\Admin\AdminController;
 // });
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-//đăng nhập
-Route::get('/login', [HomeController::class, 'login'])->name('login');
-Route::post('/login', [HomeController::class, 'checklogin']);
+
 
 // Vật lý
 Route::get('/vatly', [HomeController::class, 'vatly'])->name('vatly');
@@ -295,6 +293,9 @@ Route::prefix('/hoa')->group(function () {
 
 
 Route::prefix('/admin')->name('admin.')->group(function () {
+    //đăng nhập
+    Route::get('/login', [AdminController::class, 'login'])->name('login');
+    Route::post('/login', [AdminController::class, 'checklogin']);
     Route::get('/', [AdminController::class, 'index'])->name('home');
     Route::resource('lythuyet', LythuyetController::class);
     Route::resource('hinh', HinhController::class);
