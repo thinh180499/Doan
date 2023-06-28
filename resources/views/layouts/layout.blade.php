@@ -15,12 +15,40 @@
   <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
   <style>
-    .container {
-        margin: auto;
-    }
-
     h2, h3 {
         text-align: center;
+    }
+
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .section > .container-fluid {
+        padding: 0;
+    }
+
+    .main-wrapper .header {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        padding: 5px 0;
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0px 10px 20px rgba(200, 208, 216, 0.3);
+        background: #fff;
+    }
+
+    .header .header-left .header-search form button {
+        left: 28px;
+        top: 7px;
+
+    }
+
+    .header .header-left .header-search form input {
+        background: rgb(241, 245, 249);
+        height: 55px;
+        border-radius: 40px;
+        padding-left: 100px
     }
 
     .input {
@@ -259,7 +287,7 @@
       <!-- ========== header start ========== -->
       <header class="header">
         <div class="container-fluid">
-          <div class="row">
+          <div class="row d-flex align-items-center">
             <div class="col-lg-5 col-md-5 col-6">
               <div class="header-left d-flex align-items-center">
                 <div class="menu-toggle-btn mr-20">
