@@ -45,14 +45,10 @@
                         @foreach ($list_lythuyet as $lythuyet)
                       <tr>
                         <td class="min-width">
-                          <div class="lead">
-                            <div class="lead-image">
-                            <p>{{$lythuyet->id}}</p>
-                            </div>
-                            <div class="lead-text">
-                              <p>{{$lythuyet->tenlythuyet}}</p>
-                            </div>
-                          </div>
+                          <p>{{$lythuyet->id}}</p>
+                        </td>
+                        <td class="min-width">
+                          <p>{{$lythuyet->tenlythuyet}}</p>
                         </td>
                         <td class="min-width">
                           <p>{{$lythuyet->noidung}}</p>
@@ -64,21 +60,15 @@
                           <p>{{$lythuyet->mon}}</p>
                         </td>
                         <td>
-                         
-                            
-                            <a href="{{route('admin.lythuyet.edit',['lythuyet'=>$lythuyet->id])}}">sửa</a>
-                           
-                          
+                          <a href="{{route('admin.lythuyet.edit',['lythuyet'=>$lythuyet->id])}}">sửa</a>
                         </td>
                         <td>
-
                           <div class="action">
                             <form action="{{route('admin.lythuyet.destroy',['lythuyet'=>$lythuyet->id])}}" method="post">
                                 @method('DELETE')
                             @csrf
                             <button type="submit"> <i class="lni lni-trash-can"></i></button>               
-                        </form>
-                           
+                            </form>
                           </div>
                         </td>
                       </tr>
