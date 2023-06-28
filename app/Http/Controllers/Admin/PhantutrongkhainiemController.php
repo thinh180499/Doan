@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Hinh;
+use App\Models\Phantutrongkhainiem;
 
-class HinhController extends Controller
+class PhantutrongkhainiemController extends Controller
 {
-    private $hinh;
+    private $phantutrongkhainiem;
     public function __construct(){
-        $this->hinh=new hinh();
+        $this->phantutrongkhainiem=new Phantutrongkhainiem();
     }
     /**
      * Display a listing of the resource.
@@ -19,11 +19,9 @@ class HinhController extends Controller
      */
     public function index()
     {
-        $list_hinh=$this->hinh->danhsachhinh();
-        // $list_hinh=Hinh::get();
-        // dd($list_hinh);
-        $title="danh sách hình";
-        return view('admin.hinh.index',compact('list_hinh','title'));
+        $list_phantutrongkhainiem=Phantutrongkhainiem::get();
+        $title="danh sách phần tử trong công thức";
+        return view('admin.phantutrongkhainiem.index',compact('list_phantutrongkhainiem','title'));
     }
 
     /**
@@ -33,8 +31,8 @@ class HinhController extends Controller
      */
     public function create()
     {
-        $title="thêm hình";
-        return view('admin.hinh.create',compact('title'));
+        $title="thêm phần tử trong khái niệm";
+        return view('admin.phantutrongkhainiem.create',compact('title'));
     }
 
     /**
@@ -45,24 +43,23 @@ class HinhController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
-            'img'=>'required',
-            'khainiem_id'=>'required',
             
-        ],[
-            'img.required'=>'img bắt buộc phải nhập',
-            'img.min'=>'img phải hơn 5 ký tự',
            
+            'khainiem_id'=>'required',
+            'doituong_id'=>'required',
+        ],[
             'khainiem_id.required'=>'khái niệm bắt buộc phải nhập',
-            
+            'doituong_id.required'=>'đối tượng bắt buộc phải nhập',
         ]);
         $data=[
-            $request->img,
+           
             $request->khainiem_id,
+            $request->doituong_id,
         ];
-        
-        $this->hinh->themhinh($data);
-        return redirect()->route('admin.hinh.index');
+        $this->phantutrongkhainiem->themphantutrongkhainiem($data);
+        return redirect()->route('admin.phantutrongkhainiem.index');
     }
 
     /**
@@ -84,10 +81,10 @@ class HinhController extends Controller
      */
     public function edit($id)
     {
-        $hinh = $this->hinh->chitiethinh($id);
-        $title="sửa hình";
-        $hinh=$hinh[0];   
-        return view('admin.hinh.edit',compact('hinh','title'));
+        $phantutrongkhainiem = $this->phantutrongkhainiem->chitietphantutrongkhainiem($id);
+        $title="sửa phần tử trong khái niệm";
+        $phantutrongkhainiem=$phantutrongkhainiem[0];   
+        return view('admin.phantutrongkhainiem.edit',compact('phantutrongkhainiem','title'));
     }
 
     /**
@@ -100,21 +97,18 @@ class HinhController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'img'=>'required',
             'khainiem_id'=>'required',
-            
+            'doituong_id'=>'required',
         ],[
-            'img.required'=>'img bắt buộc phải nhập',
-            'img.min'=>'img phải hơn 5 ký tự',
-           
             'khainiem_id.required'=>'khái niệm bắt buộc phải nhập',
-            
+            'doituong_id.required'=>'đối tượng bắt buộc phải nhập',
         ]);
         $data=[
-            $request->img,
+           
             $request->khainiem_id,
+            $request->doituong_id,
         ];
-        $this->hinh->suahinh($data,$id);
+        $this->phantutrongkhainiem->suaphantutrongkhainiem($data,$id);
 
         return back()->with('msr','sửa thành công');
     }
@@ -127,8 +121,8 @@ class HinhController extends Controller
      */
     public function destroy($id)
     {
-        $this->hinh->xoahinh($id);
-        $title="danh sách hình";  
-        return redirect()->route('admin.hinh.index',compact('title'));
+        $this->phantutrongkhainiem->xoaphantutrongkhainiem($id);
+        $title="danh sách phần tử trong khái niệm";  
+        return redirect()->route('admin.phantutrongkhainiem.index',compact('title'));
     }
 }

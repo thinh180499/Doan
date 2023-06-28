@@ -21,6 +21,11 @@ class CheckLoginAdim
         }
     }
     public function isLogin($request){
+        if($request->hasCookie('tokenuser')){
             return true;
+        }else{
+            return false;
+        }
+           
     }
 }

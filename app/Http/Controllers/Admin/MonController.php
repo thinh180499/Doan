@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Hinh;
+use App\Models\Mon;
 
-class HinhController extends Controller
+class MonController extends Controller
 {
-    private $hinh;
+    private $mon;
     public function __construct(){
-        $this->hinh=new hinh();
+        $this->mon=new Mon();
     }
     /**
      * Display a listing of the resource.
@@ -19,11 +19,9 @@ class HinhController extends Controller
      */
     public function index()
     {
-        $list_hinh=$this->hinh->danhsachhinh();
-        // $list_hinh=Hinh::get();
-        // dd($list_hinh);
-        $title="danh sách hình";
-        return view('admin.hinh.index',compact('list_hinh','title'));
+        $list_mon=Mon::get();
+        $title="danh sách môn";
+        return view('admin.mon.index',compact('list_mon','title'));
     }
 
     /**
@@ -33,8 +31,8 @@ class HinhController extends Controller
      */
     public function create()
     {
-        $title="thêm hình";
-        return view('admin.hinh.create',compact('title'));
+        $title="thêm môn";
+        return view('admin.mon.create',compact('title'));
     }
 
     /**
@@ -46,23 +44,20 @@ class HinhController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'img'=>'required',
-            'khainiem_id'=>'required',
             
-        ],[
-            'img.required'=>'img bắt buộc phải nhập',
-            'img.min'=>'img phải hơn 5 ký tự',
            
-            'khainiem_id.required'=>'khái niệm bắt buộc phải nhập',
+            'mon'=>'required',
+        ],[
             
+            'mon.required'=>'môn bắt buộc phải nhập',
         ]);
         $data=[
-            $request->img,
-            $request->khainiem_id,
+           
+            $request->mon,
         ];
         
-        $this->hinh->themhinh($data);
-        return redirect()->route('admin.hinh.index');
+        $this->mon->themmon($data);
+        return redirect()->route('admin.mon.index');
     }
 
     /**
@@ -84,10 +79,10 @@ class HinhController extends Controller
      */
     public function edit($id)
     {
-        $hinh = $this->hinh->chitiethinh($id);
-        $title="sửa hình";
-        $hinh=$hinh[0];   
-        return view('admin.hinh.edit',compact('hinh','title'));
+        $mon = $this->mon->chitietmon($id);
+        $title="sửa môn";
+        $mon=$mon[0];   
+        return view('admin.mon.edit',compact('mon','title'));
     }
 
     /**
@@ -100,21 +95,15 @@ class HinhController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'img'=>'required',
-            'khainiem_id'=>'required',
-            
+            'mon'=>'required',
         ],[
-            'img.required'=>'img bắt buộc phải nhập',
-            'img.min'=>'img phải hơn 5 ký tự',
-           
-            'khainiem_id.required'=>'khái niệm bắt buộc phải nhập',
-            
+            'mon.required'=>'môn bắt buộc phải nhập',
         ]);
         $data=[
-            $request->img,
-            $request->khainiem_id,
+          
+            $request->mon,
         ];
-        $this->hinh->suahinh($data,$id);
+        $this->mon->suamon($data,$id);
 
         return back()->with('msr','sửa thành công');
     }
@@ -127,8 +116,8 @@ class HinhController extends Controller
      */
     public function destroy($id)
     {
-        $this->hinh->xoahinh($id);
-        $title="danh sách hình";  
-        return redirect()->route('admin.hinh.index',compact('title'));
+        $this->mon->xoamon($id);
+        $title="danh sách môn";  
+        return redirect()->route('admin.mon.index',compact('title'));
     }
 }
