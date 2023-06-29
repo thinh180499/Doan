@@ -39,8 +39,8 @@ use App\Http\Controllers\Admin\AdminController;
 // Route::post('/khoiluong', function () {
 //     return view('khoiluongrieng');
 // });
-Route::get('/', [VatlyController::class, 'dodai'])->name('home');
-Route::get('/home', [VatlyController::class, 'dodai']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index']);
 
 
 // Vật lý

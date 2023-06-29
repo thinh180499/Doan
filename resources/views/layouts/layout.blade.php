@@ -100,6 +100,15 @@
     p, .lythuyet ul li {
         font-size: 18px;
     }
+
+    .icon-card .icon.primary {
+        background: rgba(0, 102, 255, 0.1);
+        color: #0067FF;
+    }
+    a:hover{
+        color: #0067FF;
+    }
+
   </style>
   @yield('css')
 </head>
@@ -307,12 +316,12 @@
             <div class="col-lg-7 col-md-7 col-6">
               <div class="header-right">
                 <!-- profile start -->
-              
+
                 <div class="profile-box ml-15">
                   <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="profile-info">
-                      
+
                       <div class="info">
                         <p>Tiếng Việt</p>
                       </div>
@@ -396,6 +405,7 @@
   <script src="{{ asset('assets/js/world-merc.js') }}"></script>
   <script src="{{ asset('assets/js/polyfill.js') }}"></script>
   <script src="{{ asset('assets/js/main.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <script>
