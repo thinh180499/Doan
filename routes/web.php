@@ -303,12 +303,27 @@ Route::prefix('/admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('home');
     Route::resource('lythuyet', LythuyetController::class);
     Route::resource('hinh', HinhController::class);
+//     //danh sách lý thuyết
+//     Route::get('/', [LythuyetController::class, 'index'])->name('danhsachlythuyet');
+//     Route::get('danhsachlythuyet', [LythuyetController::class, 'index']);
+
+// //thêm lý thuyết
+//     Route::get('themlythuyet', [LythuyetController::class, 'add'])->name('themlythuyet');
+//     Route::post('themlythuyet', [LythuyetController::class, 'postadd']);
+
+// //sửa lý thuyết
+//     Route::get('sualythuyet/{id}', [LythuyetController::class, 'edit'])->name('sualythuyet');
+//     Route::post('sualythuyet/{id}', [LythuyetController::class, 'postedit'])->name('postsualythuyet');
+
+// //xóa
+//     Route::get('xoalythuyet/{id}', [LythuyetController::class, 'dele'])->name('xoalythuyet');
+
     Route::resource('congthuc', CongthucController::class);
     Route::resource('mon', MonController::class);
     Route::resource('doituong', DoituongController::class);
     Route::resource('khainiem', KhainiemController::class);
     Route::resource('phantutrongkhainiem', PhantutrongkhainiemController::class);
-   
+
 });
 
 Auth::routes();

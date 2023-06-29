@@ -32,7 +32,7 @@
         position: sticky;
         top: 0;
         z-index: 1;
-        padding: 5px 0;
+        padding: 12px 0;
         border-radius: 0 0 10px 10px;
         box-shadow: 0px 10px 20px rgba(200, 208, 216, 0.3);
         background: #fff;
@@ -40,13 +40,12 @@
 
     .header .header-left .header-search form button {
         left: 28px;
-        top: 7px;
-
+        top: 5px;
     }
 
     .header .header-left .header-search form input {
         background: rgb(241, 245, 249);
-        height: 55px;
+        height: 50px;
         border-radius: 40px;
         padding-left: 100px
     }
@@ -60,21 +59,18 @@
         border: 2px solid #ccc;
     }
 
-    .input-style-1 label,
-    .select-style-1 label {
-        font-size: 18px;
-        font-weight: 500;
-        color: #262d3f;
-        display: block;
-        margin-bottom: 10px;
-    }
-
     .cardform span {
         font-size: 30px
     }
 
-    button.calculate{
-        font-size: 35px;
+    .input-style-1 label,
+    .select-style-1 label {
+        font-size: 16px;
+        font-weight: 500;
+        color: #262d3f;
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
     }
 
     .input-style-1 input,
@@ -83,9 +79,14 @@
         background: #fff;
         border: 2px solid #e1e1e1;
         border-radius: 10px;
-        padding: 12px;
-        font-size: 20px;
+        padding: 10px 14px;
+        font-size: 18px;
         color: #454b5c;
+    }
+
+    button.calculate{
+        padding: 0 30px;
+        font-size: 32px;
     }
 
     .lythuyet ul{
@@ -395,6 +396,8 @@
   <script src="{{ asset('assets/js/world-merc.js') }}"></script>
   <script src="{{ asset('assets/js/polyfill.js') }}"></script>
   <script src="{{ asset('assets/js/main.js') }}"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
         var currentPath = window.location.pathname;
@@ -418,6 +421,7 @@
         });
     });
   </script>
+  @yield('script')
 </body>
 
 </html>
