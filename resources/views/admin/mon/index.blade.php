@@ -11,7 +11,7 @@
                       {{$title}}
                   @endif
                 </h6>
-                <a href=" {{route('admin.hinh.create')}}">thêm hình</a>
+                <a href=" {{route('admin.mon.create')}}">thêm môn</a>
                 <div class="table-wrapper table-responsive">
                   <table class="table">
                     <thead>
@@ -19,12 +19,9 @@
                         <th>
                           <h6>id</h6>
                         </th>
-                        <th>
-                          <h6>img</h6>
-                        </th>
                         
                         <th>
-                          <h6>khái niệm</h6>
+                          <h6>môn</h6>
                         </th>
                         <th>
                           <h6>sửa</h6>
@@ -36,24 +33,22 @@
                       <!-- end table row-->
                     </thead>
                     <tbody>
-                    @if(!empty($list_hinh))
-                        @foreach ($list_hinh as $hinh)
+                    @if(!empty($list_mon))
+                        @foreach ($list_mon as $mon)
                       <tr>
                         <td class="min-width">
-                          <p>{{$hinh->id}}</p>
+                          <p>{{$mon->id}}</p>
                         </td>
+                        
                         <td class="min-width">
-                          <p>{{$hinh->img}}</p>
-                        </td>
-                        <td class="min-width">
-                          <p>{{$hinh->tenkhainiem}}</p>
+                          <p>{{$mon->mon}}</p>
                         </td>
                         <td>
-                          <a href="{{route('admin.hinh.edit',['hinh'=>$hinh->id])}}">sửa</a>
+                          <a href="{{route('admin.mon.edit',['mon'=>$mon->id])}}">sửa</a>
                         </td>
                         <td>
                           <div class="action">
-                            <form action="{{route('admin.hinh.destroy',['hinh'=>$hinh->id])}}" method="post">
+                            <form action="{{route('admin.mon.destroy',['mon'=>$mon->id])}}" method="post">
                                 @method('DELETE')
                             @csrf
                             <button type="submit"> <i class="lni lni-trash-can"></i></button>               
@@ -65,7 +60,7 @@
                       @endforeach
                     @else
                       <tr>
-                        <td class="min-width">không có lý thuyết</td>
+                        <td class="min-width">không có môn</td>
                       </tr>
                     @endif
                     </tbody>

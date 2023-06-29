@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLythuyetTable extends Migration
+class AfterKhainiemTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateLythuyetTable extends Migration
      */
     public function up()
     {
-        Schema::create('lythuyet', function (Blueprint $table) {
-            $table->id();
-            $table->string('tenlythuyet');
-            $table->string('noidung');
-            $table->string('congthuc');
-            $table->string('mon');
-            $table->timestamps();
+        Schema::table('khainiem', function (Blueprint $table) {
+            $table->unsignedBigInteger('mon_id');
+         
+            $table->foreign('mon_id')->references('id')->on('mon');
         });
     }
 
@@ -30,6 +27,5 @@ class CreateLythuyetTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lythuyet');
     }
 }

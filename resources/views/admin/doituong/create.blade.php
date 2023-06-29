@@ -1,9 +1,7 @@
 @extends('layouts.admin')
 @section('content')
-<form action="{{route('admin.lythuyet.update',['lythuyet'=>$lythuyet->id])}}" method="post">
-  @method('PUT')
+<form action=" {{ route('admin.doituong.store' )}}" method="post">
 @csrf
-
     <!-- ========== tables-wrapper start ========== -->
     <div class="tables-wrapper mt-4">
           <div class="row">
@@ -13,46 +11,37 @@
                   @if(!empty($title))
                       {{$title}}
                   @endif
-                  @if(!empty($msr))
-                      {{$msr}}
-                  @endif
                 </h6>
-                <h1>thêm lý thuyết</h1>
+          
                 
                 <div class="table-wrapper table-responsive">
                   <button type="submit">lưu</button>
-                <a href=" {{route('admin.lythuyet.index')}}">quay lại danh sách lý thuyết</a>
+                <a href=" {{route('admin.doituong.index')}}">quay lại danh sách đối tượng</a>
                 </div>
           <div class="row">
             <div class="col-md-9">
               <div class="col-md-3">
-                <label>tên lý thuyết</label>
-                <input type="text" name="tenlythuyet" placeholder="nhập tên lý thuyết" value="{{old('tenlythuyet')?? $lythuyet->tenlythuyet}}">
-                 @error('tenlythuyet')
+                <label>ký tự</label>
+                <input type="text" name="kytu" placeholder="nhập ký tự" value="{{old('kytu')}}">
+                 @error('kytu')
                     <span style="color: red;">{{$message}}</span>
                 @enderror 
                 </div>
                 <div class="col-md-3">
-                <label>nội dung</label>
-                <input type="text" name="noidung" placeholder="nhập nội dung" value="{{old('noidung')?? $lythuyet->noidung}}">
-                 @error('noidung')
+                <label>định nghĩa</label>
+                <input type="text" name="dinhnghia" placeholder="nhập định nghĩa" value="{{old('dinhnghia')}}">
+                 @error('dinhnghia')
                 <span style="color: red;">{{$message}}</span>
                 @enderror 
                 </div>
                 <div class="col-md-3">
-                <label>công thức</label>
-                <input type="text" name="congthuc" placeholder="nhập công thức" value="{{old('congthuc') ?? $lythuyet->congthuc}}">
-                  @error('congthuc')
+                <label>đơn vị</label>
+                <input type="text" name="donvi" placeholder="nhập đơn vị" value="{{old('donvi') }}">
+                  @error('donvi')
                   <span style="color: red;">{{$message}}</span>
                   @enderror
                   </div>
-                  <div class="col-md-3">
-                    <label>môn</label>
-                    <input type="text" name="mon" placeholder="nhập môn" value="{{old('mon')?? $lythuyet->mon}}">
-                    @error('mon')
-                    <span style="color: red;">{{$message}}</span>
-                    @enderror
-                    </div>
+                  
                   </div>
                 </div>
               </div>

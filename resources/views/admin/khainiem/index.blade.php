@@ -11,7 +11,7 @@
                       {{$title}}
                   @endif
                 </h6>
-                <a href=" {{route('admin.lythuyet.create')}}">thêm lý thuyết</a>
+                <a href=" {{route('admin.khainiem.create')}}">thêm khái niêm</a>
                 <div class="table-wrapper table-responsive">
                   <table class="table">
                     <thead>
@@ -20,7 +20,7 @@
                           <h6>id</h6>
                         </th>
                         <th>
-                          <h6>tên lý thuyết</h6>
+                          <h6>tên khái niêm</h6>
                         </th>
                         <th>
                           <h6>nội dung</h6>
@@ -41,30 +41,30 @@
                       <!-- end table row-->
                     </thead>
                     <tbody>
-                    @if(!empty($list_lythuyet))
-                        @foreach ($list_lythuyet as $lythuyet)
+                    @if(!empty($list_khainiem))
+                        @foreach ($list_khainiem as $khainiem)
                       <tr>
                         <td class="min-width">
-                          <p>{{$lythuyet->id}}</p>
+                          <p>{{$khainiem->id}}</p>
                         </td>
                         <td class="min-width">
-                          <p>{{$lythuyet->tenlythuyet}}</p>
+                          <p>{{$khainiem->tenkhainiem}}</p>
                         </td>
                         <td class="min-width">
-                          <p>{{$lythuyet->noidung}}</p>
+                          <p>{{$khainiem->noidung}}</p>
                         </td>
                         <td class="min-width">
-                          <p>{{$lythuyet->congthuc}}</p>
+                          <p>{{$khainiem->tencongthuc}}</p>
                         </td>
                         <td class="min-width">
-                          <p>{{$lythuyet->mon}}</p>
+                          <p>{{$khainiem->mon}}</p>
                         </td>
                         <td>
-                          <a href="{{route('admin.lythuyet.edit',['lythuyet'=>$lythuyet->id])}}">sửa</a>
+                          <a href="{{route('admin.khainiem.edit',['khainiem'=>$khainiem->id])}}">sửa</a>
                         </td>
                         <td>
                           <div class="action">
-                            <form action="{{route('admin.lythuyet.destroy',['lythuyet'=>$lythuyet->id])}}" method="post">
+                            <form action="{{route('admin.khainiem.destroy',['khainiem'=>$khainiem->id])}}" method="post">
                                 @method('DELETE')
                             @csrf
                             <button type="submit"> <i class="lni lni-trash-can"></i></button>               

@@ -39,12 +39,26 @@
             <span class="text">danh sách</span>
           </a>
           <ul id="ddmenu_1" class="collapse dropdown-nav">
-            <li>
-              <a href="{{route('admin.lythuyet.index')}}"> lý thuyết </a>
-            </li>
+            
             <li>
               <a href="{{route('admin.hinh.index')}}"> Hình </a>
             </li>
+            <li>
+              <a href="{{route('admin.congthuc.index')}}"> công thức </a>
+            </li>
+            <li>
+              <a href="{{route('admin.mon.index')}}"> môn </a>
+            </li>
+            <li>
+              <a href="{{route('admin.khainiem.index')}}"> khái niêm </a>
+            </li>
+            <li>
+              <a href="{{route('admin.doituong.index')}}"> đối tượng </a>
+            </li>
+            <li>
+              <a href="{{route('admin.phantutrongkhainiem.index')}}"> phần tử trong lý thuyết </a>
+            </li>
+            
           </ul>
         </li>
         <li class="nav-item nav-item-has-children">

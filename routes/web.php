@@ -7,7 +7,11 @@ use App\Http\Controllers\ToanController;
 use App\Http\Controllers\HoaController;
 use App\Http\Controllers\Admin\LythuyetController;
 use App\Http\Controllers\Admin\HinhController;
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CongthucController;
+use App\Http\Controllers\Admin\DoituongController;
+use App\Http\Controllers\Admin\KhainiemController;
+use App\Http\Controllers\Admin\MonController;
+use App\Http\Controllers\Admin\PhantutrongkhainiemController;
 use App\Http\Controllers\Admin\AdminController;
 /*
 |--------------------------------------------------------------------------
@@ -35,8 +39,8 @@ use App\Http\Controllers\Admin\AdminController;
 // Route::post('/khoiluong', function () {
 //     return view('khoiluongrieng');
 // });
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [VatlyController::class, 'dodai'])->name('home');
+Route::get('/home', [VatlyController::class, 'dodai'])->name('home');
 
 
 // Vật lý
@@ -313,4 +317,11 @@ Route::prefix('/admin')->name('admin.')->group(function () {
 
 // //xóa
 //     Route::get('xoalythuyet/{id}', [LythuyetController::class, 'dele'])->name('xoalythuyet');
+
+    Route::resource('congthuc', CongthucController::class);
+    Route::resource('mon', MonController::class);
+    Route::resource('doituong', DoituongController::class);
+    Route::resource('khainiem', KhainiemController::class);
+    Route::resource('phantutrongkhainiem', PhantutrongkhainiemController::class);
+
 });

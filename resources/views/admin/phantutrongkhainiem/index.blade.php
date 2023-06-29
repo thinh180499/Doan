@@ -11,7 +11,7 @@
                       {{$title}}
                   @endif
                 </h6>
-                <a href=" {{route('admin.hinh.create')}}">thêm hình</a>
+                <a href=" {{route('admin.phantutrongkhainiem.create')}}">thêm phần tử trong khái niệm</a>
                 <div class="table-wrapper table-responsive">
                   <table class="table">
                     <thead>
@@ -20,11 +20,10 @@
                           <h6>id</h6>
                         </th>
                         <th>
-                          <h6>img</h6>
-                        </th>
-                        
-                        <th>
                           <h6>khái niệm</h6>
+                        </th>
+                        <th>
+                          <h6>đối tượng</h6>
                         </th>
                         <th>
                           <h6>sửa</h6>
@@ -36,24 +35,25 @@
                       <!-- end table row-->
                     </thead>
                     <tbody>
-                    @if(!empty($list_hinh))
-                        @foreach ($list_hinh as $hinh)
+                    @if(!empty($list_phantutrongkhainiem))
+                        @foreach ($list_phantutrongkhainiem as $phantutrongkhainiem)
                       <tr>
                         <td class="min-width">
-                          <p>{{$hinh->id}}</p>
+                          <p>{{$phantutrongkhainiem->id}}</p>
                         </td>
                         <td class="min-width">
-                          <p>{{$hinh->img}}</p>
+                          <p>{{$phantutrongkhainiem->tenkhainiem}}</p>
                         </td>
                         <td class="min-width">
-                          <p>{{$hinh->tenkhainiem}}</p>
+                          <p>{{$phantutrongkhainiem->kytu}}</p>
                         </td>
+                        
                         <td>
-                          <a href="{{route('admin.hinh.edit',['hinh'=>$hinh->id])}}">sửa</a>
+                          <a href="{{route('admin.phantutrongkhainiem.edit',['phantutrongkhainiem'=>$phantutrongkhainiem->id])}}">sửa</a>
                         </td>
                         <td>
                           <div class="action">
-                            <form action="{{route('admin.hinh.destroy',['hinh'=>$hinh->id])}}" method="post">
+                            <form action="{{route('admin.phantutrongkhainiem.destroy',['phantutrongkhainiem'=>$phantutrongkhainiem->id])}}" method="post">
                                 @method('DELETE')
                             @csrf
                             <button type="submit"> <i class="lni lni-trash-can"></i></button>               

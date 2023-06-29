@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-<form action=" {{ route('admin.lythuyet.store' )}}" method="post">
+<form action=" {{ route('admin.khainiem.store' )}}" method="post">
 @csrf
     <!-- ========== tables-wrapper start ========== -->
     <div class="tables-wrapper mt-4">
@@ -12,18 +12,17 @@
                       {{$title}}
                   @endif
                 </h6>
-                <h1>thêm lý thuyết</h1>
                 
                 <div class="table-wrapper table-responsive">
                   <button type="submit">lưu</button>
-                <a href=" {{route('admin.lythuyet.index')}}">quay lại danh sách lý thuyết</a>
+                <a href=" {{route('admin.khainiem.index')}}">quay lại danh sách khái niệm</a>
                 </div>
           <div class="row">
             <div class="col-md-9">
               <div class="col-md-3">
-                <label>tên lý thuyết</label>
-                <input type="text" name="tenlythuyet" placeholder="nhập tên lý thuyết" value="{{old('tenlythuyet')}}">
-                 @error('tenlythuyet')
+                <label>tên khái niệm</label>
+                <input type="text" name="tenkhainiem" placeholder="nhập tên khái niệm" value="{{old('tenkhainiem')}}">
+                 @error('tenkhainiem')
                     <span style="color: red;">{{$message}}</span>
                 @enderror 
                 </div>
@@ -35,19 +34,24 @@
                 @enderror 
                 </div>
                 <div class="col-md-3">
-                <label>công thức</label>
-                <input type="text" name="congthuc" placeholder="nhập công thức" value="{{old('congthuc') }}">
-                  @error('congthuc')
-                  <span style="color: red;">{{$message}}</span>
-                  @enderror
-                  </div>
-                  <div class="col-md-3">
-                    <label>môn</label>
-                    <input type="text" name="mon" placeholder="nhập môn" value="{{old('mon')}}">
-                    @error('mon')
-                    <span style="color: red;">{{$message}}</span>
-                    @enderror
+                <select name="congthuc">
+                    @if(!empty($list_congthuc))
+                        @foreach ($list_congthuc as $congthuc)
+                      <option value="{{$congthuc->id}}">{{$congthuc->tencongthuc}}</option>
+                        @endforeach          
+                    @endif
+                    </select>
                     </div>
+                    <div class="col-md-3">
+                    <select name="mon">
+                    @if(!empty($list_mon))
+                        @foreach ($list_mon as $mon)
+                      <option value="{{$mon->id}}">{{$mon->mon}}</option>
+                      @endforeach               
+                    </select>
+                         
+                    @endif
+                  </div>
                   </div>
                 </div>
               </div>
