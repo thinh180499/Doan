@@ -17,33 +17,28 @@ class VatlyController extends Controller
             'a.numeric'=>'độ dài điện buộc phải là số',
             'a.min'=>'độ dài phải lớn hơn 0.00000000000000000000001',
         ]);
-        $a=$_POST['a'];
-            $i=$_POST['i'];
-            $j=$_POST['j'];
-            $x=$i;
-            $y=$j;
-            if($i==$j){
-                $ketqua=$a;
-                return view('vatly.dodai',compact('ketqua','a','x','y'));
-            }
-            if($i>$j){
-                $ketqua=$a;
+        $a = $request->input('a');
+        $i = $request->input('i');
+        $j = $request->input('j');
+        $x=$i;
+        $y=$j;
+        if($i==$j){
+            $ketqua=$a;
+        }
+        if($i>$j){
+            $ketqua=$a;
 
-                for ($i; $i>$j; $i--) {
-                    $ketqua=$ketqua/10;
-                  }
-                return view('vatly.dodai',compact('ketqua','a','x','y'));
-            }
-            if($i<$j){
-                $ketqua=$a;
-                for ($i; $i<$j; $i++) {
-                    $ketqua=$ketqua*10;
-                  }
-                return view('vatly.dodai',compact('ketqua','a','x','y'));
-            }
-
-        
-
+            for ($i; $i>$j; $i--) {
+                $ketqua=$ketqua/10;
+                }
+        }
+        if($i<$j){
+            $ketqua=$a;
+            for ($i; $i<$j; $i++) {
+                $ketqua=$ketqua*10;
+                }
+        }
+        return response()->json(['ketqua' => $ketqua]);
     }
 
 
@@ -133,7 +128,7 @@ class VatlyController extends Controller
             }
 
 
-        
+
 
     }
 
@@ -178,7 +173,7 @@ class VatlyController extends Controller
                 return view('vatly.khoiluong',compact('ketqua','a','x','y'));
             }
 
-        
+
 
     }
 
@@ -211,9 +206,9 @@ class VatlyController extends Controller
             else{
                 return view('vatly.khoiluongrieng',compact('ketqua','a','b'));
             }
-                   
+
      }
-              
+
 
 
 
@@ -237,7 +232,7 @@ class VatlyController extends Controller
         $b=$_POST['b'];
         //tính kết quả
         (float)$ketqua=$a/$b;
-                   
+
         //xét kết quả là số vô hạn
         if(is_infinite($ketqua)){
             $ketqua="kết quả vượt qua giới hạn tính";
@@ -246,7 +241,7 @@ class VatlyController extends Controller
         else{
             return view('vatly.trongluongrieng',compact('ketqua','a','b'));
         }
-                 
+
     }
 
 
@@ -278,7 +273,7 @@ class VatlyController extends Controller
             return view('vatly.vantoc',compact('ketqua','a','b'));
         }
     }
-    
+
 
     public function quangduong(){
         return view('vatly.quangduong');
@@ -307,7 +302,7 @@ class VatlyController extends Controller
             return view('vatly.quangduong',compact('ketqua','a','b'));
         }
     }
- 
+
 
     public function thoigian(){
         return view('vatly.thoigian');
@@ -366,7 +361,7 @@ class VatlyController extends Controller
         else{
             return view('vatly.lucacsimet',compact('ketqua','a','b'));
         }
-           
+
     }
 
 
@@ -387,7 +382,7 @@ class VatlyController extends Controller
         ]);
         $a=$_POST['a'];
         $b=$_POST['b'];
-            
+
         $ketqua=$a/$b;
         //xét kết quả là số vô hạn
         if(is_infinite($ketqua)){
@@ -397,7 +392,7 @@ class VatlyController extends Controller
         else{
             return view('vatly.apsuat',compact('ketqua','a','b'));
         }
-        
+
     }
 
 
@@ -428,7 +423,7 @@ class VatlyController extends Controller
         else{
             return view('vatly.congcohoc',compact('ketqua','a','b'));
         }
-        
+
     }
 
 
@@ -459,7 +454,7 @@ class VatlyController extends Controller
             else {
             return view('vatly.congsuat',compact('ketqua','a','b'));
             }
-        
+
     }
 
 
@@ -497,7 +492,7 @@ class VatlyController extends Controller
         else{
             return view('vatly.nhietluong',compact('ketqua','a','b','c'));
         }
-                
+
     }
 
 
@@ -528,7 +523,7 @@ class VatlyController extends Controller
         else{
             return view('vatly.hieusuatdongconhiet',compact('ketqua','a','b'));
         }
-        
+
     }
 
 
@@ -553,7 +548,7 @@ class VatlyController extends Controller
         $b=$_POST['b'];
         //tính kết quả
         (float)$ketqua=$a/$b;
-                    
+
         //xét kết quả là số vô hạn
         if(is_infinite($ketqua)){
             $ketqua="kết quả vượt qua giới hạn tính";
@@ -593,7 +588,7 @@ class VatlyController extends Controller
         else{
             return view('vatly.hieudienthe',compact('ketqua','a','b'));
         }
-           
+
     }
 
 
@@ -722,7 +717,7 @@ class VatlyController extends Controller
         else{
             return view('vatly.nhietluongodaydan',compact('ketqua','a','b','c'));
         }
-        
+
     }
 
 
@@ -752,7 +747,7 @@ class VatlyController extends Controller
         $c=$_POST['c'];
         //tính kết quả
         (float)$ketqua=(pow($b,2)*$a)/(pow($c,2));
-        
+
         //xét kết quả là số vô hạn
         if(is_infinite($ketqua)){
             $ketqua="kết quả vượt qua giới hạn tính";
@@ -761,7 +756,7 @@ class VatlyController extends Controller
         else{
             return view('vatly.congsuathaophi',compact('ketqua','a','b','c'));
         }
-                   
+
     }
 
 }

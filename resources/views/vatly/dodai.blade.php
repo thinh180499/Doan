@@ -4,25 +4,28 @@
 
 @section('content')
     <div class="row mt-4">
-        <div class="col-lg-8 tinhtoan">
+        <div class="col-lg-7 tinhtoan">
             <div class="card-style cardform h-100">
-                <h2 class="mt-4 mb-70">Chuyển đổi đơn vị độ dài</h2>
-                <form action="dodai" method="post">
-                    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                    <div class="container-fluid">
-                        <div class="row nhap d-flex justify-content-between">
-                            <div class="col mb-4">
-                                <div class="input-style-1">
-                                    <label>Nhập số muốn chuyển đổi</label>
-                                    <input type="number" name="a" value="{{ !empty($a) ? $a : false }}">
-                                </div>
-                            </div>
+                <div class="container">
+                    <form action="{{ route('vatly.dodai') }}" method="post" id="input-form">
+                        @csrf
+                        <div class="row mb-4 d-flex flex-wrap justify-content-center">
+                            <h2 class="mb-5">Chuyển đổi đơn vị độ dài</h2>
 
-                            <div class="col mb-4">
+                            {{-- Phần đơn vị gốc --}}
+                            <div class="col-xxl-5 d-flex">
+                                {{-- input nhập --}}
+                                <div class="input-style-1">
+                                    <label>Từ</label>
+                                    <input type="number" name="a" id="input-number"
+                                        value="{{ !empty($a) ? $a : false }}">
+                                </div>
+
+                                {{-- select gốc --}}
                                 <div class="select-style-1">
-                                    <label>Chuyển đổi từ</label>
+                                    <label>&nbsp;</label>
                                     <div class="select-position">
-                                        <select name="i">
+                                        <select name="i" id="select-from">
                                             <option <?php if (isset($x) && $x == 1) {
                                                 echo 'selected ';
                                             } ?>value="1">Ki-lô-mét (km)</option>
@@ -45,15 +48,28 @@
                                                 echo 'selected ';
                                             } ?>value="7">Mi-li-mét (mm)</option>
                                         </select>
+                                        <i class="lni lni-chevron-down"></i>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col mb-4">
-                                <div class="select-style-1">
+                            <div class="col-xxl-1 d-flex align-items-center justify-content-center p-0">
+                                <i class="lni lni-arrows-horizontal conversion-icon"></i>
+                            </div>
+
+                            {{-- Phần đơn vị đích --}}
+                            <div class="col-xxl-5 d-flex">
+                                {{-- input kết quả --}}
+                                <div class="input-style-1">
                                     <label>Chuyển đổi sang</label>
+                                    <input type="number" id="result" readonly>
+                                </div>
+
+                                {{-- Select đích --}}
+                                <div class="select-style-1">
+                                    <label>&nbsp;</label>
                                     <div class="select-position">
-                                        <select name="j">
+                                        <select name="j" id="select-to">
                                             <option <?php if (isset($y) && $y == 1) {
                                                 echo 'selected ';
                                             } ?>value="1">Ki-lô-mét (km)</option>
@@ -76,42 +92,20 @@
                                                 echo 'selected ';
                                             } ?>value="7">Mi-li-mét (mm)</option>
                                         </select>
+                                        <i class="lni lni-chevron-down"></i>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row d-flex align-items-center my-4">
-                            <div class="col-2">
-                                <button class="btn btn-primary me-5 py-0 px-4 calculate" type="submit">=</button>
-                            </div>
-                            <div class="col-10">
-                                <span>
-                                    {{ !empty($ketqua) ? $ketqua : false }}
-                                </span>
-                                @if ($errors->any())
-                                    <div class="alert-box danger-alert m-0 w-100">
-                                        <div class="alert">
-                                            <h4 class="alert-heading">
-                                                Vui lòng kiểm tra lại dữ liệu
-                                            </h4>
-
-                                            @error('a')
-                                                <p class="text-medium">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                @endif
-                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-        <div class="col-lg-4 lythuyet">
+        <div class="col-lg-5 lythuyet">
             <div class="card-style cardform h-100">
                 <div class="mb-50">
-                    <h3 class="mt-4 mb-20">Trong đó</h3>
+                    <h3 class="mb-20">Trong đó</h3>
                     <ul>
                         <li>n: số mol (mol)</li>
                         <li>m: khối lượng chất (gam)</li>
@@ -127,4 +121,73 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('css')
+    <style>
+        .select-style-1 {
+            min-width: 50%
+        }
+
+        .select-style-1 .select-position select {
+            font-size: 16px;
+            padding: 12px 14px;
+        }
+
+        .select-style-1 .select-position::after {
+            content: none;
+        }
+
+        .select-style-1 .select-position i {
+            position: absolute;
+            top: 17px;
+            right: 10px;
+        }
+
+        .input-style-1 label,
+        .select-style-1 label {
+            width: 150%
+        }
+
+        i.conversion-icon {
+            font-size: 35px;
+            font-weight: bold
+        }
+    </style>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            // Gọi hàm tính toán khi có thay đổi trong thẻ #input-number, thẻ #select-from, thẻ #select-to
+            $('#input-number, #select-from, #select-to').on('change keyup', function() {
+                unitConversion();
+            });
+
+            // Hàm thực hiện chuyển đổi
+            function unitConversion() {
+                var inputNumber = $('#input-number').val();
+
+                // Kiểm tra ô input có rỗng hay không
+                if (inputNumber === '') {
+                    $('#result').text(''); // Xóa kết quả trong thẻ span
+                    return;
+                }
+
+                var formData = $('#input-form').serialize();
+
+                $.ajax({
+                    url: '{{ route('vatly.dodai') }}',
+                    type: 'post',
+                    data: formData,
+                    success: function(response) {
+                        $('#result').val(response.ketqua);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            }
+        });
+    </script>
 @endsection

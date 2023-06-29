@@ -306,7 +306,7 @@ Route::prefix('/admin')->name('admin.')->group(function () {
 // //thêm lý thuyết
 //     Route::get('themlythuyet', [LythuyetController::class, 'add'])->name('themlythuyet');
 //     Route::post('themlythuyet', [LythuyetController::class, 'postadd']);
-    
+
 // //sửa lý thuyết
 //     Route::get('sualythuyet/{id}', [LythuyetController::class, 'edit'])->name('sualythuyet');
 //     Route::post('sualythuyet/{id}', [LythuyetController::class, 'postedit'])->name('postsualythuyet');
