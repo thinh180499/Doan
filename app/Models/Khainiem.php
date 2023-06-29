@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 
+
 class Khainiem extends Model
 {
     use HasFactory;
@@ -33,4 +34,13 @@ class Khainiem extends Model
          return DB::delete("DELETE FROM $this->table WHERE id=?",[$id]);
      
      }
+     public function danhsachkhainiemtheotimkiem($tukhoa){
+        $tukhoa='%'.$tukhoa.'%';
+        return DB::table($this->table)
+        ->select('id','tenkhainiem','noidung')
+        ->where('tenkhainiem','like',$tukhoa)
+        ->orwhere('noidung','like',$tukhoa)
+        ->get();
+    
+    }
 }

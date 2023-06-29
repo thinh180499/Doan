@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('content')
-    <form action="{{ route('admin.hinh.update', ['hinh' => $hinh->id]) }}" method="post">
+
+    <form action="{{ route('admin.hinh.update', ['hinh' => $hinh->id]) }}" method="post" enctype="multipart/form-data">
         @method('PUT')
         @csrf
 
@@ -22,11 +23,10 @@
                             <div class="col">
                                 <div class="input-style-1">
                                     <label>img</label>
-                                    <input type="text" name="img" placeholder="nhập tên hình"
-                                        value="{{ old('img') ?? $hinh->img }}">
-                                    @error('img')
-                                        <span style="color: red;">{{ $message }}</span>
-                                    @enderror
+                                    <input type="file" name="img" placeholder="nhập tên hình" value="{{old('img')?? $hinh->img}}">
+                 @error('img')
+                    <span style="color: red;">{{$message}}</span>
+                @enderror 
                                 </div>
 
                             <div class="col">

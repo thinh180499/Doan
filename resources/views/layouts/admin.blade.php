@@ -106,6 +106,8 @@
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
+
+               
                                                 {{ __('Logout') }}
                                             </a>
 
@@ -118,10 +120,11 @@
                                 @endguest
                             </ul>
                             <div class="header-search d-none d-md-flex">
-                                <form action="#">
-                                    <input type="text" placeholder="Search..." />
-                                    <button><i class="lni lni-search-alt"></i></button>
-                                </form>
+                              <form action="{{ route('admin.search') }}" methou="post">
+                 
+                                  <input name="tukhoa" placeholder="Search..." />
+                                <button type="submit"><i class="lni lni-search-alt"></i></button>
+                              </form>
                             </div>
                         </div>
                     </div>

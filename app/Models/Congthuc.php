@@ -29,4 +29,5 @@ class Congthuc extends Model
         return DB::delete("DELETE FROM $this->table WHERE id=?",[$id]);
     
     }
+    
 }

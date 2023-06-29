@@ -1,10 +1,11 @@
 @extends('layouts.admin')
 @section('content')
-
+<form action="" method="post" enctype="multipart/form-data"> 
     <!-- ========== tables-wrapper start ========== -->
     <div class="tables-wrapper mt-4">
         <div class="row">
             <div class="col-lg-12">
+
                 <div class="card-style mb-30">
                     <h6 class="mb-10">
                         @if (!empty($title))
@@ -41,7 +42,7 @@
                                                 <p>{{ $hinh->id }}</p>
                                             </td>
                                             <td class="min-width">
-                                                <p>{{ $hinh->img }}</p>
+                                              <img src="{{ asset('images/doan')."/".$hinh->img}}"></img>
                                             </td>
                                             <td class="min-width">
                                                 <p>{{ $hinh->tenkhainiem }}</p>
@@ -69,11 +70,13 @@
                         </table>
                         <!-- end table -->
                     </div>
+
                 </div>
                 <!-- end card -->
             </div>
             <!-- end col -->
         </div>
+
         <!-- end row -->
 
     </div>
@@ -89,3 +92,4 @@
         }
     </style>
 @endsection
+
