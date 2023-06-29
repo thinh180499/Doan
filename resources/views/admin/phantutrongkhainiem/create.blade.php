@@ -19,18 +19,23 @@
           <div class="row">
             <div class="col-md-9">
               <div class="col-md-3">
-                <label>khái niệm</label>
-                <input type="text" name="khainiem_id" placeholder="nhập khái niêm" value="{{old('khainiem_id')}}">
-                 @error('khainiem_id')
-                    <span style="color: red;">{{$message}}</span>
-                @enderror 
-                </div>
-                <div class="col-md-3">
-                <label>đối tượng</label>
-                <input type="text" name="doituong_id" placeholder="nhập đối tượng" value="{{old('doituong_id')}}">
-                 @error('doituong_id')
-                <span style="color: red;">{{$message}}</span>
-                @enderror 
+              <select name="khainiem_id">
+                    @if(!empty($list_khainiem))
+                        @foreach ($list_khainiem as $khainiem)
+                      <option value="{{$khainiem->id}}">{{$khainiem->tenkhainiem}}</option>
+                        @endforeach          
+                    @endif
+                    </select>
+                    </div>
+                    <div class="col-md-3">
+                    <select name="doituong_id">
+                    @if(!empty($list_doituong))
+                        @foreach ($list_doituong as $doituong)
+                      <option value="{{$doituong->id}}">{{$doituong->kytu}}</option>
+                      @endforeach               
+                    </select>
+                         
+                    @endif
                 </div>
                 
                   </div>

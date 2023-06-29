@@ -33,11 +33,17 @@
                 </div>
                 
                   <div class="col-md-3">
-                    <label>khái niệm</label>
-                    <input type="text" name="khainiem_id" placeholder="nhập khái niệm" value="{{old('mon')?? $hinh->khainiem_id}}">
-                    @error('mon')
-                    <span style="color: red;">{{$message}}</span>
-                    @enderror
+                  <div class="col-md-3">
+                    <select name="khainiem_id">
+                    @if(!empty($list_khainiem))
+                        @foreach ($list_khainiem as $khainiem)
+                      <option <?php if ($hinh->khainiem_id == $khainiem->id) {
+                        echo 'selected ';
+                      } ?> value="{{$khainiem->id}}">{{$khainiem->tenkhainiem}}</option>
+                        @endforeach          
+                    @endif
+                    </select>
+                    </div>
                     </div>
                   </div>
                 </div>

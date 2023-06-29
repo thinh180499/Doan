@@ -12,7 +12,11 @@ class Phantutrongkhainiem extends Model
     protected $table="phantutrongkhainiem";
 
     public function danhsachphantutrongkhainiem(){
-        return DB::select('SELECT * FROM '.$table);
+        return DB::select('SELECT * FROM phantutrongkhainiem');
+        
+    }
+    public function danhsachphantutrongkhainiemchitiet(){
+        return DB::select('SELECT phantutrongkhainiem.id,khainiem.tenkhainiem,doituong.kytu FROM phantutrongkhainiem,khainiem,doituong WHERE khainiem_id=khainiem.id AND doituong_id=doituong.id');
         
     }
     public function themphantutrongkhainiem($data){

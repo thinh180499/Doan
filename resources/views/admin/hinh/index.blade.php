@@ -46,7 +46,7 @@
                           <p>{{$hinh->img}}</p>
                         </td>
                         <td class="min-width">
-                          <p>{{$hinh->khainiem_id}}</p>
+                          <p>{{$hinh->tenkhainiem}}</p>
                         </td>
                         <td>
                           <a href="{{route('admin.hinh.edit',['hinh'=>$hinh->id])}}">sửa</a>

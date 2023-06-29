@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Khainiem;
+use App\Models\Mon;
+use App\Models\Congthuc;
 
 class KhainiemController extends Controller
 {
@@ -19,7 +21,8 @@ class KhainiemController extends Controller
      */
     public function index()
     {
-        $list_khainiem=Khainiem::get();
+        
+        $list_khainiem=$this->khainiem->danhsachkhainiemchitiet();
         $title="danh sách khái niêm";
         return view('admin.khainiem.index',compact('list_khainiem','title'));
     }
@@ -31,8 +34,12 @@ class KhainiemController extends Controller
      */
     public function create()
     {
+        $congthuc=new Congthuc();
+        $mon=new Mon();
+        $list_congthuc=$congthuc->danhsachcongthuc();
+        $list_mon=$mon->danhsachmon();
         $title="thêm khái niệm";
-        return view('admin.khainiem.create',compact('title'));
+        return view('admin.khainiem.create',compact('list_congthuc','list_mon','title'));
     }
 
     /**
@@ -86,10 +93,14 @@ class KhainiemController extends Controller
      */
     public function edit($id)
     {
+        $congthuc=new Congthuc();
+        $mon=new Mon();
+        $list_congthuc=$congthuc->danhsachcongthuc();
+        $list_mon=$mon->danhsachmon();
         $khainiem = $this->khainiem->chitietkhainiem($id);
         $title="sửa khái niệm";
         $khainiem=$khainiem[0];   
-        return view('admin.khainiem.edit',compact('khainiem','title'));
+        return view('admin.khainiem.edit',compact('list_congthuc','list_mon','khainiem','title'));
     }
 
     /**

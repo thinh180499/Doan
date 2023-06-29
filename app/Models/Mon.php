@@ -12,7 +12,7 @@ class Mon extends Model
     protected $table="mon";
 
     public function danhsachmon(){
-        return DB::select('SELECT * FROM '.$table);
+        return DB::select('SELECT * FROM mon');
         
     }
     public function themmon($data){

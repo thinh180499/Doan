@@ -54,10 +54,10 @@
                           <p>{{$khainiem->noidung}}</p>
                         </td>
                         <td class="min-width">
-                          <p>{{$khainiem->congthuc_id}}</p>
+                          <p>{{$khainiem->tencongthuc}}</p>
                         </td>
                         <td class="min-width">
-                          <p>{{$khainiem->mon_id}}</p>
+                          <p>{{$khainiem->mon}}</p>
                         </td>
                         <td>
                           <a href="{{route('admin.khainiem.edit',['khainiem'=>$khainiem->id])}}">sửa</a>

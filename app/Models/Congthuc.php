@@ -16,7 +16,7 @@ class Congthuc extends Model
         
     }
     public function themcongthuc($data){
-       DB::insert('INSERT INTO congthucs(tencongthuc,congthuc)value(?,?)',$data);
+       DB::insert('INSERT INTO congthuc(tencongthuc,congthuc)value(?,?)',$data);
     }
     public function chitietcongthuc($id){
         return DB::select('SELECT * FROM '.$this->table.' WHERE id=?',[$id]);

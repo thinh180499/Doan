@@ -39,7 +39,27 @@
                  @error('doituong_id')
                 <span style="color: red;">{{$message}}</span>
                 @enderror 
-                    
+                <select name="khainiem_id">
+                    @if(!empty($list_khainiem))
+                        @foreach ($list_khainiem as $khainiem)
+                      <option <?php if ($phantutrongkhainiem->khainiem_id == $khainiem->id) {
+                          echo 'selected ';
+                        } ?>value="{{$khainiem->id}}">{{$khainiem->tenkhainiem}}</option>
+                        @endforeach          
+                    @endif
+                    </select>
+                    </div>
+                    <div class="col-md-3">
+                    <select name="mon">
+                    @if(!empty($list_doituong))
+                        @foreach ($list_doituong as $doituong)
+                      <option <?php if ($phantutrongkhainiem->doituong_id == $doituong->id) {
+                        echo 'selected ';
+                      } ?>value="{{$doituong->id}}">{{$doituong->kytu}}</option>
+                        @endforeach              
+                    </select>
+                       
+                    @endif
                     </div>
                   </div>
                 </div>

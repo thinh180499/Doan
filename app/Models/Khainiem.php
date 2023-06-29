@@ -12,7 +12,11 @@ class Khainiem extends Model
     protected $table="khainiem";
 
     public function danhsachkhainiem(){
-        return DB::select('SELECT * FROM '.$table);
+        return DB::select('SELECT * FROM khainiem');
+        
+    }
+    public function danhsachkhainiemchitiet(){
+        return DB::select('SELECT khainiem.id,khainiem.tenkhainiem,khainiem.noidung,congthuc.tencongthuc,mon.mon FROM khainiem,congthuc,mon WHERE congthuc_id=congthuc.id AND mon_id=mon.id');
         
     }
     public function themkhainiem($data){

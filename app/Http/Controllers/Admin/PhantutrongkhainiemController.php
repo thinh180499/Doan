@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Phantutrongkhainiem;
+use App\Models\Khainiem;
+use App\Models\Doituong;
 
 class PhantutrongkhainiemController extends Controller
 {
@@ -19,7 +21,7 @@ class PhantutrongkhainiemController extends Controller
      */
     public function index()
     {
-        $list_phantutrongkhainiem=Phantutrongkhainiem::get();
+        $list_phantutrongkhainiem=$this->phantutrongkhainiem->danhsachphantutrongkhainiemchitiet();
         $title="danh sách phần tử trong công thức";
         return view('admin.phantutrongkhainiem.index',compact('list_phantutrongkhainiem','title'));
     }
@@ -31,8 +33,12 @@ class PhantutrongkhainiemController extends Controller
      */
     public function create()
     {
+        $khainiem=new Khainiem();
+        $list_khainiem=$khainiem->danhsachkhainiem();
+        $doituong=new Doituong();
+        $list_doituong=$doituong->danhsachdoituong();
         $title="thêm phần tử trong khái niệm";
-        return view('admin.phantutrongkhainiem.create',compact('title'));
+        return view('admin.phantutrongkhainiem.create',compact('list_khainiem','list_doituong','title'));
     }
 
     /**
@@ -81,10 +87,14 @@ class PhantutrongkhainiemController extends Controller
      */
     public function edit($id)
     {
+        $khainiem=new Khainiem();
+        $list_khainiem=$khainiem->danhsachkhainiem();
+        $doituong=new Doituong();
+        $list_doituong=$doituong->danhsachdoituong();
         $phantutrongkhainiem = $this->phantutrongkhainiem->chitietphantutrongkhainiem($id);
         $title="sửa phần tử trong khái niệm";
         $phantutrongkhainiem=$phantutrongkhainiem[0];   
-        return view('admin.phantutrongkhainiem.edit',compact('phantutrongkhainiem','title'));
+        return view('admin.phantutrongkhainiem.edit',compact('list_pkhainiem','list_doituong','phantutrongkhainiem','title'));
     }
 
     /**

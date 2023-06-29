@@ -34,19 +34,24 @@
                 @enderror 
                 </div>
                 <div class="col-md-3">
-                <label>công thức</label>
-                <input type="text" name="congthuc" placeholder="nhập công thức" value="{{old('congthuc') }}">
-                  @error('congthuc')
-                  <span style="color: red;">{{$message}}</span>
-                  @enderror
-                  </div>
-                  <div class="col-md-3">
-                    <label>môn</label>
-                    <input type="text" name="mon" placeholder="nhập môn" value="{{old('mon')}}">
-                    @error('mon')
-                    <span style="color: red;">{{$message}}</span>
-                    @enderror
+                <select name="congthuc">
+                    @if(!empty($list_congthuc))
+                        @foreach ($list_congthuc as $congthuc)
+                      <option value="{{$congthuc->id}}">{{$congthuc->tencongthuc}}</option>
+                        @endforeach          
+                    @endif
+                    </select>
                     </div>
+                    <div class="col-md-3">
+                    <select name="mon">
+                    @if(!empty($list_mon))
+                        @foreach ($list_mon as $mon)
+                      <option value="{{$mon->id}}">{{$mon->mon}}</option>
+                      @endforeach               
+                    </select>
+                         
+                    @endif
+                  </div>
                   </div>
                 </div>
               </div>

@@ -14,6 +14,9 @@ class Hinh extends Model
     public function danhsachhinh(){
         return DB::select('SELECT * FROM hinh');
     }
+    public function danhsachhinhchitiet(){
+        return DB::select('SELECT hinh.id,hinh.img,khainiem.tenkhainiem FROM hinh,khainiem WHERE khainiem_id=khainiem.id');
+    }
     public function themhinh($data){
        DB::insert('INSERT INTO hinh(img,khainiem_id)value(?,?)',$data);
     }

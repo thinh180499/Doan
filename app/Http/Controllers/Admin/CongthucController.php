@@ -11,6 +11,7 @@ class CongthucController extends Controller
     private $congthuc;
     public function __construct(){
         $this->congthuc=new Congthuc();
+        
     }
     /**
      * Display a listing of the resource.

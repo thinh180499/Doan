@@ -28,11 +28,13 @@
                 </div>
                 
                   <div class="col-md-3">
-                    <label>khái niệm</label>
-                    <input type="text" name="khainiem_id" placeholder="nhập khái niệm" value="{{old('khainiem_id')}}">
-                    @error('khainiem_id')
-                    <span style="color: red;">{{$message}}</span>
-                    @enderror
+                    <select name="khainiem_id">
+                    @if(!empty($list_khainiem))
+                        @foreach ($list_khainiem as $khainiem)
+                      <option value="{{$khainiem->id}}">{{$khainiem->tenkhainiem}}</option>
+                        @endforeach          
+                    @endif
+                    </select>
                     </div>
                   </div>
                 </div>

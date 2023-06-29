@@ -39,9 +39,7 @@
             <span class="text">danh sách</span>
           </a>
           <ul id="ddmenu_1" class="collapse dropdown-nav">
-            <li>
-              <a href="{{route('admin.lythuyet.index')}}"> lý thuyết </a>
-            </li>
+            
             <li>
               <a href="{{route('admin.hinh.index')}}"> Hình </a>
             </li>

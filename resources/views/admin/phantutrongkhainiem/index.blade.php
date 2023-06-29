@@ -42,10 +42,10 @@
                           <p>{{$phantutrongkhainiem->id}}</p>
                         </td>
                         <td class="min-width">
-                          <p>{{$phantutrongkhainiem->khainiem_id}}</p>
+                          <p>{{$phantutrongkhainiem->tenkhainiem}}</p>
                         </td>
                         <td class="min-width">
-                          <p>{{$phantutrongkhainiem->doituong_id}}</p>
+                          <p>{{$phantutrongkhainiem->kytu}}</p>
                         </td>
                         
                         <td>

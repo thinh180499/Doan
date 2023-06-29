@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Hinh;
+use App\Models\Khainiem;
+
 
 class HinhController extends Controller
 {
@@ -19,7 +21,8 @@ class HinhController extends Controller
      */
     public function index()
     {
-        $list_hinh=$this->hinh->danhsachhinh();
+        
+        $list_hinh=$this->hinh->danhsachhinhchitiet();
         // $list_hinh=Hinh::get();
         // dd($list_hinh);
         $title="danh sách hình";
@@ -33,8 +36,10 @@ class HinhController extends Controller
      */
     public function create()
     {
+        $khainiem=new Khainiem();
+        $list_khainiem=$khainiem->danhsachkhainiem();
         $title="thêm hình";
-        return view('admin.hinh.create',compact('title'));
+        return view('admin.hinh.create',compact('list_khainiem','title'));
     }
 
     /**
@@ -84,10 +89,12 @@ class HinhController extends Controller
      */
     public function edit($id)
     {
+        $khainiem=new Khainiem();
+        $list_khainiem=$khainiem->danhsachkhainiem();
         $hinh = $this->hinh->chitiethinh($id);
         $title="sửa hình";
         $hinh=$hinh[0];   
-        return view('admin.hinh.edit',compact('hinh','title'));
+        return view('admin.hinh.edit',compact('list_khainiem','hinh','title'));
     }
 
     /**
