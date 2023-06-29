@@ -11,7 +11,7 @@ class CongthucController extends Controller
     private $congthuc;
     public function __construct(){
         $this->congthuc=new Congthuc();
-        
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.

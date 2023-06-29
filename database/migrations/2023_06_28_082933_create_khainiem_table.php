@@ -16,7 +16,7 @@ class CreateKhainiemTable extends Migration
         Schema::create('khainiem', function (Blueprint $table) {
             $table->id();
             $table->string('tenkhainiem');
-            $table->string('noidung');
+            $table->text('noidung');
             $table->timestamps();
             $table->unsignedBigInteger('congthuc_id');
  

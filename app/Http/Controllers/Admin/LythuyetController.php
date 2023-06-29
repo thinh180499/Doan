@@ -12,6 +12,7 @@ class LythuyetController extends Controller
     private $lythuyet;
     public function __construct(){
         $this->lythuyet=new Lythuyet();
+        $this->middleware('auth');
     }
     // private $lythuyet;
     // public function __construct(){

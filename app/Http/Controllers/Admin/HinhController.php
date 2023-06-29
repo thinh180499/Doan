@@ -13,6 +13,7 @@ class HinhController extends Controller
     private $hinh;
     public function __construct(){
         $this->hinh=new hinh();
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.

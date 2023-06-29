@@ -20,7 +20,7 @@ class Phantutrongkhainiem extends Model
         
     }
     public function themphantutrongkhainiem($data){
-       DB::insert('INSERT INTO phantutrongkhainiem(tenphantutrongkhainiem,phantutrongkhainiem)value(?,?)',$data);
+       DB::insert('INSERT INTO phantutrongkhainiem(khainiem_id,doituong_id)value(?,?)',$data);
     }
     public function chitietphantutrongkhainiem($id){
         return DB::select('SELECT * FROM '.$this->table.' WHERE id=?',[$id]);

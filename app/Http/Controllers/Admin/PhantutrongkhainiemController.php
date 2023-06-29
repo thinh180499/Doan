@@ -13,6 +13,7 @@ class PhantutrongkhainiemController extends Controller
     private $phantutrongkhainiem;
     public function __construct(){
         $this->phantutrongkhainiem=new Phantutrongkhainiem();
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.

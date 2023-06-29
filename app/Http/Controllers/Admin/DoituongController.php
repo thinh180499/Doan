@@ -12,6 +12,7 @@ class DoituongController extends Controller
     private $doituong;
     public function __construct(){
         $this->doituong=new Doituong();
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.

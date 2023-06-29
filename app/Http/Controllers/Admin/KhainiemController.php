@@ -13,6 +13,7 @@ class KhainiemController extends Controller
     private $khainiem;
     public function __construct(){
         $this->khainiem=new Khainiem();
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.

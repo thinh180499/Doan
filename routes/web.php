@@ -40,7 +40,7 @@ use App\Http\Controllers\Admin\AdminController;
 //     return view('khoiluongrieng');
 // });
 Route::get('/', [VatlyController::class, 'dodai'])->name('home');
-Route::get('/home', [VatlyController::class, 'dodai'])->name('home');
+Route::get('/home', [VatlyController::class, 'dodai']);
 
 
 // Vật lý
@@ -310,3 +310,8 @@ Route::prefix('/admin')->name('admin.')->group(function () {
     Route::resource('phantutrongkhainiem', PhantutrongkhainiemController::class);
    
 });
+
+Auth::routes();
+
+
+
