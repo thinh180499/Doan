@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-<form action=" {{ route('admin.hinh.store' )}}" method="post">
+<form action=" {{ route('admin.hinh.store' )}}" method="post" enctype="multipart/form-data">
 @csrf
     <!-- ========== tables-wrapper start ========== -->
     <div class="tables-wrapper mt-4">
@@ -21,7 +21,7 @@
             <div class="col-md-9">
               <div class="col-md-3">
               <label>img</label>
-                <input type="text" name="img" placeholder="nhập tên hình" value="{{old('img')}}">
+                <input type="file" name="img" placeholder="nhập tên hình" value="{{old('img')}}">
                  @error('img')
                     <span style="color: red;">{{$message}}</span>
                 @enderror 

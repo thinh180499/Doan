@@ -113,9 +113,10 @@
                             </li>
                         @endguest</ul>
               <div class="header-search d-none d-md-flex">
-                <form action="#">
-                  <input type="text" placeholder="Search..." />
-                  <button><i class="lni lni-search-alt"></i></button>
+                <form action="{{ route('admin.search') }}" methou="post">
+                 
+                  <input name="tukhoa" placeholder="Search..." />
+                  <button type="submit"><i class="lni lni-search-alt"></i></button>
                 </form>
               </div>
             </div>

@@ -95,7 +95,7 @@ class PhantutrongkhainiemController extends Controller
         $phantutrongkhainiem = $this->phantutrongkhainiem->chitietphantutrongkhainiem($id);
         $title="sửa phần tử trong khái niệm";
         $phantutrongkhainiem=$phantutrongkhainiem[0];   
-        return view('admin.phantutrongkhainiem.edit',compact('list_pkhainiem','list_doituong','phantutrongkhainiem','title'));
+        return view('admin.phantutrongkhainiem.edit',compact('list_khainiem','list_doituong','phantutrongkhainiem','title'));
     }
 
     /**

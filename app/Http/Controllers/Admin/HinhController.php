@@ -52,21 +52,29 @@ class HinhController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'img'=>'required',
+            'img'=>'required|mimes:jpg,jpeg,png,gif',
             'khainiem_id'=>'required',
             
         ],[
             'img.required'=>'img bắt buộc phải nhập',
-            'img.min'=>'img phải hơn 5 ký tự',
-           
+            
+
             'khainiem_id.required'=>'khái niệm bắt buộc phải nhập',
             
         ]);
+        
+        $get_img=$request->file('img');
+        
+        $new_img=rand(0,99).'.'.$get_img->getClientOriginalExtension();
+        $destinationPath = public_path('images/doan');
+        $get_img->move($destinationPath,$new_img);
+        
+       
         $data=[
-            $request->img,
+            $new_img,
             $request->khainiem_id,
         ];
-        
+       
         $this->hinh->themhinh($data);
         return redirect()->route('admin.hinh.index');
     }

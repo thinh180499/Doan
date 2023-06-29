@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-<form action="" method="post" enctype="multipart/form-data"> 
+
     <!-- ========== tables-wrapper start ========== -->
     <div class="tables-wrapper mt-4">
           <div class="row">
@@ -11,8 +11,7 @@
                       {{$title}}
                   @endif
                 </h6>
-                
-                <a href=" {{route('admin.hinh.create')}}">thêm hình</a>
+                <a href=" {{route('admin.khainiem.create')}}">thêm khái niêm</a>
                 <div class="table-wrapper table-responsive">
                   <table class="table">
                     <thead>
@@ -21,12 +20,12 @@
                           <h6>id</h6>
                         </th>
                         <th>
-                          <h6>img</h6>
+                          <h6>tên khái niêm</h6>
+                        </th>
+                        <th>
+                          <h6>nội dung</h6>
                         </th>
                         
-                        <th>
-                          <h6>khái niệm</h6>
-                        </th>
                         <th>
                           <h6>sửa</h6>
                         </th>
@@ -37,24 +36,24 @@
                       <!-- end table row-->
                     </thead>
                     <tbody>
-                    @if(!empty($list_hinh))
-                        @foreach ($list_hinh as $hinh)
+                    @if(!empty($list_khainiem))
+                        @foreach ($list_khainiem as $khainiem)
                       <tr>
                         <td class="min-width">
-                          <p>{{$hinh->id}}</p>
+                          <p>{{$khainiem->id}}</p>
                         </td>
                         <td class="min-width">
-                          <img src="{{ asset('images/doan')."/".$hinh->img}}"></img>
+                          <p>{{$khainiem->tenkhainiem}}</p>
                         </td>
                         <td class="min-width">
-                          <p>{{$hinh->tenkhainiem}}</p>
+                          <p>{{$khainiem->noidung}}</p>
                         </td>
                         <td>
-                          <a href="{{route('admin.hinh.edit',['hinh'=>$hinh->id])}}">sửa</a>
+                          <a href="{{route('admin.khainiem.edit',['khainiem'=>$khainiem->id])}}">sửa</a>
                         </td>
                         <td>
                           <div class="action">
-                            <form action="{{route('admin.hinh.destroy',['hinh'=>$hinh->id])}}" method="post">
+                            <form action="{{route('admin.khainiem.destroy',['khainiem'=>$khainiem->id])}}" method="post">
                                 @method('DELETE')
                             @csrf
                             <button type="submit"> <i class="lni lni-trash-can"></i></button>               
@@ -82,5 +81,4 @@
 
         </div>
         <!-- ========== tables-wrapper end ========== -->
-</form>
 @endsection

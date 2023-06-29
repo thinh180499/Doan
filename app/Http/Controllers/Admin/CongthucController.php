@@ -125,4 +125,5 @@ class CongthucController extends Controller
         $title="danh sách công thức";  
         return redirect()->route('admin.congthuc.index',compact('title'));
     }
+    
 }

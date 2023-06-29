@@ -149,4 +149,12 @@ class KhainiemController extends Controller
         $title="danh sách khái niệm";  
         return redirect()->route('admin.khainiem.index',compact('title'));
     }
+    public function search(Request $request)
+    {
+        $tukhoa=$request->tukhoa;
+        $list_khainiem=$this->khainiem->danhsachkhainiemtheotimkiem($tukhoa);
+        
+        $title="tìm kiếm ".$tukhoa;
+        return view('admin.khainiem.search',compact('list_khainiem','title'));
+    }
 }

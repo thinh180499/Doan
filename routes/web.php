@@ -5,7 +5,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VatlyController;
 use App\Http\Controllers\ToanController;
 use App\Http\Controllers\HoaController;
-use App\Http\Controllers\Admin\LythuyetController;
 use App\Http\Controllers\Admin\HinhController;
 use App\Http\Controllers\Admin\CongthucController;
 use App\Http\Controllers\Admin\DoituongController;
@@ -301,7 +300,6 @@ Route::prefix('/admin')->name('admin.')->group(function () {
     Route::get('/login', [AdminController::class, 'login'])->name('login');
     Route::post('/login', [AdminController::class, 'checklogin']);
     Route::get('/', [AdminController::class, 'index'])->name('home');
-    Route::resource('lythuyet', LythuyetController::class);
     Route::resource('hinh', HinhController::class);
 //     //danh sách lý thuyết
 //     Route::get('/', [LythuyetController::class, 'index'])->name('danhsachlythuyet');
@@ -324,6 +322,11 @@ Route::prefix('/admin')->name('admin.')->group(function () {
     Route::resource('khainiem', KhainiemController::class);
     Route::resource('phantutrongkhainiem', PhantutrongkhainiemController::class);
 
+
+
+
+
+    Route::get('search', [KhainiemController::class, 'search'])->name('search');
 });
 
 Auth::routes();
